@@ -1688,7 +1688,16 @@ function showDotTooltip(event, personaId, status, error, attempt) {
   if (left + ttW > window.innerWidth) left = rect.left - ttW - 8;
   if (left < 0) left = 4;
   tt.style.left = `${left + window.scrollX}px`;
-  tt.style.top = `${rect.top + window.scrollY - 4}px`;
+
+  // Position vertically: prefer aligning top with dot, but flip upward if it would overflow viewport
+  const ttH = tt.offsetHeight || 200;
+  let top = rect.top + window.scrollY - 4;
+  if (rect.top + ttH > window.innerHeight) {
+    // Flip: place tooltip bottom-aligned with the dot
+    top = rect.bottom + window.scrollY - ttH + 4;
+    if (top < window.scrollY) top = window.scrollY + 4;
+  }
+  tt.style.top = `${top}px`;
 }
 
 function hideDotTooltip() {
