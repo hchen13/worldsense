@@ -725,12 +725,11 @@ const promptPreviewIcon = document.querySelector('.prompt-preview-icon');
 if (promptPreviewToggle) {
   promptPreviewToggle.addEventListener('click', () => {
     if (!promptPreviewPanel) return;
-    const isOpen = promptPreviewPanel.classList.toggle('hidden');
-    if (promptPreviewIcon) promptPreviewIcon.style.transform = isOpen ? '' : 'rotate(180deg)';
-    // Auto-load on first open
-    if (!isOpen && !promptPreviewPanel.dataset.loaded) {
+    const isNowHidden = promptPreviewPanel.classList.toggle('hidden');
+    if (promptPreviewIcon) promptPreviewIcon.style.transform = isNowHidden ? '' : 'rotate(180deg)';
+    // Auto-load every time the panel opens
+    if (!isNowHidden) {
       loadPromptPreview();
-      promptPreviewPanel.dataset.loaded = '1';
     }
   });
 }
@@ -750,9 +749,9 @@ async function loadPromptPreview() {
   const scenario = document.getElementById('input-scenario-context')?.value || '';
   const market = document.getElementById('input-market')?.value || 'global';
   const language = document.getElementById('input-language')?.value || 'English';
-  // Get research type from selected preset
-  const selectedPreset = document.querySelector('.eval-preset-btn.active');
-  const researchType = selectedPreset?.dataset?.presetId || 'product_purchase';
+  // Get research type from global state (set by selectPreset())
+  const researchType = (typeof _selectedPreset !== 'undefined' && _selectedPreset && _selectedPreset !== 'custom')
+    ? _selectedPreset : 'product_purchase';
 
   try {
     const data = await apiFetch('/api/prompt-preview', {
@@ -2132,7 +2131,7 @@ function renderDetail(data) {
 
   // ----- Two-column layout: left = results, right = persona matrix -----
   // Right column: persona matrix (always present)
-  let rightCol = `<div id="dot-matrix-${task.task_id}">
+  let rightCol = `<div id="dot-matrix-${task.task_id}" class="metric-card">
     <p class="text-xs text-slate-600">Loading persona matrix...</p>
   </div>`;
 
