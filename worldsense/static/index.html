@@ -30,7 +30,7 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
   <style>
     /* Advanced options collapse animation */
     .adv-panel {
@@ -467,7 +467,7 @@
             <!-- Text area -->
             <textarea
               id="input-content"
-              rows="4"
+              rows="6"
               placeholder="Paste the content to evaluate, or upload files (PDF, images, txt, docx, md)"
               class="w-full bg-surface-800 border border-surface-600 rounded-t-lg px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
             ></textarea>
@@ -504,11 +504,7 @@
             <div id="file-chips" class="flex flex-wrap gap-2 mt-2"></div>
           </div>
 
-          </div>
-          <!-- ===== RIGHT COLUMN: Config + Preview ===== -->
-          <div class="w-full lg:w-96 flex-shrink-0 space-y-5">
-
-          <!-- ===== EVALUATION PRESET SYSTEM (v2) ===== -->
+          <!-- ===== EVALUATION PRESET SYSTEM (v2) — stays in left col ===== -->
           <div>
             <label class="block text-sm font-medium text-slate-300 mb-1">
               Research Type <span class="text-slate-500 font-normal">/ 研究类型</span>
@@ -562,6 +558,10 @@
             </div>
           </div>
           <!-- ===== END EVALUATION PRESET SYSTEM ===== -->
+
+          </div>
+          <!-- ===== RIGHT COLUMN: Config + Preview ===== -->
+          <div class="w-full lg:w-80 flex-shrink-0 space-y-5">
 
           <div>
             <!-- Market -->
@@ -874,6 +874,6 @@
     </main>
   </div>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>
