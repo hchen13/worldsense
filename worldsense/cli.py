@@ -86,41 +86,40 @@ def cmd_personas(
     count: int = typer.Option(10, "--count", "-n", help="Number of personas to generate"),
     market: str = typer.Option("global", "--market", "-m", help="Target market"),
     seed: Optional[int] = typer.Option(None, "--seed", help="Random seed for reproducibility"),
-    json_output: bool = typer.Option(False, "--json", help="Output as JSON"),
+    table_output: bool = typer.Option(False, "--table", "-t", help="Display as Rich table (human-readable)"),
 ):
     """Generate and preview personas without running inference."""
     from worldsense.persona.generator import PersonaGenerator
-
-    console.print(f"\n[bold cyan]Generating {count} personas[/bold cyan] | Market: [yellow]{market}[/yellow]\n")
 
     try:
         gen = PersonaGenerator(market=market, seed=seed)
         persona_list = gen.generate(count)
     except ValueError as e:
-        console.print(f"[red]Error: {e}[/red]")
+        console.print(f"[red]Error: {e}[/red]", stderr=True)
         raise typer.Exit(1)
 
-    if json_output:
+    if not table_output:
         data = [p.model_dump(mode="json") for p in persona_list]
-        console.print_json(json.dumps(data, ensure_ascii=False))
+        print(json.dumps(data, ensure_ascii=False, indent=2))
         return
 
     # Rich table output
+    console.print(f"\n[bold cyan]Generating {count} personas[/bold cyan] | Market: [yellow]{market}[/yellow]\n")
+
     table = Table(
         title=f"Generated Personas ({market} market)",
-        box=box.ROUNDED,
-        show_lines=False,
+        box=box.SIMPLE_HEAVY,
+        expand=True,
     )
-    table.add_column("ID", style="dim", width=10)
-    table.add_column("Age", justify="right", width=5)
-    table.add_column("Gender", width=8)
-    table.add_column("Country", width=8)
-    table.add_column("Occupation", width=26)
-    table.add_column("Income", width=20)
-    table.add_column("MBTI", width=6)
-    table.add_column("Personality", width=22)
-    table.add_column("Price Sens.", justify="right", width=10)
-    table.add_column("Risk", justify="right", width=6)
+    table.add_column("Age", justify="right", no_wrap=True)
+    table.add_column("G", no_wrap=True)
+    table.add_column("Ctry", no_wrap=True)
+    table.add_column("MBTI", no_wrap=True)
+    table.add_column("Occupation", ratio=3)
+    table.add_column("Income", ratio=2)
+    table.add_column("Personality", ratio=2)
+    table.add_column("P.S.", justify="right", no_wrap=True)
+    table.add_column("Risk", justify="right", no_wrap=True)
 
     for p in persona_list:
         cog = p.cognitive
@@ -128,29 +127,28 @@ def cmd_personas(
         local = p.occupation_title_local.get(p.nationality, "")
         occ_display = p.occupation_title or p.occupation_label
         if local:
-            occ_display = f"{occ_display[:14]} ({local[:8]})"
-        else:
-            occ_display = occ_display[:24]
+            occ_display = f"{occ_display} ({local})"
         # Build income display
         income_display = p._format_income().replace("Income: ", "")
+        # Gender shorthand
+        gen_short = {"male": "M", "female": "F", "non-binary": "NB"}.get(p.gender, p.gender[:2])
         table.add_row(
-            p.persona_id,
             str(p.age),
-            p.gender,
+            gen_short,
             p.nationality,
-            occ_display,
-            income_display[:18],
             p.mbti or "—",
-            p.personality_type.replace("_", " ").title()[:20],
-            f"{cog.price_sensitivity:.2f}",
-            f"{cog.risk_appetite:.2f}",
+            occ_display,
+            income_display,
+            p.personality_type.replace("_", " ").title(),
+            f"{cog.price_sensitivity:.1f}",
+            f"{cog.risk_appetite:.1f}",
         )
 
     console.print(table)
     console.print(f"\n[dim]Generated {count} personas for market: {market}[/dim]")
 
     # Show one full example
-    if not json_output and count > 0:
+    if table_output and count > 0:
         example = persona_list[0]
         console.print(f"\n[bold]Example Persona Prompt Context:[/bold]")
         console.print(f"[dim]{example.to_prompt_context()}[/dim]")
