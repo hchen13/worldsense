@@ -2,7 +2,7 @@
 
 import pytest
 from worldsense.persona.generator import PersonaGenerator
-from worldsense.persona.cognitive import derive_cognitive_profile, generate_big_five, assign_personality_type
+from worldsense.persona.cognitive import derive_cognitive_profile, derive_mbti, generate_big_five, assign_personality_type
 from worldsense.persona.schema import HofstedeProfile
 import random
 
@@ -71,6 +71,63 @@ def test_persona_prompt_context():
 def test_invalid_market():
     with pytest.raises(ValueError, match="market"):
         PersonaGenerator(market="moon")
+
+
+def test_derive_mbti_boundaries():
+    """Test MBTI derivation at exactly 50 (boundary) — should map to E/N/F/J."""
+    from worldsense.persona.schema import BigFiveProfile
+    b5 = BigFiveProfile(openness=50, conscientiousness=50, extraversion=50, agreeableness=50, neuroticism=50)
+    assert derive_mbti(b5) == "ENFJ"
+
+
+def test_derive_mbti_all_high():
+    """All traits at 100 → ENFJ."""
+    from worldsense.persona.schema import BigFiveProfile
+    b5 = BigFiveProfile(openness=100, conscientiousness=100, extraversion=100, agreeableness=100, neuroticism=100)
+    assert derive_mbti(b5) == "ENFJ"
+
+
+def test_derive_mbti_all_low():
+    """All traits at 0 → ISTP."""
+    from worldsense.persona.schema import BigFiveProfile
+    b5 = BigFiveProfile(openness=0, conscientiousness=0, extraversion=0, agreeableness=0, neuroticism=0)
+    assert derive_mbti(b5) == "ISTP"
+
+
+def test_derive_mbti_specific_type():
+    """ENTP: high extraversion, high openness, low agreeableness, low conscientiousness."""
+    from worldsense.persona.schema import BigFiveProfile
+    b5 = BigFiveProfile(openness=80, conscientiousness=30, extraversion=75, agreeableness=25, neuroticism=60)
+    assert derive_mbti(b5) == "ENTP"
+
+
+def test_derive_mbti_intj():
+    """INTJ: low extraversion, high openness, low agreeableness, high conscientiousness."""
+    from worldsense.persona.schema import BigFiveProfile
+    b5 = BigFiveProfile(openness=85, conscientiousness=80, extraversion=30, agreeableness=35, neuroticism=40)
+    assert derive_mbti(b5) == "INTJ"
+
+
+def test_mbti_on_generated_personas():
+    """All generated personas should have a valid 4-letter MBTI type."""
+    gen = PersonaGenerator(market="global", seed=42)
+    personas = gen.generate(50)
+    valid_letters = [
+        set("EI"), set("SN"), set("TF"), set("JP"),
+    ]
+    for p in personas:
+        assert len(p.mbti) == 4, f"Invalid MBTI length: {p.mbti}"
+        for i, letter in enumerate(p.mbti):
+            assert letter in valid_letters[i], f"Invalid MBTI letter at pos {i}: {p.mbti}"
+
+
+def test_mbti_in_summary_dict():
+    """MBTI should appear in to_dict_summary() output."""
+    gen = PersonaGenerator(seed=7)
+    p = gen.generate(1)[0]
+    summary = p.to_dict_summary()
+    assert "mbti" in summary
+    assert len(summary["mbti"]) == 4
 
 
 def test_persona_summary_dict():

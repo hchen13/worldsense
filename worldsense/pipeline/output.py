@@ -204,6 +204,9 @@ def build_merged_prompt(
 
     location = ps.get("city_tier_label") or ps.get("urban_rural", "")
     personality = (ps.get("personality_type") or "").replace("_", " ").title()
+    mbti = ps.get("mbti", "")
+    if mbti:
+        personality = f"{personality} (MBTI: {mbti})"
     novelty = round(float(ps.get("novelty_seeking", 0.5)), 2)
     price_sens = round(float(ps.get("price_sensitivity", 0.5)), 2)
     risk = round(float(ps.get("risk_appetite", 0.5)), 2)

@@ -41,7 +41,7 @@ Be specific and realistic. Vary the tone naturally — some people have worries,
 IMPORTANT: The background MUST be consistent with this person's cognitive traits below. A low novelty-seeker sticks to familiar brands/routines. A high novelty-seeker actively tries new things. A high risk-taker makes bold choices. Reflect these traits naturally in the background details.
 Do NOT repeat the occupation or income info already given.
 
-Profile: {age}-year-old {gender} from {country_name}, {occupation_title}, ~{income_display}, {location_label}, {personality_label} personality.
+Profile: {age}-year-old {gender} from {country_name}, {occupation_title}, ~{income_display}, {location_label}, {personality_label} ({mbti}) personality.
 Cognitive traits: novelty-seeking={novelty_seeking} (0=very conservative, 1=loves new things), price-sensitivity={price_sensitivity} (0=spends freely, 1=very frugal), risk-appetite={risk_appetite} (0=risk-averse, 1=risk-taker)."""
 
 
@@ -59,6 +59,7 @@ def _build_epsilon_prompt(persona_summary: dict) -> str:
     location_label = city_tier_label if city_tier_label else urban_rural
     personality_type = persona_summary.get("personality_type", "")
     personality_label = personality_type.replace("_", " ").title()
+    mbti = persona_summary.get("mbti", "")
 
     novelty_seeking = round(persona_summary.get("novelty_seeking", 0.5), 2)
     price_sensitivity = round(persona_summary.get("price_sensitivity", 0.5), 2)
@@ -72,6 +73,7 @@ def _build_epsilon_prompt(persona_summary: dict) -> str:
         income_display=income_display,
         location_label=location_label,
         personality_label=personality_label,
+        mbti=mbti,
         novelty_seeking=novelty_seeking,
         price_sensitivity=price_sensitivity,
         risk_appetite=risk_appetite,

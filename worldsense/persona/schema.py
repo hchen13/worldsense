@@ -127,7 +127,7 @@ class Persona(BaseModel):
 
     # Layer 1.5: Personality labels (derived from Big Five clusters)
     personality_type: str  # e.g. "pragmatic_planner", "social_connector", etc.
-    mbti: str = ""  # e.g. "ENTP", "INTJ" — derived from Big Five
+    mbti: str = Field(default="", pattern=r"^([EI][SN][TF][JP])?$")  # e.g. "ENTP", "INTJ" — derived from Big Five
 
     # Layer 2: Cognitive profiles
     hofstede: HofstedeProfile
