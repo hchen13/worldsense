@@ -117,6 +117,7 @@ def cmd_personas(
     table.add_column("Country", width=8)
     table.add_column("Occupation", width=26)
     table.add_column("Income", width=20)
+    table.add_column("MBTI", width=6)
     table.add_column("Personality", width=22)
     table.add_column("Price Sens.", justify="right", width=10)
     table.add_column("Risk", justify="right", width=6)
@@ -139,6 +140,7 @@ def cmd_personas(
             p.nationality,
             occ_display,
             income_display[:18],
+            p.mbti or "—",
             p.personality_type.replace("_", " ").title()[:20],
             f"{cog.price_sensitivity:.2f}",
             f"{cog.risk_appetite:.2f}",

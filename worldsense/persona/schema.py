@@ -127,6 +127,7 @@ class Persona(BaseModel):
 
     # Layer 1.5: Personality labels (derived from Big Five clusters)
     personality_type: str  # e.g. "pragmatic_planner", "social_connector", etc.
+    mbti: str = ""  # e.g. "ENTP", "INTJ" — derived from Big Five
 
     # Layer 2: Cognitive profiles
     hofstede: HofstedeProfile
@@ -201,7 +202,7 @@ class Persona(BaseModel):
         location_str = self.city_tier_label if self.city_tier_label else self.urban_rural
         lines += [
             f"Location: {location_str}",
-            f"Personality: {self.personality_type.replace('_', ' ').title()}",
+            f"Personality: {self.personality_type.replace('_', ' ').title()} (MBTI: {self.mbti})" if self.mbti else f"Personality: {self.personality_type.replace('_', ' ').title()}",
             "",
             "Your cognitive profile:",
             f"- Decision style: {'analytical' if self.cognitive.analytical_vs_intuitive > 0.6 else 'intuitive' if self.cognitive.analytical_vs_intuitive < 0.4 else 'balanced'}",
@@ -253,6 +254,7 @@ class Persona(BaseModel):
             "city_tier": self.city_tier,
             "city_tier_label": self.city_tier_label,
             "personality_type": self.personality_type,
+            "mbti": self.mbti,
             # Cognitive highlights for preview card
             "decision_style": decision_style,
             "trust_chain": trust_chain,

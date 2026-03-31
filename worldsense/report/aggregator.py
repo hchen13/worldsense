@@ -116,6 +116,26 @@ class ReportGenerator:
                 lines.append(f"| {age_grp} | {count} | {buy_rate:.1%} | {avg_nps:.1f} | {sentiment:+.2f} |")
             lines.append("")
 
+        if r.by_mbti:
+            lines += [
+                f"## 🧠 Results by MBTI Type",
+                f"",
+                f"| MBTI | Count | Buy Rate | Avg NPS | Sentiment |",
+                f"|------|-------|----------|---------|-----------|",
+            ]
+            sorted_mbti = sorted(
+                r.by_mbti.items(),
+                key=lambda x: x[1].get("count", 0),
+                reverse=True,
+            )
+            for mbti_type, stats in sorted_mbti:
+                count = stats.get("count", 0)
+                buy_rate = stats.get("buy_rate", 0)
+                avg_nps = stats.get("avg_nps", 0)
+                sentiment = stats.get("avg_sentiment", 0)
+                lines.append(f"| {mbti_type} | {count} | {buy_rate:.1%} | {avg_nps:.1f} | {sentiment:+.2f} |")
+            lines.append("")
+
         if r.by_income:
             lines += [
                 f"## 💰 Results by Income Bracket",

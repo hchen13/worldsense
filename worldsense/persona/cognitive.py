@@ -72,6 +72,23 @@ PERSONALITY_CLUSTERS = [
 ]
 
 
+def derive_mbti(b5: BigFiveProfile) -> str:
+    """
+    Derive MBTI 4-letter type from Big Five trait values.
+
+    Mapping (established in personality psychology literature):
+        E/I ← Extraversion (>50 → E)
+        N/S ← Openness (>50 → N)
+        F/T ← Agreeableness (>50 → F, ≤50 → T)
+        J/P ← Conscientiousness (>50 → J)
+    """
+    e_i = "E" if b5.extraversion > 50 else "I"
+    s_n = "N" if b5.openness > 50 else "S"
+    t_f = "F" if b5.agreeableness > 50 else "T"
+    j_p = "J" if b5.conscientiousness > 50 else "P"
+    return f"{e_i}{s_n}{t_f}{j_p}"
+
+
 def assign_personality_type(b5: BigFiveProfile) -> str:
     """Assign a personality cluster based on Big Five trait values."""
     scores = {}

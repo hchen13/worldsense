@@ -67,6 +67,7 @@ class TaskResults(BaseModel):
     by_age_group: dict[str, dict] = Field(default_factory=dict)
     by_income: dict[str, dict] = Field(default_factory=dict)
     by_occupation: dict[str, dict] = Field(default_factory=dict)
+    by_mbti: dict[str, dict] = Field(default_factory=dict)
 
     # Top themes
     top_attractions: list[str] = Field(default_factory=list)
@@ -101,6 +102,7 @@ class TaskResults(BaseModel):
         by_age: dict[str, list] = {}
         by_income: dict[str, list] = {}
         by_occupation: dict[str, list] = {}
+        by_mbti: dict[str, list] = {}
 
         for r in results:
             ps = r.persona_summary
@@ -110,8 +112,9 @@ class TaskResults(BaseModel):
             # Use occupation_title (English readable name) as the key for by_occupation
             # Prefer occupation_title, fall back to occupation_label, then occupation_id
             occ = ps.get("occupation_title") or ps.get("occupation_label") or ps.get("occupation_id", "unknown")
+            mbti = ps.get("mbti", "unknown")
 
-            for bucket, key in [(by_nationality, nat), (by_age, age), (by_income, inc), (by_occupation, occ)]:
+            for bucket, key in [(by_nationality, nat), (by_age, age), (by_income, inc), (by_occupation, occ), (by_mbti, mbti)]:
                 if key not in bucket:
                     bucket[key] = []
                 bucket[key].append(r)
@@ -144,6 +147,7 @@ class TaskResults(BaseModel):
             by_age_group={k: _slice_stats(v) for k, v in by_age.items()},
             by_income={k: _slice_stats(v) for k, v in by_income.items()},
             by_occupation={k: _slice_stats(v) for k, v in by_occupation.items()},
+            by_mbti={k: _slice_stats(v) for k, v in by_mbti.items()},
             top_attractions=_extract_top_themes([r.key_attraction for r in results], 5),
             top_concerns=_extract_top_themes([r.key_concern for r in results], 5),
             sample_verbatims=[r.verbatim for r in results[:5] if r.verbatim],

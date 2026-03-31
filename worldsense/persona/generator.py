@@ -21,6 +21,7 @@ from worldsense.persona.schema import HofstedeProfile, Persona
 from worldsense.persona.cognitive import (
     assign_personality_type,
     derive_cognitive_profile,
+    derive_mbti,
     generate_big_five,
 )
 
@@ -680,6 +681,7 @@ class PersonaGenerator:
         # Layer 2: Big Five + cognitive model
         big_five = generate_big_five(self.rng, nationality, age_group)
         personality_type = assign_personality_type(big_five)
+        mbti = derive_mbti(big_five)
 
         # Compute income-derived price sensitivity and WTP multiplier
         derived_price_sensitivity = _income_to_price_sensitivity(income_usd, self._income_quantiles)
@@ -735,6 +737,7 @@ class PersonaGenerator:
             city_tier=city_tier,
             city_tier_label=city_tier_label,
             personality_type=personality_type,
+            mbti=mbti,
             hofstede=hofstede,
             big_five=big_five,
             cognitive=cognitive,
