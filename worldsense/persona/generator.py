@@ -51,6 +51,38 @@ AGE_GROUP_RANGES: dict[str, tuple[int, int]] = {
     "65+": (65, 80),
 }
 
+# Category → urban_bias: probability that occupation is found in urban areas.
+# Used to weight occupation sampling by location.
+# Higher = more urban, lower = more rural-appropriate.
+CATEGORY_URBAN_BIAS: dict[str, float] = {
+    "computer-and-information-technology": 0.90,
+    "legal": 0.90,
+    "business-and-financial": 0.85,
+    "architecture-and-engineering": 0.85,
+    "media-and-communication": 0.85,
+    "math": 0.85,
+    "management": 0.80,
+    "life-physical-and-social-science": 0.80,
+    "arts-and-design": 0.80,
+    "entertainment-and-sports": 0.75,
+    "personal-care-and-service": 0.75,
+    "office-and-administrative-support": 0.70,
+    "healthcare": 0.65,
+    "sales": 0.65,
+    "food-preparation-and-serving": 0.65,
+    "government": 0.60,
+    "protective-service": 0.60,
+    "community-and-social-service": 0.55,
+    "education-training-and-library": 0.55,
+    "military": 0.50,
+    "building-and-grounds-cleaning": 0.50,
+    "construction-and-extraction": 0.40,
+    "installation-maintenance-and-repair": 0.40,
+    "production": 0.40,
+    "transportation-and-material-moving": 0.40,
+    "farming-fishing-and-forestry": 0.10,
+}
+
 # --- Per-nationality first name pools (male, female, non-binary) ---
 _NAMES: dict[str, tuple[list[str], list[str], list[str]]] = {
     "US": (["James","Michael","Robert","John","David","William","Richard","Thomas"],
@@ -502,8 +534,12 @@ class PersonaGenerator:
         pay_local = int(us_pay * ppp * bracket_scale)
         return pay_local, currency
 
-    def _sample_occupation(self, nationality: str) -> dict:
-        """Sample an occupation weighted by market-appropriate weights."""
+    def _sample_occupation(self, nationality: str, urban_rural: str = "") -> dict:
+        """Sample an occupation weighted by market-appropriate weights.
+
+        When *urban_rural* is provided, occupation weights are adjusted so that
+        urban-oriented jobs are less likely in rural areas and vice-versa.
+        """
         occ_map = self._occupations["map"]
 
         if not occ_map:
@@ -523,19 +559,31 @@ class PersonaGenerator:
         ids = list(candidates.keys())
         weights = [self._get_occupation_weight(candidates[oid], nationality) for oid in ids]
 
+        # Apply location-based modifier
+        if urban_rural:
+            for i, oid in enumerate(ids):
+                cat = candidates[oid].get("category", "")
+                ub = CATEGORY_URBAN_BIAS.get(cat, 0.6)
+                if urban_rural == "rural":
+                    # Strongly penalise urban-only occupations in rural areas
+                    weights[i] *= (1.0 - ub) ** 1.5
+                elif urban_rural == "urban":
+                    # Mildly penalise rural-only occupations in urban areas
+                    weights[i] *= ub ** 0.5
+
         chosen_id = self.rng.choices(ids, weights=weights, k=1)[0]
         return candidates[chosen_id]
 
-    def _sample_location(self, occ: dict, nationality: str) -> tuple[str, str, str]:
+    def _sample_location(self, nationality: str) -> tuple[str, str, str]:
         """
-        Sample location for a persona.
+        Sample location for a persona (independent of occupation).
 
         Returns (urban_rural, city_tier, city_tier_label).
         - If country has city_tiers in country_profiles:
           - If DimensionConfig.location_weights keys match city_tier ids → user-weighted sampling
           - Otherwise → sample by city_tier weights
           - Sets urban_rural to "urban"/"suburban"/"rural" as best-fit fallback
-        - Otherwise → fallback to urban/suburban/rural logic
+        - Otherwise → fallback to urban/suburban/rural logic using nationality defaults
         """
         cp = self._country_profiles.get(nationality, {})
         city_tiers = cp.get("city_tiers", [])
@@ -580,18 +628,12 @@ class PersonaGenerator:
                     chosen = self.rng.choices(options, weights=weights, k=1)[0]
                     return chosen, "", ""
 
-        urban_bias = occ.get("urban_bias", 0.6)
-        cat = occ.get("category", "")
-        if cat in ("computer-and-information-technology", "business-and-financial",
-                   "architecture-and-engineering", "legal", "management"):
-            urban_bias = min(1.0, urban_bias + 0.2)
-        elif cat in ("farming-fishing-and-forestry",):
-            urban_bias = max(0.0, urban_bias - 0.4)
-
+        # Nationality-based default urban bias (no occupation info yet)
+        urban_bias = 0.6
         if nationality in ("US", "GB", "DE", "FR", "JP", "AU", "SG", "KR", "CN"):
-            urban_bias = min(1.0, urban_bias + 0.1)
+            urban_bias = 0.70
         elif nationality in ("IN", "NG", "PK", "VN", "PH", "ET", "BD"):
-            urban_bias = max(0.0, urban_bias - 0.15)
+            urban_bias = 0.45
 
         roll = self.rng.random()
         if roll < urban_bias * 0.6:
@@ -602,8 +644,8 @@ class PersonaGenerator:
             return "rural", "", ""
 
     # Keep old name for backward compat (callers outside this module)
-    def _sample_urban_rural(self, occ: dict, nationality: str) -> str:
-        urban_rural, _, _ = self._sample_location(occ, nationality)
+    def _sample_urban_rural(self, nationality: str) -> str:
+        urban_rural, _, _ = self._sample_location(nationality)
         return urban_rural
 
     # --- Main generator ---
@@ -627,8 +669,8 @@ class PersonaGenerator:
         age = self.rng.randint(*age_range)
 
         gender = self._sample_gender()
-        occ = self._sample_occupation(nationality)
-        urban_rural, city_tier, city_tier_label = self._sample_location(occ, nationality)
+        urban_rural, city_tier, city_tier_label = self._sample_location(nationality)
+        occ = self._sample_occupation(nationality, urban_rural)
 
         # Derive income from occupation data
         base_income_local, income_currency = self._get_income_for_nationality(occ, nationality)
