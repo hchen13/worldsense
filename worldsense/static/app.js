@@ -778,10 +778,7 @@ function renderPersonaCard(p) {
   const eduBadge = p.occupation_education ? `<div class="text-xs text-slate-600 mt-0.5">🎓 ${escHtml(p.occupation_education)}</div>` : '';
   const ptLabel = (p.personality_type || '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
-  // Truncate background to ~120 chars for card display
-  const bgText = (p.personal_background || '').length > 120
-    ? p.personal_background.substring(0, 120) + '…'
-    : (p.personal_background || '');
+  const bgText = p.personal_background || '';
 
   return `
   <div class="persona-card">
