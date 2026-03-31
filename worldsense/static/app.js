@@ -778,52 +778,57 @@ function renderPersonaCard(p) {
   const eduBadge = p.occupation_education ? `<div class="text-xs text-slate-600 mt-0.5">🎓 ${escHtml(p.occupation_education)}</div>` : '';
   const ptLabel = (p.personality_type || '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
+  // Truncate background to ~120 chars for card display
+  const bgText = (p.personal_background || '').length > 120
+    ? p.personal_background.substring(0, 120) + '…'
+    : (p.personal_background || '');
+
   return `
   <div class="persona-card">
-    <div class="flex items-start gap-2 mb-3">
-      <span class="text-2xl">${p.flag || '🌐'}</span>
+    <div class="flex items-start gap-2 mb-2">
+      <span class="text-xl">${p.flag || '🌐'}</span>
       <div class="flex-1 min-w-0">
         <div class="flex items-center gap-1.5">
           <span class="font-semibold text-sm text-white">${escHtml(p.name || 'Unknown')}</span>
           <span class="text-slate-500 text-xs">${genderIcon}</span>
         </div>
-        <div class="text-xs text-slate-400">${p.country_name}, ${p.age} yrs • ${escHtml(occDisplay)}</div>
-        <div class="text-xs text-slate-500">${escHtml(incomeLabel)}</div>
-        ${locationBadge}
-        ${eduBadge}
+        <div class="text-xs text-slate-400">${p.country_name}, ${p.age} yrs</div>
       </div>
     </div>
-    <div class="mb-3">
-      <span class="inline-block text-xs px-2 py-0.5 bg-surface-700 text-brand-400 rounded-full">${ptLabel}</span>${p.mbti ? `<span class="inline-block text-xs px-2 py-0.5 bg-surface-700 text-violet-400 rounded-full ml-1">${escHtml(p.mbti)}</span>` : ''}
+    <div class="text-xs text-slate-400 mb-1">${escHtml(occDisplay)}</div>
+    <div class="text-xs text-slate-500 mb-1">${escHtml(incomeLabel)}</div>
+    ${locationBadge}${eduBadge}
+    <div class="flex flex-wrap gap-1 my-2">
+      <span class="inline-block text-xs px-2 py-0.5 bg-surface-700 text-brand-400 rounded-full">${ptLabel}</span>${p.mbti ? `<span class="inline-block text-xs px-2 py-0.5 bg-surface-700 text-violet-400 rounded-full">${escHtml(p.mbti)}</span>` : ''}
     </div>
-    <div class="space-y-2 mb-3">
+    <div class="space-y-1.5 mb-2">
       <div class="flex items-center gap-2">
-        <span class="text-xs text-slate-500 w-24 flex-shrink-0">Price Sensitivity</span>
+        <span class="text-xs text-slate-500 w-12 flex-shrink-0">Price</span>
         <div class="cog-bar-track"><div class="cog-bar-fill" style="width:${Math.round((p.price_sensitivity||0)*100)}%"></div></div>
         <span class="text-xs text-slate-400 w-8 text-right">${Math.round((p.price_sensitivity||0)*100)}%</span>
       </div>
       <div class="flex items-center gap-2">
-        <span class="text-xs text-slate-500 w-24 flex-shrink-0">Risk Appetite</span>
+        <span class="text-xs text-slate-500 w-12 flex-shrink-0">Risk</span>
         <div class="cog-bar-track"><div class="cog-bar-fill" style="width:${Math.round((p.risk_appetite||0)*100)}%; background: linear-gradient(90deg, #f59e0b, #ef4444)"></div></div>
         <span class="text-xs text-slate-400 w-8 text-right">${Math.round((p.risk_appetite||0)*100)}%</span>
       </div>
       <div class="flex items-center gap-2">
-        <span class="text-xs text-slate-500 w-24 flex-shrink-0">Novelty Seeking</span>
+        <span class="text-xs text-slate-500 w-12 flex-shrink-0">Novel</span>
         <div class="cog-bar-track"><div class="cog-bar-fill" style="width:${Math.round((p.novelty_seeking||0)*100)}%; background: linear-gradient(90deg, #a78bfa, #ec4899)"></div></div>
         <span class="text-xs text-slate-400 w-8 text-right">${Math.round((p.novelty_seeking||0)*100)}%</span>
       </div>
     </div>
-    <div class="flex gap-2 mb-3">
-      <div class="flex-1 px-2 py-1.5 bg-surface-800 rounded text-center">
+    <div class="flex gap-2 mb-2">
+      <div class="flex-1 px-2 py-1 bg-surface-800 rounded text-center">
         <div class="text-xs text-slate-500">Decision</div>
         <div class="text-xs font-medium text-slate-200">${escHtml(p.decision_style || '—')}</div>
       </div>
-      <div class="flex-1 px-2 py-1.5 bg-surface-800 rounded text-center">
+      <div class="flex-1 px-2 py-1 bg-surface-800 rounded text-center">
         <div class="text-xs text-slate-500">Trust</div>
         <div class="text-xs font-medium text-slate-200">${escHtml(p.trust_chain || '—')}</div>
       </div>
     </div>
-    ${p.personal_background ? `<p class="text-xs text-slate-500 mb-2 leading-relaxed">${escHtml(p.personal_background)}</p>` : ''}
+    ${bgText ? `<p class="text-xs text-slate-500 mb-1 leading-relaxed">${escHtml(bgText)}</p>` : ''}
     <p class="text-xs text-slate-400 italic">"${escHtml(p.vibe || '')}"</p>
   </div>`;
 }
@@ -1682,20 +1687,20 @@ function showDotTooltip(event, personaId, status, error, attempt) {
   tt.innerHTML = html;
   tt.classList.remove('hidden');
 
+  // Use viewport coordinates (position: fixed)
   const rect = event.target.getBoundingClientRect();
   const ttW = 220;
   let left = rect.right + 8;
   if (left + ttW > window.innerWidth) left = rect.left - ttW - 8;
   if (left < 0) left = 4;
-  tt.style.left = `${left + window.scrollX}px`;
+  tt.style.left = `${left}px`;
 
-  // Position vertically: prefer aligning top with dot, but flip upward if it would overflow viewport
+  // Flip upward if tooltip would overflow viewport bottom
   const ttH = tt.offsetHeight || 200;
-  let top = rect.top + window.scrollY - 4;
-  if (rect.top + ttH > window.innerHeight) {
-    // Flip: place tooltip bottom-aligned with the dot
-    top = rect.bottom + window.scrollY - ttH + 4;
-    if (top < window.scrollY) top = window.scrollY + 4;
+  let top = rect.top - 4;
+  if (top + ttH > window.innerHeight) {
+    top = rect.bottom - ttH + 4;
+    if (top < 0) top = 4;
   }
   tt.style.top = `${top}px`;
 }
