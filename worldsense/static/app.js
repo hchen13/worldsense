@@ -794,7 +794,7 @@ function renderPersonaCard(p) {
       </div>
     </div>
     <div class="mb-3">
-      <span class="inline-block text-xs px-2 py-0.5 bg-surface-700 text-brand-400 rounded-full">${ptLabel}</span>
+      <span class="inline-block text-xs px-2 py-0.5 bg-surface-700 text-brand-400 rounded-full">${ptLabel}</span>${p.mbti ? `<span class="inline-block text-xs px-2 py-0.5 bg-surface-700 text-violet-400 rounded-full ml-1">${escHtml(p.mbti)}</span>` : ''}
     </div>
     <div class="space-y-2 mb-3">
       <div class="flex items-center gap-2">
@@ -1623,7 +1623,7 @@ function showDotTooltip(event, personaId, status, error, attempt) {
     }
     // Personality
     if (persona.personality_type) {
-      html += `<div class="dot-tooltip-row dim">🧠 ${escHtml(persona.personality_type.replace(/_/g,' '))}</div>`;
+      html += `<div class="dot-tooltip-row dim">🧠 ${escHtml(persona.personality_type.replace(/_/g,' '))}${persona.mbti ? ' · ' + escHtml(persona.mbti) : ''}</div>`;
     }
     html += `</div>`;
   }
