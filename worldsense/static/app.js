@@ -717,6 +717,60 @@ const btnResetAdv = document.getElementById('btn-reset-adv');
 if (btnResetAdv) btnResetAdv.addEventListener('click', resetAdvanced);
 
 // ---------------------------------------------------------------------------
+// Prompt Preview
+// ---------------------------------------------------------------------------
+const promptPreviewToggle = document.getElementById('prompt-preview-toggle');
+const promptPreviewPanel = document.getElementById('prompt-preview-panel');
+const promptPreviewIcon = document.querySelector('.prompt-preview-icon');
+if (promptPreviewToggle) {
+  promptPreviewToggle.addEventListener('click', () => {
+    if (!promptPreviewPanel) return;
+    const isOpen = promptPreviewPanel.classList.toggle('hidden');
+    if (promptPreviewIcon) promptPreviewIcon.style.transform = isOpen ? '' : 'rotate(180deg)';
+    // Auto-load on first open
+    if (!isOpen && !promptPreviewPanel.dataset.loaded) {
+      loadPromptPreview();
+      promptPreviewPanel.dataset.loaded = '1';
+    }
+  });
+}
+const btnRefreshPrompt = document.getElementById('btn-refresh-prompt');
+if (btnRefreshPrompt) btnRefreshPrompt.addEventListener('click', loadPromptPreview);
+
+async function loadPromptPreview() {
+  const sysEl = document.getElementById('prompt-preview-system');
+  const userEl = document.getElementById('prompt-preview-user');
+  const personaEl = document.getElementById('prompt-preview-persona');
+  if (!sysEl || !userEl) return;
+
+  sysEl.textContent = 'Loading…';
+  userEl.textContent = '';
+
+  const content = document.getElementById('input-content')?.value || '';
+  const scenario = document.getElementById('input-scenario-context')?.value || '';
+  const market = document.getElementById('input-market')?.value || 'global';
+  const language = document.getElementById('input-language')?.value || 'English';
+  // Get research type from selected preset
+  const selectedPreset = document.querySelector('.eval-preset-btn.active');
+  const researchType = selectedPreset?.dataset?.presetId || 'product_purchase';
+
+  try {
+    const data = await apiFetch('/api/prompt-preview', {
+      method: 'POST',
+      body: JSON.stringify({ content, scenario_context: scenario, market, research_type: researchType, language }),
+    });
+    sysEl.textContent = data.system_prompt || '';
+    userEl.textContent = data.user_prompt || '';
+    if (data.sample_persona && personaEl) {
+      const sp = data.sample_persona;
+      personaEl.textContent = `Sample persona: ${sp.flag || ''} ${sp.name || 'Anonymous'}, ${sp.age}y ${sp.gender}, ${sp.nationality}, ${sp.occupation_title || ''} ${sp.mbti ? '(' + sp.mbti + ')' : ''}`;
+    }
+  } catch (err) {
+    sysEl.textContent = 'Error: ' + err.message;
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Persona Preview
 // ---------------------------------------------------------------------------
 const btnPreview = document.getElementById('btn-preview');
@@ -1630,6 +1684,33 @@ function showDotTooltip(event, personaId, status, error, attempt) {
     html += `</div>`;
   }
 
+  // ---- Feedback section (only for completed personas with result data) ----
+  if (status === 'done' && persona) {
+    const intent = persona.purchase_intent;
+    const nps = persona.nps_score;
+    const sentiment = persona.sentiment_score;
+    const verbatim = persona.verbatim;
+    if (intent != null || nps != null) {
+      html += `<div class="dot-tooltip-section" style="background:rgba(34,197,94,0.06)">`;
+      // Intent + NPS + sentiment in one row
+      const intentColors = {buy:'#22c55e', follow:'#22c55e', trial:'#22c55e', watch:'#22c55e', switch:'#22c55e',
+                            hesitate:'#f59e0b', consider:'#f59e0b', maybe:'#f59e0b',
+                            pass:'#ef4444'};
+      const iColor = intentColors[intent] || '#94a3b8';
+      let feedbackParts = [];
+      if (intent) feedbackParts.push(`<span style="color:${iColor};font-weight:600">${escHtml(intent).toUpperCase()}</span>`);
+      if (nps != null) feedbackParts.push(`NPS ${nps}/10`);
+      if (sentiment != null) feedbackParts.push(`${sentiment >= 0 ? '+' : ''}${Number(sentiment).toFixed(2)}`);
+      html += `<div class="dot-tooltip-row">${feedbackParts.join(' · ')}</div>`;
+      // Verbatim (truncated)
+      if (verbatim) {
+        const vShort = verbatim.length > 80 ? verbatim.substring(0, 80) + '…' : verbatim;
+        html += `<div class="dot-tooltip-row dim" style="font-style:italic;line-height:1.4">"${escHtml(vShort)}"</div>`;
+      }
+      html += `</div>`;
+    }
+  }
+
   // ---- Timing section (started_at / duration) — show what's available ----
   if (state) {
     const hasStarted = state.started_at != null;
@@ -2049,10 +2130,19 @@ function renderDetail(data) {
 
   html += `</div>`; // end metric-card anatomy
 
-  // ----- Running progress -----
+  // ----- Two-column layout: left = results, right = persona matrix -----
+  // Right column: persona matrix (always present)
+  let rightCol = `<div id="dot-matrix-${task.task_id}">
+    <p class="text-xs text-slate-600">Loading persona matrix...</p>
+  </div>`;
+
+  // Left column: progress + results
+  let leftCol = '';
+
+  // Running progress
   if (isRunning && task.total_personas > 0) {
     const progressPct = Math.round((task.completed_personas / task.total_personas) * 100);
-    html += `
+    leftCol += `
     <div class="metric-card mb-5">
       <div class="flex justify-between text-sm mb-2">
         <span>Running inference…</span>
@@ -2061,106 +2151,99 @@ function renderDetail(data) {
       <div class="progress-bar-track">
         <div class="progress-bar-fill" style="width:${progressPct}%"></div>
       </div>
-    </div>
-    <div id="dot-matrix-${task.task_id}" class="metric-card mb-5">
-      <p class="text-xs text-slate-600">Loading persona matrix...</p>
     </div>`;
   }
 
   if (task.status === 'failed') {
-    html += `<div class="p-4 bg-red-900/30 border border-red-700 rounded-lg text-sm text-red-300 mb-5">
+    leftCol += `<div class="p-4 bg-red-900/30 border border-red-700 rounded-lg text-sm text-red-300 mb-5">
       <strong>Error:</strong> ${escHtml(task.error || 'Unknown error')}
     </div>`;
   }
 
-  if (!summary && task.status !== 'completed') return html;
-  if (!summary) {
-    html += '<p class="text-slate-400 text-sm">Results not available yet.</p>';
-    return html;
-  }
-
-  // ---- Overall stats ----
-
-  html += `
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-    ${metricCard(intentConfig.slot1Label + ' Rate', pct(summary.buy_rate), 'Of personas: ' + intentConfig.slot1Desc)}
-    ${metricCard('Avg NPS', summary.avg_nps?.toFixed(1), 'Net Promoter Score (0-10)')}
-    ${metricCard('Promoters', pct(summary.nps_promoters), 'Scored 9-10')}
-    ${metricCard('Sentiment', fmtSentiment(summary.avg_sentiment), 'Avg sentiment (-1 to +1)')}
-  </div>
-
-  <div class="metric-card mb-6">
-    <h2 class="text-sm font-semibold mb-4 text-slate-300">${intentConfig.breakdownTitle}</h2>
-    <div class="space-y-3">
-      ${intentBar(intentConfig.slot1Label, summary.buy_rate, '#22c55e')}
-      ${intentBar(intentConfig.slot2Label, summary.hesitate_rate, '#f59e0b')}
-      ${intentBar('Pass', summary.pass_rate, '#ef4444')}
+  if (summary) {
+    // Overall stats
+    leftCol += `
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      ${metricCard(intentConfig.slot1Label + ' Rate', pct(summary.buy_rate), 'Of personas: ' + intentConfig.slot1Desc)}
+      ${metricCard('Avg NPS', summary.avg_nps?.toFixed(1), 'Net Promoter Score (0-10)')}
+      ${metricCard('Promoters', pct(summary.nps_promoters), 'Scored 9-10')}
+      ${metricCard('Sentiment', fmtSentiment(summary.avg_sentiment), 'Avg sentiment (-1 to +1)')}
     </div>
-  </div>`;
 
-  // ---- Top Attractions / Concerns — NOW BEFORE SEGMENT TABLES ----
-  if (summary.top_attractions?.length || summary.top_concerns?.length) {
-    html += `<div class="grid grid-cols-2 gap-4 mb-6">`;
-    if (summary.top_attractions?.length) {
-      html += `<div class="metric-card">
-        <h2 class="text-sm font-semibold mb-3 text-green-400">💚 Top Attractions</h2>
-        <ul class="space-y-1.5">
-          ${summary.top_attractions.map(t => `<li class="text-xs text-slate-300">• ${escHtml(t)}</li>`).join('')}
-        </ul>
-      </div>`;
-    }
-    if (summary.top_concerns?.length) {
-      html += `<div class="metric-card">
-        <h2 class="text-sm font-semibold mb-3 text-red-400">❗ Top Concerns</h2>
-        <ul class="space-y-1.5">
-          ${summary.top_concerns.map(t => `<li class="text-xs text-slate-300">• ${escHtml(t)}</li>`).join('')}
-        </ul>
-      </div>`;
-    }
-    html += `</div>`;
-  }
-
-  // ---- Segment tables — AFTER Attractions/Concerns ----
-  // Get current language for occupation label localization
-  const currentLanguage = task.language || task.metadata?.language || 'English';
-  const isChinese = currentLanguage === '中文' || currentLanguage === 'zh' || currentLanguage === 'Chinese';
-
-  // Dynamic rate column label based on research type
-  const segRateLabel = isChinese
-    ? (intentConfig.rateLabelCn || intentConfig.rateLabel || 'Buy Rate')
-    : (intentConfig.rateLabel || 'Buy Rate');
-
-  // Segment table titles — localized for Chinese
-  const segTitles = isChinese
-    ? { nat: '按国籍', age: '按年龄段', income: '按收入', occ: '按职业' }
-    : { nat: 'By Nationality', age: 'By Age Group', income: 'By Income', occ: 'By Occupation' };
-
-  const segments = [
-    [segTitles.nat,    summary.by_nationality, null],
-    [segTitles.age,    summary.by_age_group, null],
-    [segTitles.income, summary.by_income, null],
-    [segTitles.occ,    summary.by_occupation, isChinese ? 'cn' : 'en'],  // always resolve occupation names
-  ];
-
-  segments.forEach(([title, segData, langHint]) => {
-    if (segData && Object.keys(segData).length > 0) {
-      html += renderSegTable(title, segData, langHint, segRateLabel);
-    }
-  });
-
-  // ---- Verbatims ----
-  if (summary.sample_verbatims?.length) {
-    html += `<div class="metric-card mb-6">
-      <h2 class="text-sm font-semibold mb-3 text-slate-300">💬 Sample Verbatims</h2>
-      <div class="space-y-2">
-        ${summary.sample_verbatims.map(v => `<div class="verbatim-box">"${escHtml(v)}"</div>`).join('')}
+    <div class="metric-card mb-6">
+      <h2 class="text-sm font-semibold mb-4 text-slate-300">${intentConfig.breakdownTitle}</h2>
+      <div class="space-y-3">
+        ${intentBar(intentConfig.slot1Label, summary.buy_rate, '#22c55e')}
+        ${intentBar(intentConfig.slot2Label, summary.hesitate_rate, '#f59e0b')}
+        ${intentBar('Pass', summary.pass_rate, '#ef4444')}
       </div>
     </div>`;
+
+    // Top Attractions / Concerns
+    if (summary.top_attractions?.length || summary.top_concerns?.length) {
+      leftCol += `<div class="grid grid-cols-2 gap-4 mb-6">`;
+      if (summary.top_attractions?.length) {
+        leftCol += `<div class="metric-card">
+          <h2 class="text-sm font-semibold mb-3 text-green-400">💚 Top Attractions</h2>
+          <ul class="space-y-1.5">
+            ${summary.top_attractions.map(t => `<li class="text-xs text-slate-300">• ${escHtml(t)}</li>`).join('')}
+          </ul>
+        </div>`;
+      }
+      if (summary.top_concerns?.length) {
+        leftCol += `<div class="metric-card">
+          <h2 class="text-sm font-semibold mb-3 text-red-400">❗ Top Concerns</h2>
+          <ul class="space-y-1.5">
+            ${summary.top_concerns.map(t => `<li class="text-xs text-slate-300">• ${escHtml(t)}</li>`).join('')}
+          </ul>
+        </div>`;
+      }
+      leftCol += `</div>`;
+    }
+
+    // Segment tables
+    const currentLanguage = task.language || task.metadata?.language || 'English';
+    const isChinese = currentLanguage === '中文' || currentLanguage === 'zh' || currentLanguage === 'Chinese';
+    const segRateLabel = isChinese
+      ? (intentConfig.rateLabelCn || intentConfig.rateLabel || 'Buy Rate')
+      : (intentConfig.rateLabel || 'Buy Rate');
+    const segTitles = isChinese
+      ? { nat: '按国籍', age: '按年龄段', income: '按收入', occ: '按职业' }
+      : { nat: 'By Nationality', age: 'By Age Group', income: 'By Income', occ: 'By Occupation' };
+
+    const segments = [
+      [segTitles.nat,    summary.by_nationality, null],
+      [segTitles.age,    summary.by_age_group, null],
+      [segTitles.income, summary.by_income, null],
+      [segTitles.occ,    summary.by_occupation, isChinese ? 'cn' : 'en'],
+    ];
+
+    segments.forEach(([title, segData, langHint]) => {
+      if (segData && Object.keys(segData).length > 0) {
+        leftCol += renderSegTable(title, segData, langHint, segRateLabel);
+      }
+    });
+
+    // Verbatims
+    if (summary.sample_verbatims?.length) {
+      leftCol += `<div class="metric-card mb-6">
+        <h2 class="text-sm font-semibold mb-3 text-slate-300">💬 Sample Verbatims</h2>
+        <div class="space-y-2">
+          ${summary.sample_verbatims.map(v => `<div class="verbatim-box">"${escHtml(v)}"</div>`).join('')}
+        </div>
+      </div>`;
+    }
+  } else if (task.status === 'completed') {
+    leftCol += '<p class="text-slate-400 text-sm">Results not available yet.</p>';
   }
 
-  // ---- Dot matrix for completed tasks (at bottom) ----
-  html += `<div id="dot-matrix-${task.task_id}" class="mb-6">
-    <p class="text-xs text-slate-600">Loading persona matrix...</p>
+  // Assemble two-column layout
+  html += `
+  <div class="flex flex-col lg:flex-row gap-6">
+    <div class="flex-1 min-w-0">${leftCol}</div>
+    <div class="w-full lg:w-80 flex-shrink-0">
+      <div class="lg:sticky lg:top-4">${rightCol}</div>
+    </div>
   </div>`;
 
   return html;

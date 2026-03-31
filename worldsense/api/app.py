@@ -618,6 +618,61 @@ async def preview_personas(req: PersonaPreviewRequest):
     return [p.to_dict_summary() for p in personas]
 
 
+# ---------------------------------------------------------------------------
+# API: POST /api/prompt-preview
+# ---------------------------------------------------------------------------
+
+class PromptPreviewRequest(BaseModel):
+    content: str = ""
+    scenario_context: str = ""
+    market: str = "global"
+    research_type: str = "product_purchase"
+    language: str = "English"
+
+@app.post("/api/prompt-preview")
+async def prompt_preview(req: PromptPreviewRequest):
+    """Return the full merged prompt that would be sent to the LLM, using a sample persona."""
+    from worldsense.pipeline.output import build_merged_prompt, MERGED_SYSTEM_PROMPT
+
+    if req.market not in MARKET_COUNTRIES:
+        raise HTTPException(status_code=400, detail=f"Unknown market '{req.market}'")
+
+    gen = PersonaGenerator(market=req.market, seed=0)
+    sample = gen.generate(1)[0]
+    summary = {
+        **sample.to_dict_summary(),
+        "price_sensitivity": sample.cognitive.price_sensitivity,
+        "risk_appetite": sample.cognitive.risk_appetite,
+        "novelty_seeking": sample.cognitive.novelty_seeking,
+        "emotional_reactivity": sample.cognitive.emotional_reactivity,
+        "wtp_multiplier": sample.cognitive.wtp_multiplier,
+        "personality_type": sample.personality_type,
+        "income_bracket": sample.income_bracket,
+    }
+
+    user_prompt = build_merged_prompt(
+        persona_summary=summary,
+        content=req.content or "(no content provided)",
+        scenario_context=req.scenario_context,
+        language=req.language,
+        research_type=req.research_type,
+    )
+
+    return {
+        "system_prompt": MERGED_SYSTEM_PROMPT,
+        "user_prompt": user_prompt,
+        "sample_persona": {
+            "name": sample.name,
+            "flag": sample.flag,
+            "nationality": sample.nationality,
+            "age": sample.age,
+            "gender": sample.gender,
+            "mbti": sample.mbti,
+            "occupation_title": sample.occupation_title,
+        },
+    }
+
+
 @app.get("/api/markets")
 async def list_markets():
     return sorted(MARKET_COUNTRIES.keys())
