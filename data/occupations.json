@@ -1,0 +1,2870 @@
+[
+  {
+    "id": "accountants-and-auditors",
+    "title": "Accountants and auditors",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 81680,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1579800
+  },
+  {
+    "id": "actors",
+    "title": "Actors",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 48526,
+    "entry_education": "Some college, no degree",
+    "num_jobs_us": 57000
+  },
+  {
+    "id": "actuaries",
+    "title": "Actuaries",
+    "category": "math",
+    "median_pay_annual_usd": 125770,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 33600
+  },
+  {
+    "id": "administrative-services-managers",
+    "title": "Administrative services and facilities managers",
+    "category": "management",
+    "median_pay_annual_usd": 106880,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 422600
+  },
+  {
+    "id": "adult-literacy-and-ged-teachers",
+    "title": "Adult basic and secondary education and ESL teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 59950,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 40900
+  },
+  {
+    "id": "advertising-sales-agents",
+    "title": "Advertising sales agents",
+    "category": "sales",
+    "median_pay_annual_usd": 61460,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 103700
+  },
+  {
+    "id": "advertising-promotions-and-marketing-managers",
+    "title": "Advertising, promotions, and marketing managers",
+    "category": "management",
+    "median_pay_annual_usd": 159660,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 434000
+  },
+  {
+    "id": "aerospace-engineering-and-operations-technicians",
+    "title": "Aerospace engineering and operations technologists and technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 79830,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 9300
+  },
+  {
+    "id": "aerospace-engineers",
+    "title": "Aerospace engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 134830,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 71600
+  },
+  {
+    "id": "agricultural-and-food-science-technicians",
+    "title": "Agricultural and food science technicians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 48480,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 38900
+  },
+  {
+    "id": "agricultural-and-food-scientists",
+    "title": "Agricultural and food scientists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 78770,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 38700
+  },
+  {
+    "id": "agricultural-engineers",
+    "title": "Agricultural engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 84630,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1700
+  },
+  {
+    "id": "agricultural-workers",
+    "title": "Agricultural workers",
+    "category": "farming-fishing-and-forestry",
+    "median_pay_annual_usd": 35980,
+    "entry_education": "Varies",
+    "num_jobs_us": 812600
+  },
+  {
+    "id": "air-traffic-controllers",
+    "title": "Air traffic controllers",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 144580,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 24100
+  },
+  {
+    "id": "aircraft-and-avionics-equipment-mechanics-and-technicians",
+    "title": "Aircraft and avionics equipment mechanics and technicians",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 79140,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 160800
+  },
+  {
+    "id": "airline-and-commercial-pilots",
+    "title": "Airline and commercial pilots",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 198100,
+    "entry_education": "Varies",
+    "num_jobs_us": 155400
+  },
+  {
+    "id": "animal-care-and-service-workers",
+    "title": "Animal care and service workers",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 33860,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 439400
+  },
+  {
+    "id": "announcers",
+    "title": "Announcers and DJs",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 45115,
+    "entry_education": "Varies",
+    "num_jobs_us": 39500
+  },
+  {
+    "id": "anthropologists-and-archeologists",
+    "title": "Anthropologists and archeologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 64910,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 8800
+  },
+  {
+    "id": "arbitrators-mediators-and-conciliators",
+    "title": "Arbitrators, mediators, and conciliators",
+    "category": "legal",
+    "median_pay_annual_usd": 67710,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 9100
+  },
+  {
+    "id": "architects",
+    "title": "Architects",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 96690,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 123600
+  },
+  {
+    "id": "architectural-and-engineering-managers",
+    "title": "Architectural and engineering managers",
+    "category": "management",
+    "median_pay_annual_usd": 167740,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 212500
+  },
+  {
+    "id": "curators-museum-technicians-and-conservators",
+    "title": "Archivists, curators, and museum workers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 57100,
+    "entry_education": "Varies",
+    "num_jobs_us": 40200
+  },
+  {
+    "id": "art-directors",
+    "title": "Art directors",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 111040,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 135000
+  },
+  {
+    "id": "assemblers-and-fabricators",
+    "title": "Assemblers and fabricators",
+    "category": "production",
+    "median_pay_annual_usd": 43570,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 1885400
+  },
+  {
+    "id": "athletes-and-sports-competitors",
+    "title": "Athletes and sports competitors",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 62360,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 19100
+  },
+  {
+    "id": "athletic-trainers",
+    "title": "Athletic trainers",
+    "category": "healthcare",
+    "median_pay_annual_usd": 60250,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 33900
+  },
+  {
+    "id": "atmospheric-scientists-including-meteorologists",
+    "title": "Atmospheric scientists, including meteorologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 97450,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 9400
+  },
+  {
+    "id": "audiologists",
+    "title": "Audiologists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 92120,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 15800
+  },
+  {
+    "id": "automotive-body-and-glass-repairers",
+    "title": "Automotive body and glass repairers",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 50680,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 193000
+  },
+  {
+    "id": "automotive-service-technicians-and-mechanics",
+    "title": "Automotive service technicians and mechanics",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 49670,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 805600
+  },
+  {
+    "id": "bakers",
+    "title": "Bakers",
+    "category": "production",
+    "median_pay_annual_usd": 36650,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 249100
+  },
+  {
+    "id": "barbers-hairstylists-and-cosmetologists",
+    "title": "Barbers, hairstylists, and cosmetologists",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 35420,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 651200
+  },
+  {
+    "id": "bartenders",
+    "title": "Bartenders",
+    "category": "food-preparation-and-serving",
+    "median_pay_annual_usd": 33530,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 756700
+  },
+  {
+    "id": "bill-and-account-collectors",
+    "title": "Bill and account collectors",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 46040,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 166900
+  },
+  {
+    "id": "biochemists-and-biophysicists",
+    "title": "Biochemists and biophysicists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 103650,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 35600
+  },
+  {
+    "id": "biomedical-engineers",
+    "title": "Bioengineers and biomedical engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 106950,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 22200
+  },
+  {
+    "id": "biological-technicians",
+    "title": "Biological technicians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 52000,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 82700
+  },
+  {
+    "id": "boilermakers",
+    "title": "Boilermakers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 73340,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 10400
+  },
+  {
+    "id": "bookkeeping-accounting-and-auditing-clerks",
+    "title": "Bookkeeping, accounting, and auditing clerks",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 49210,
+    "entry_education": "Some college, no degree",
+    "num_jobs_us": 1613400
+  },
+  {
+    "id": "broadcast-and-sound-engineering-technicians",
+    "title": "Broadcast, sound, and video technicians",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 56600,
+    "entry_education": "Varies",
+    "num_jobs_us": 146100
+  },
+  {
+    "id": "budget-analysts",
+    "title": "Budget analysts",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 87930,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 50400
+  },
+  {
+    "id": "bus-drivers",
+    "title": "Bus drivers",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 48370,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 546100
+  },
+  {
+    "id": "butchers-and-meat-cutters",
+    "title": "Butchers",
+    "category": "production",
+    "median_pay_annual_usd": 38960,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 143100
+  },
+  {
+    "id": "calibration-technologists-and-technicians",
+    "title": "Calibration technologists and technicians",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 65040,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 15800
+  },
+  {
+    "id": "cardiovascular-technologists-and-technicians",
+    "title": "Cardiovascular technologists and technicians",
+    "category": "healthcare",
+    "median_pay_annual_usd": 67260,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 64700
+  },
+  {
+    "id": "career-and-technical-education-teachers",
+    "title": "Career and technical education teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 62910,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 239600
+  },
+  {
+    "id": "carpenters",
+    "title": "Carpenters",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 59310,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 959000
+  },
+  {
+    "id": "cartographers-and-photogrammetrists",
+    "title": "Cartographers and photogrammetrists",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 78380,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 13400
+  },
+  {
+    "id": "cashiers",
+    "title": "Cashiers",
+    "category": "sales",
+    "median_pay_annual_usd": 31190,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 3157200
+  },
+  {
+    "id": "chefs-and-head-cooks",
+    "title": "Chefs and head cooks",
+    "category": "food-preparation-and-serving",
+    "median_pay_annual_usd": 60990,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 197300
+  },
+  {
+    "id": "chemical-engineers",
+    "title": "Chemical engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 121860,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 21600
+  },
+  {
+    "id": "chemical-technicians",
+    "title": "Chemical technicians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 57790,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 57000
+  },
+  {
+    "id": "chemists-and-materials-scientists",
+    "title": "Chemists and materials scientists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 86620,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 95500
+  },
+  {
+    "id": "childcare-workers",
+    "title": "Childcare workers",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 32050,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 991600
+  },
+  {
+    "id": "chiropractors",
+    "title": "Chiropractors",
+    "category": "healthcare",
+    "median_pay_annual_usd": 79000,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 57200
+  },
+  {
+    "id": "civil-engineering-technicians",
+    "title": "Civil engineering technologists and technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 64200,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 64900
+  },
+  {
+    "id": "civil-engineers",
+    "title": "Civil engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 99590,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 368900
+  },
+  {
+    "id": "claims-adjusters-appraisers-examiners-and-investigators",
+    "title": "Claims adjusters, appraisers, examiners, and investigators",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 76790,
+    "entry_education": "Varies",
+    "num_jobs_us": 365300
+  },
+  {
+    "id": "clinical-laboratory-technologists-and-technicians",
+    "title": "Clinical laboratory technologists and technicians",
+    "category": "healthcare",
+    "median_pay_annual_usd": 61890,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 351200
+  },
+  {
+    "id": "coaches-and-scouts",
+    "title": "Coaches and scouts",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 45920,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 306500
+  },
+  {
+    "id": "community-health-workers",
+    "title": "Community health workers",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 51030,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 65100
+  },
+  {
+    "id": "compensation-and-benefits-managers",
+    "title": "Compensation and benefits managers",
+    "category": "management",
+    "median_pay_annual_usd": 140360,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 20900
+  },
+  {
+    "id": "compensation-benefits-and-job-analysis-specialists",
+    "title": "Compensation, benefits, and job analysis specialists",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 77020,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 107000
+  },
+  {
+    "id": "compliance-officers",
+    "title": "Compliance officers",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 78420,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 418000
+  },
+  {
+    "id": "computer-and-information-research-scientists",
+    "title": "Computer and information research scientists",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 140910,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 40300
+  },
+  {
+    "id": "computer-and-information-systems-managers",
+    "title": "Computer and information systems managers",
+    "category": "management",
+    "median_pay_annual_usd": 171200,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 667100
+  },
+  {
+    "id": "computer-hardware-engineers",
+    "title": "Computer hardware engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 155020,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 76800
+  },
+  {
+    "id": "computer-network-architects",
+    "title": "Computer network architects",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 130390,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 179200
+  },
+  {
+    "id": "computer-programmers",
+    "title": "Computer programmers",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 98670,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 121200
+  },
+  {
+    "id": "computer-support-specialists",
+    "title": "Computer support specialists",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 61550,
+    "entry_education": "Varies",
+    "num_jobs_us": 882300
+  },
+  {
+    "id": "computer-systems-analysts",
+    "title": "Computer systems analysts",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 103790,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 521100
+  },
+  {
+    "id": "concierges",
+    "title": "Concierges",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 37320,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 45600
+  },
+  {
+    "id": "conservation-scientists",
+    "title": "Conservation scientists and foresters",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 69060,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 42400
+  },
+  {
+    "id": "construction-and-building-inspectors",
+    "title": "Construction and building inspectors",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 72120,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 147600
+  },
+  {
+    "id": "construction-equipment-operators",
+    "title": "Construction equipment operators",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 58320,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 539500
+  },
+  {
+    "id": "construction-laborers-and-helpers",
+    "title": "Construction laborers and helpers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 46050,
+    "entry_education": "Varies",
+    "num_jobs_us": 1649100
+  },
+  {
+    "id": "construction-managers",
+    "title": "Construction managers",
+    "category": "management",
+    "median_pay_annual_usd": 106980,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 550300
+  },
+  {
+    "id": "cooks",
+    "title": "Cooks",
+    "category": "food-preparation-and-serving",
+    "median_pay_annual_usd": 35760,
+    "entry_education": "Varies",
+    "num_jobs_us": 2805100
+  },
+  {
+    "id": "correctional-officers",
+    "title": "Correctional officers and bailiffs",
+    "category": "protective-service",
+    "median_pay_annual_usd": 57950,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 406500
+  },
+  {
+    "id": "cost-estimators",
+    "title": "Cost estimators",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 77070,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 221400
+  },
+  {
+    "id": "court-reporters",
+    "title": "Court reporters and simultaneous captioners",
+    "category": "legal",
+    "median_pay_annual_usd": 67310,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 17700
+  },
+  {
+    "id": "craft-and-fine-artists",
+    "title": "Craft and fine artists",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 56260,
+    "entry_education": "Varies",
+    "num_jobs_us": 52000
+  },
+  {
+    "id": "credit-counselors",
+    "title": "Credit counselors",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 50480,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 31800
+  },
+  {
+    "id": "customer-service-representatives",
+    "title": "Customer service representatives",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 42830,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 2814000
+  },
+  {
+    "id": "dancers-and-choreographers",
+    "title": "Dancers and choreographers",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 51022,
+    "entry_education": "Varies",
+    "num_jobs_us": 17000
+  },
+  {
+    "id": "data-scientists",
+    "title": "Data scientists",
+    "category": "math",
+    "median_pay_annual_usd": 112590,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 245900
+  },
+  {
+    "id": "database-administrators",
+    "title": "Database administrators and architects",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 123100,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 144900
+  },
+  {
+    "id": "delivery-truck-drivers-and-driver-sales-workers",
+    "title": "Delivery truck drivers and driver/sales workers",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 42770,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 1531300
+  },
+  {
+    "id": "dental-and-ophthalmic-laboratory-technicians-and-medical-appliance-technicians",
+    "title": "Dental and ophthalmic laboratory technicians and medical appliance technicians",
+    "category": "production",
+    "median_pay_annual_usd": 45820,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 66800
+  },
+  {
+    "id": "dental-assistants",
+    "title": "Dental assistants",
+    "category": "healthcare",
+    "median_pay_annual_usd": 47300,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 381900
+  },
+  {
+    "id": "dental-hygienists",
+    "title": "Dental hygienists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 94260,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 221600
+  },
+  {
+    "id": "dentists",
+    "title": "Dentists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 179210,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 149300
+  },
+  {
+    "id": "desktop-publishers",
+    "title": "Desktop publishers",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 53620,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 5000
+  },
+  {
+    "id": "diagnostic-medical-sonographers",
+    "title": "Diagnostic medical sonographers",
+    "category": "healthcare",
+    "median_pay_annual_usd": 89340,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 90000
+  },
+  {
+    "id": "diesel-service-technicians-and-mechanics",
+    "title": "Diesel service technicians and mechanics",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 60640,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 319900
+  },
+  {
+    "id": "dietitians-and-nutritionists",
+    "title": "Dietitians and nutritionists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 73850,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 90900
+  },
+  {
+    "id": "drafters",
+    "title": "Drafters",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 65380,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 192100
+  },
+  {
+    "id": "drywall-and-ceiling-tile-installers-and-tapers",
+    "title": "Drywall installers, ceiling tile installers, and tapers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 58800,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 118600
+  },
+  {
+    "id": "economists",
+    "title": "Economists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 115440,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 17600
+  },
+  {
+    "id": "editors",
+    "title": "Editors",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 75260,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 115800
+  },
+  {
+    "id": "electrical-and-electronics-engineering-technicians",
+    "title": "Electrical and electronic engineering technologists and technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 77180,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 93700
+  },
+  {
+    "id": "electrical-and-electronics-engineers",
+    "title": "Electrical and electronics engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 118780,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 287900
+  },
+  {
+    "id": "electrical-and-electronics-installers-and-repairers",
+    "title": "Electrical and electronics installers and repairers",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 71270,
+    "entry_education": "Varies",
+    "num_jobs_us": 118800
+  },
+  {
+    "id": "line-installers-and-repairers",
+    "title": "Electrical power-line installers and repairers",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 92560,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 127400
+  },
+  {
+    "id": "electricians",
+    "title": "Electricians",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 62350,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 818700
+  },
+  {
+    "id": "electro-mechanical-technicians",
+    "title": "Electro-mechanical and mechatronics technologists and technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 70760,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 15000
+  },
+  {
+    "id": "elementary-middle-and-high-school-principals",
+    "title": "Elementary, middle, and high school principals",
+    "category": "management",
+    "median_pay_annual_usd": 104070,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 333300
+  },
+  {
+    "id": "elevator-installers-and-repairers",
+    "title": "Elevator and escalator installers and repairers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 106580,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 24200
+  },
+  {
+    "id": "emergency-management-directors",
+    "title": "Emergency management directors",
+    "category": "management",
+    "median_pay_annual_usd": 86130,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 13200
+  },
+  {
+    "id": "emts-and-paramedics",
+    "title": "EMTs and paramedics",
+    "category": "healthcare",
+    "median_pay_annual_usd": 46350,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 282900
+  },
+  {
+    "id": "entertainment-and-recreation-managers",
+    "title": "Entertainment and recreation managers",
+    "category": "management",
+    "median_pay_annual_usd": 77180,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 43200
+  },
+  {
+    "id": "environmental-engineering-technicians",
+    "title": "Environmental engineering technologists and technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 58890,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 12900
+  },
+  {
+    "id": "environmental-engineers",
+    "title": "Environmental engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 104170,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 39400
+  },
+  {
+    "id": "environmental-science-and-protection-technicians",
+    "title": "Environmental science and protection technicians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 49490,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 40400
+  },
+  {
+    "id": "environmental-scientists-and-specialists",
+    "title": "Environmental scientists and specialists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 80060,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 90300
+  },
+  {
+    "id": "epidemiologists",
+    "title": "Epidemiologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 83980,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 12300
+  },
+  {
+    "id": "exercise-physiologists",
+    "title": "Exercise physiologists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 58160,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 23900
+  },
+  {
+    "id": "farmers-ranchers-and-other-agricultural-managers",
+    "title": "Farmers, ranchers, and other agricultural managers",
+    "category": "management",
+    "median_pay_annual_usd": 87980,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 836100
+  },
+  {
+    "id": "fashion-designers",
+    "title": "Fashion designers",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 80690,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 25700
+  },
+  {
+    "id": "film-and-video-editors-and-camera-operators",
+    "title": "Film and video editors and camera operators",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 70570,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 79900
+  },
+  {
+    "id": "financial-analysts",
+    "title": "Financial analysts",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 101910,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 429000
+  },
+  {
+    "id": "financial-clerks",
+    "title": "Financial clerks",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 48650,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 1193000
+  },
+  {
+    "id": "financial-examiners",
+    "title": "Financial examiners",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 90400,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 65100
+  },
+  {
+    "id": "financial-managers",
+    "title": "Financial managers",
+    "category": "management",
+    "median_pay_annual_usd": 161700,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 868600
+  },
+  {
+    "id": "fire-inspectors-and-investigators",
+    "title": "Fire inspectors",
+    "category": "protective-service",
+    "median_pay_annual_usd": 75480,
+    "entry_education": "Varies",
+    "num_jobs_us": 17600
+  },
+  {
+    "id": "firefighters",
+    "title": "Firefighters",
+    "category": "protective-service",
+    "median_pay_annual_usd": 59530,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 344900
+  },
+  {
+    "id": "fishers-and-related-fishing-workers",
+    "title": "Fishing and hunting workers",
+    "category": "farming-fishing-and-forestry",
+    "median_pay_annual_usd": 0,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 21900
+  },
+  {
+    "id": "fitness-trainers-and-instructors",
+    "title": "Fitness trainers and instructors",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 46180,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 370100
+  },
+  {
+    "id": "flight-attendants",
+    "title": "Flight attendants",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 67130,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 130800
+  },
+  {
+    "id": "tile-and-marble-setters",
+    "title": "Flooring installers and tile and stone setters",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 52000,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 112300
+  },
+  {
+    "id": "floral-designers",
+    "title": "Floral designers",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 36120,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 43800
+  },
+  {
+    "id": "food-and-beverage-serving-and-related-workers",
+    "title": "Food and beverage serving and related workers",
+    "category": "food-preparation-and-serving",
+    "median_pay_annual_usd": 31040,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 5030600
+  },
+  {
+    "id": "food-preparation-workers",
+    "title": "Food preparation workers",
+    "category": "food-preparation-and-serving",
+    "median_pay_annual_usd": 34220,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 902700
+  },
+  {
+    "id": "food-and-tobacco-processing-workers",
+    "title": "Food processing equipment workers",
+    "category": "production",
+    "median_pay_annual_usd": 40050,
+    "entry_education": "Varies",
+    "num_jobs_us": 282600
+  },
+  {
+    "id": "food-service-managers",
+    "title": "Food service managers",
+    "category": "management",
+    "median_pay_annual_usd": 65310,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 352800
+  },
+  {
+    "id": "forensic-science-technicians",
+    "title": "Forensic science technicians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 67440,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 20700
+  },
+  {
+    "id": "forest-and-conservation-workers",
+    "title": "Forest and conservation workers",
+    "category": "farming-fishing-and-forestry",
+    "median_pay_annual_usd": 43680,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 10800
+  },
+  {
+    "id": "fundraisers",
+    "title": "Fundraisers",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 66490,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 134400
+  },
+  {
+    "id": "funeral-service-occupations",
+    "title": "Funeral service workers",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 59420,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 59600
+  },
+  {
+    "id": "gaming-services-occupations",
+    "title": "Gambling services workers",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 35630,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 150600
+  },
+  {
+    "id": "general-maintenance-and-repair-workers",
+    "title": "General maintenance and repair workers",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 48620,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 1629700
+  },
+  {
+    "id": "general-office-clerks",
+    "title": "General office clerks",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 43630,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 2646000
+  },
+  {
+    "id": "genetic-counselors",
+    "title": "Genetic counselors",
+    "category": "healthcare",
+    "median_pay_annual_usd": 98910,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 4000
+  },
+  {
+    "id": "geographers",
+    "title": "Geographers",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 97200,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1500
+  },
+  {
+    "id": "geological-and-petroleum-technicians",
+    "title": "Geological and hydrologic technicians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 50510,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 12900
+  },
+  {
+    "id": "geoscientists",
+    "title": "Geoscientists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 99240,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 25100
+  },
+  {
+    "id": "glaziers",
+    "title": "Glaziers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 55440,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 60500
+  },
+  {
+    "id": "graphic-designers",
+    "title": "Graphic designers",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 61300,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 265900
+  },
+  {
+    "id": "grounds-maintenance-workers",
+    "title": "Grounds maintenance workers",
+    "category": "building-and-grounds-cleaning",
+    "median_pay_annual_usd": 38470,
+    "entry_education": "Varies",
+    "num_jobs_us": 1296400
+  },
+  {
+    "id": "hand-laborers-and-material-movers",
+    "title": "Hand laborers and material movers",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 37680,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 6950000
+  },
+  {
+    "id": "hazardous-materials-removal-workers",
+    "title": "Hazardous materials removal workers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 48490,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 51300
+  },
+  {
+    "id": "health-and-safety-engineers",
+    "title": "Health and safety engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 109660,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 23800
+  },
+  {
+    "id": "health-educators",
+    "title": "Health education specialists",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 63000,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 71800
+  },
+  {
+    "id": "health-information-technologists-and-medical-registrars",
+    "title": "Health information technologists and medical registrars",
+    "category": "healthcare",
+    "median_pay_annual_usd": 67310,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 41900
+  },
+  {
+    "id": "heating-air-conditioning-and-refrigeration-mechanics-and-installers",
+    "title": "Heating, air conditioning, and refrigeration mechanics and installers",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 59810,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 425200
+  },
+  {
+    "id": "heavy-and-tractor-trailer-truck-drivers",
+    "title": "Heavy and tractor-trailer truck drivers",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 57440,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 2235100
+  },
+  {
+    "id": "heavy-vehicle-and-mobile-equipment-service-technicians",
+    "title": "Heavy vehicle and mobile equipment service technicians",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 62740,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 245600
+  },
+  {
+    "id": "high-school-teachers",
+    "title": "High school teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 64580,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1094500
+  },
+  {
+    "id": "historians",
+    "title": "Historians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 74050,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 3400
+  },
+  {
+    "id": "home-health-aides-and-personal-care-aides",
+    "title": "Home health and personal care aides",
+    "category": "healthcare",
+    "median_pay_annual_usd": 34900,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 4347700
+  },
+  {
+    "id": "human-resources-managers",
+    "title": "Human resources managers",
+    "category": "management",
+    "median_pay_annual_usd": 140030,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 221900
+  },
+  {
+    "id": "human-resources-specialists",
+    "title": "Human resources specialists",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 72910,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 944300
+  },
+  {
+    "id": "hydrologists",
+    "title": "Hydrologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 92060,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 6300
+  },
+  {
+    "id": "industrial-designers",
+    "title": "Industrial designers",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 79450,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 30600
+  },
+  {
+    "id": "industrial-engineering-technicians",
+    "title": "Industrial engineering technologists and technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 64790,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 74600
+  },
+  {
+    "id": "industrial-engineers",
+    "title": "Industrial engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 101140,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 351100
+  },
+  {
+    "id": "industrial-machinery-mechanics-and-maintenance-workers-and-millwrights",
+    "title": "Industrial machinery mechanics, machinery maintenance workers, and millwrights",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 63510,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 538300
+  },
+  {
+    "id": "industrial-production-managers",
+    "title": "Industrial production managers",
+    "category": "management",
+    "median_pay_annual_usd": 121440,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 241900
+  },
+  {
+    "id": "information-clerks",
+    "title": "Information clerks",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 43730,
+    "entry_education": "Varies",
+    "num_jobs_us": 1336600
+  },
+  {
+    "id": "information-security-analysts",
+    "title": "Information security analysts",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 124910,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 182800
+  },
+  {
+    "id": "instructional-coordinators",
+    "title": "Instructional coordinators",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 74720,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 232600
+  },
+  {
+    "id": "insulation-workers",
+    "title": "Insulation workers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 50730,
+    "entry_education": "Varies",
+    "num_jobs_us": 67400
+  },
+  {
+    "id": "insurance-sales-agents",
+    "title": "Insurance sales agents",
+    "category": "sales",
+    "median_pay_annual_usd": 60370,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 568800
+  },
+  {
+    "id": "insurance-underwriters",
+    "title": "Insurance underwriters",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 79880,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 127000
+  },
+  {
+    "id": "interior-designers",
+    "title": "Interior designers",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 63490,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 87100
+  },
+  {
+    "id": "interpreters-and-translators",
+    "title": "Interpreters and translators",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 59440,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 75300
+  },
+  {
+    "id": "structural-iron-and-steel-workers",
+    "title": "Ironworkers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 61940,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 85100
+  },
+  {
+    "id": "janitors-and-building-cleaners",
+    "title": "Janitors and building cleaners",
+    "category": "building-and-grounds-cleaning",
+    "median_pay_annual_usd": 35930,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 2447700
+  },
+  {
+    "id": "jewelers-and-precious-stone-and-metal-workers",
+    "title": "Jewelers and precious stone and metal workers",
+    "category": "production",
+    "median_pay_annual_usd": 49140,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 35100
+  },
+  {
+    "id": "judges-and-hearing-officers",
+    "title": "Judges and hearing officers",
+    "category": "legal",
+    "median_pay_annual_usd": 135160,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 44800
+  },
+  {
+    "id": "kindergarten-and-elementary-school-teachers",
+    "title": "Kindergarten and elementary school teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 62310,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1539800
+  },
+  {
+    "id": "labor-relations-specialists",
+    "title": "Labor relations specialists",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 93500,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 65400
+  },
+  {
+    "id": "landscape-architects",
+    "title": "Landscape architects",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 79660,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 21800
+  },
+  {
+    "id": "lawyers",
+    "title": "Lawyers",
+    "category": "legal",
+    "median_pay_annual_usd": 151160,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 864800
+  },
+  {
+    "id": "librarians",
+    "title": "Librarians and library media specialists",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 64320,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 142100
+  },
+  {
+    "id": "library-technicians-and-assistants",
+    "title": "Library technicians and assistants",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 37540,
+    "entry_education": "Varies",
+    "num_jobs_us": 163100
+  },
+  {
+    "id": "licensed-practical-and-licensed-vocational-nurses",
+    "title": "Licensed practical and licensed vocational nurses",
+    "category": "healthcare",
+    "median_pay_annual_usd": 62340,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 651400
+  },
+  {
+    "id": "loan-officers",
+    "title": "Loan officers",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 74180,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 301400
+  },
+  {
+    "id": "lodging-managers",
+    "title": "Lodging managers",
+    "category": "management",
+    "median_pay_annual_usd": 68130,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 52000
+  },
+  {
+    "id": "logging-workers",
+    "title": "Logging workers",
+    "category": "farming-fishing-and-forestry",
+    "median_pay_annual_usd": 49540,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 44300
+  },
+  {
+    "id": "logisticians",
+    "title": "Logisticians",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 80880,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 241000
+  },
+  {
+    "id": "machinists-and-tool-and-die-makers",
+    "title": "Machinists and tool and die makers",
+    "category": "production",
+    "median_pay_annual_usd": 57700,
+    "entry_education": "Varies",
+    "num_jobs_us": 354800
+  },
+  {
+    "id": "management-analysts",
+    "title": "Management analysts",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 101190,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1075100
+  },
+  {
+    "id": "manicurists-and-pedicurists",
+    "title": "Manicurists and pedicurists",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 34660,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 210100
+  },
+  {
+    "id": "marine-engineers-and-naval-architects",
+    "title": "Marine engineers and naval architects",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 105670,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 8500
+  },
+  {
+    "id": "market-research-analysts",
+    "title": "Market research analysts",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 76950,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 941700
+  },
+  {
+    "id": "marriage-and-family-therapists",
+    "title": "Marriage and family therapists",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 63780,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 77800
+  },
+  {
+    "id": "brickmasons-blockmasons-and-stonemasons",
+    "title": "Masonry workers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 56600,
+    "entry_education": "Varies",
+    "num_jobs_us": 294300
+  },
+  {
+    "id": "massage-therapists",
+    "title": "Massage therapists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 57950,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 168000
+  },
+  {
+    "id": "material-moving-machine-operators",
+    "title": "Material moving machine operators",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 46620,
+    "entry_education": "Varies",
+    "num_jobs_us": 867700
+  },
+  {
+    "id": "material-recording-clerks",
+    "title": "Material recording clerks",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 46120,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 1300800
+  },
+  {
+    "id": "materials-engineers",
+    "title": "Materials engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 108310,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 23000
+  },
+  {
+    "id": "mathematicians-and-statisticians",
+    "title": "Mathematicians and statisticians",
+    "category": "math",
+    "median_pay_annual_usd": 104350,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 34600
+  },
+  {
+    "id": "mechanical-engineering-technicians",
+    "title": "Mechanical engineering technologists and technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 68730,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 38300
+  },
+  {
+    "id": "mechanical-engineers",
+    "title": "Mechanical engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 102320,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 293100
+  },
+  {
+    "id": "medical-and-health-services-managers",
+    "title": "Medical and health services managers",
+    "category": "management",
+    "median_pay_annual_usd": 117960,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 616200
+  },
+  {
+    "id": "medical-assistants",
+    "title": "Medical assistants",
+    "category": "healthcare",
+    "median_pay_annual_usd": 44200,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 811000
+  },
+  {
+    "id": "medical-dosimetrists",
+    "title": "Medical dosimetrists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 138110,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 4800
+  },
+  {
+    "id": "medical-equipment-repairers",
+    "title": "Medical equipment repairers",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 62630,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 68000
+  },
+  {
+    "id": "medical-records-and-health-information-technicians",
+    "title": "Medical records specialists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 50250,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 194800
+  },
+  {
+    "id": "medical-scientists",
+    "title": "Medical scientists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 100590,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 165300
+  },
+  {
+    "id": "medical-transcriptionists",
+    "title": "Medical transcriptionists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 37550,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 43900
+  },
+  {
+    "id": "meeting-convention-and-event-planners",
+    "title": "Meeting, convention, and event planners",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 59440,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 155800
+  },
+  {
+    "id": "metal-and-plastic-machine-workers",
+    "title": "Metal and plastic machine workers",
+    "category": "production",
+    "median_pay_annual_usd": 46800,
+    "entry_education": "Varies",
+    "num_jobs_us": 1000700
+  },
+  {
+    "id": "microbiologists",
+    "title": "Microbiologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 87330,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 20700
+  },
+  {
+    "id": "middle-school-teachers",
+    "title": "Middle school teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 62970,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 633700
+  },
+  {
+    "id": "military-careers",
+    "title": "Military careers",
+    "category": "military",
+    "median_pay_annual_usd": 0,
+    "entry_education": "",
+    "num_jobs_us": 0
+  },
+  {
+    "id": "mining-and-geological-engineers",
+    "title": "Mining and geological engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 101020,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 7000
+  },
+  {
+    "id": "models",
+    "title": "Models",
+    "category": "sales",
+    "median_pay_annual_usd": 89990,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 6700
+  },
+  {
+    "id": "music-directors-and-composers",
+    "title": "Music directors and composers",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 63670,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 47300
+  },
+  {
+    "id": "musicians-and-singers",
+    "title": "Musicians and singers",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 88296,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 169800
+  },
+  {
+    "id": "natural-sciences-managers",
+    "title": "Natural sciences managers",
+    "category": "management",
+    "median_pay_annual_usd": 161180,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 104300
+  },
+  {
+    "id": "network-and-computer-systems-administrators",
+    "title": "Network and computer systems administrators",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 96800,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 331500
+  },
+  {
+    "id": "reporters-correspondents-and-broadcast-news-analysts",
+    "title": "News analysts, reporters, and journalists",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 60280,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 49300
+  },
+  {
+    "id": "nuclear-engineers",
+    "title": "Nuclear engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 127520,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 15400
+  },
+  {
+    "id": "nuclear-medicine-technologists",
+    "title": "Nuclear medicine technologists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 97020,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 20000
+  },
+  {
+    "id": "nuclear-technicians",
+    "title": "Nuclear technicians",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 104240,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 6000
+  },
+  {
+    "id": "nurse-anesthetists-nurse-midwives-and-nurse-practitioners",
+    "title": "Nurse anesthetists, nurse midwives, and nurse practitioners",
+    "category": "healthcare",
+    "median_pay_annual_usd": 132050,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 382700
+  },
+  {
+    "id": "nursing-assistants",
+    "title": "Nursing assistants and orderlies",
+    "category": "healthcare",
+    "median_pay_annual_usd": 39430,
+    "entry_education": "Varies",
+    "num_jobs_us": 1495400
+  },
+  {
+    "id": "occupational-health-and-safety-specialists-and-technicians",
+    "title": "Occupational health and safety specialists and technicians",
+    "category": "healthcare",
+    "median_pay_annual_usd": 78900,
+    "entry_education": "Varies",
+    "num_jobs_us": 163700
+  },
+  {
+    "id": "occupational-therapists",
+    "title": "Occupational therapists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 98340,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 160000
+  },
+  {
+    "id": "occupational-therapy-assistants-and-aides",
+    "title": "Occupational therapy assistants and aides",
+    "category": "healthcare",
+    "median_pay_annual_usd": 66050,
+    "entry_education": "Varies",
+    "num_jobs_us": 54400
+  },
+  {
+    "id": "oil-and-gas-workers",
+    "title": "Oil and gas workers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 52610,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 115900
+  },
+  {
+    "id": "operations-research-analysts",
+    "title": "Operations research analysts",
+    "category": "math",
+    "median_pay_annual_usd": 91290,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 112100
+  },
+  {
+    "id": "opticians-dispensing",
+    "title": "Opticians",
+    "category": "healthcare",
+    "median_pay_annual_usd": 46560,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 79900
+  },
+  {
+    "id": "optometrists",
+    "title": "Optometrists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 134830,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 47800
+  },
+  {
+    "id": "orthotists-and-prosthetists",
+    "title": "Orthotists and prosthetists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 78310,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 10100
+  },
+  {
+    "id": "painters-construction-and-maintenance",
+    "title": "Painters, construction and maintenance",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 48660,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 342200
+  },
+  {
+    "id": "painting-and-coating-workers",
+    "title": "Painting and coating workers",
+    "category": "production",
+    "median_pay_annual_usd": 47390,
+    "entry_education": "Varies",
+    "num_jobs_us": 174300
+  },
+  {
+    "id": "paralegals-and-legal-assistants",
+    "title": "Paralegals and legal assistants",
+    "category": "legal",
+    "median_pay_annual_usd": 61010,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 376200
+  },
+  {
+    "id": "personal-financial-advisors",
+    "title": "Personal financial advisors",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 102140,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 326000
+  },
+  {
+    "id": "pest-control-workers",
+    "title": "Pest control workers",
+    "category": "building-and-grounds-cleaning",
+    "median_pay_annual_usd": 44730,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 102400
+  },
+  {
+    "id": "petroleum-engineers",
+    "title": "Petroleum engineers",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 141280,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 19600
+  },
+  {
+    "id": "pharmacists",
+    "title": "Pharmacists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 137480,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 335100
+  },
+  {
+    "id": "pharmacy-technicians",
+    "title": "Pharmacy technicians",
+    "category": "healthcare",
+    "median_pay_annual_usd": 43460,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 490400
+  },
+  {
+    "id": "phlebotomists",
+    "title": "Phlebotomists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 43660,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 139700
+  },
+  {
+    "id": "photographers",
+    "title": "Photographers",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 42520,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 151200
+  },
+  {
+    "id": "physical-therapist-assistants-and-aides",
+    "title": "Physical therapist assistants and aides",
+    "category": "healthcare",
+    "median_pay_annual_usd": 60050,
+    "entry_education": "Varies",
+    "num_jobs_us": 157100
+  },
+  {
+    "id": "physical-therapists",
+    "title": "Physical therapists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 101020,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 267200
+  },
+  {
+    "id": "physician-assistants",
+    "title": "Physician assistants",
+    "category": "healthcare",
+    "median_pay_annual_usd": 133260,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 162700
+  },
+  {
+    "id": "physicians-and-surgeons",
+    "title": "Physicians and surgeons",
+    "category": "healthcare",
+    "median_pay_annual_usd": 239200,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 839000
+  },
+  {
+    "id": "physicists-and-astronomers",
+    "title": "Physicists and astronomers",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 166290,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 26400
+  },
+  {
+    "id": "plumbers-pipefitters-and-steamfitters",
+    "title": "Plumbers, pipefitters, and steamfitters",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 62970,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 504500
+  },
+  {
+    "id": "podiatrists",
+    "title": "Podiatrists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 152800,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 9700
+  },
+  {
+    "id": "police-and-detectives",
+    "title": "Police and detectives",
+    "category": "protective-service",
+    "median_pay_annual_usd": 77270,
+    "entry_education": "Varies",
+    "num_jobs_us": 826800
+  },
+  {
+    "id": "political-scientists",
+    "title": "Political scientists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 139380,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 6500
+  },
+  {
+    "id": "postal-service-workers",
+    "title": "Postal service workers",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 57870,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 500000
+  },
+  {
+    "id": "postsecondary-education-administrators",
+    "title": "Postsecondary education administrators",
+    "category": "management",
+    "median_pay_annual_usd": 103960,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 226600
+  },
+  {
+    "id": "postsecondary-teachers",
+    "title": "Postsecondary teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 83980,
+    "entry_education": "Varies",
+    "num_jobs_us": 1415600
+  },
+  {
+    "id": "power-plant-operators-distributors-and-dispatchers",
+    "title": "Power plant operators, distributors, and dispatchers",
+    "category": "production",
+    "median_pay_annual_usd": 103600,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 46600
+  },
+  {
+    "id": "preschool-and-childcare-center-directors",
+    "title": "Preschool and childcare center directors",
+    "category": "management",
+    "median_pay_annual_usd": 56270,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 90200
+  },
+  {
+    "id": "preschool-teachers",
+    "title": "Preschool teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 37120,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 555100
+  },
+  {
+    "id": "private-detectives-and-investigators",
+    "title": "Private detectives and investigators",
+    "category": "protective-service",
+    "median_pay_annual_usd": 52370,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 43600
+  },
+  {
+    "id": "probation-officers-and-correctional-treatment-specialists",
+    "title": "Probation officers and correctional treatment specialists",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 64520,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 92300
+  },
+  {
+    "id": "producers-and-directors",
+    "title": "Producers and directors",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 83480,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 167000
+  },
+  {
+    "id": "project-management-specialists",
+    "title": "Project management specialists",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 100750,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1046300
+  },
+  {
+    "id": "appraisers-and-assessors-of-real-estate",
+    "title": "Property appraisers and assessors",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 65420,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 77300
+  },
+  {
+    "id": "property-real-estate-and-community-association-managers",
+    "title": "Property, real estate, and community association managers",
+    "category": "management",
+    "median_pay_annual_usd": 66700,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 466100
+  },
+  {
+    "id": "psychiatric-technicians-and-aides",
+    "title": "Psychiatric technicians and aides",
+    "category": "healthcare",
+    "median_pay_annual_usd": 42200,
+    "entry_education": "Varies",
+    "num_jobs_us": 182900
+  },
+  {
+    "id": "psychologists",
+    "title": "Psychologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 94310,
+    "entry_education": "Varies",
+    "num_jobs_us": 204300
+  },
+  {
+    "id": "public-relations-managers",
+    "title": "Public relations and fundraising managers",
+    "category": "management",
+    "median_pay_annual_usd": 132870,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 128900
+  },
+  {
+    "id": "public-relations-specialists",
+    "title": "Public relations specialists",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 69780,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 315900
+  },
+  {
+    "id": "police-fire-and-ambulance-dispatchers",
+    "title": "Public safety telecommunicators",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 50730,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 105200
+  },
+  {
+    "id": "purchasing-managers-buyers-and-purchasing-agents",
+    "title": "Purchasing managers, buyers, and purchasing agents",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 79830,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 605600
+  },
+  {
+    "id": "quality-control-inspectors",
+    "title": "Quality control inspectors",
+    "category": "production",
+    "median_pay_annual_usd": 47460,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 598000
+  },
+  {
+    "id": "radiation-therapists",
+    "title": "Radiation therapists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 101990,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 19200
+  },
+  {
+    "id": "radiologic-technologists",
+    "title": "Radiologic and MRI technologists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 78980,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 272000
+  },
+  {
+    "id": "railroad-occupations",
+    "title": "Railroad workers",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 75680,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 77900
+  },
+  {
+    "id": "real-estate-brokers-and-sales-agents",
+    "title": "Real estate brokers and sales agents",
+    "category": "sales",
+    "median_pay_annual_usd": 58960,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 532200
+  },
+  {
+    "id": "receptionists",
+    "title": "Receptionists",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 37230,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 1007200
+  },
+  {
+    "id": "recreation-workers",
+    "title": "Recreation workers",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 35380,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 327700
+  },
+  {
+    "id": "recreational-therapists",
+    "title": "Recreational therapists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 60280,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 16100
+  },
+  {
+    "id": "registered-nurses",
+    "title": "Registered nurses",
+    "category": "healthcare",
+    "median_pay_annual_usd": 93600,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 3391000
+  },
+  {
+    "id": "rehabilitation-counselors",
+    "title": "Rehabilitation counselors",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 46110,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 91900
+  },
+  {
+    "id": "respiratory-therapists",
+    "title": "Respiratory therapists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 80450,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 139600
+  },
+  {
+    "id": "retail-sales-workers",
+    "title": "Retail sales workers",
+    "category": "sales",
+    "median_pay_annual_usd": 34730,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 4208800
+  },
+  {
+    "id": "roofers",
+    "title": "Roofers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 50970,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 166700
+  },
+  {
+    "id": "sales-engineers",
+    "title": "Sales engineers",
+    "category": "sales",
+    "median_pay_annual_usd": 121520,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 56800
+  },
+  {
+    "id": "sales-managers",
+    "title": "Sales managers",
+    "category": "management",
+    "median_pay_annual_usd": 138060,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 619500
+  },
+  {
+    "id": "school-and-career-counselors",
+    "title": "School and career counselors and advisors",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 65140,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 376300
+  },
+  {
+    "id": "secretaries-and-administrative-assistants",
+    "title": "Secretaries and administrative assistants",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 47460,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 3453100
+  },
+  {
+    "id": "securities-commodities-and-financial-services-sales-agents",
+    "title": "Securities, commodities, and financial services sales agents",
+    "category": "sales",
+    "median_pay_annual_usd": 78140,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 514500
+  },
+  {
+    "id": "security-guards",
+    "title": "Security guards and gambling surveillance officers",
+    "category": "protective-service",
+    "median_pay_annual_usd": 38390,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 1272400
+  },
+  {
+    "id": "semiconductor-processing-technicians",
+    "title": "Semiconductor processing technicians",
+    "category": "production",
+    "median_pay_annual_usd": 51180,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 31900
+  },
+  {
+    "id": "set-and-exhibit-designers",
+    "title": "Set and exhibit designers",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 66280,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 31300
+  },
+  {
+    "id": "sheet-metal-workers",
+    "title": "Sheet metal workers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 60850,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 127000
+  },
+  {
+    "id": "skincare-specialists",
+    "title": "Skincare specialists",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 41560,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 97400
+  },
+  {
+    "id": "small-engine-mechanics",
+    "title": "Small engine mechanics",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 48240,
+    "entry_education": "Varies",
+    "num_jobs_us": 78000
+  },
+  {
+    "id": "social-and-community-service-managers",
+    "title": "Social and community service managers",
+    "category": "management",
+    "median_pay_annual_usd": 78240,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 219800
+  },
+  {
+    "id": "social-and-human-service-assistants",
+    "title": "Social and human service assistants",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 45120,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 449600
+  },
+  {
+    "id": "social-workers",
+    "title": "Social workers",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 61330,
+    "entry_education": "Varies",
+    "num_jobs_us": 810900
+  },
+  {
+    "id": "sociologists",
+    "title": "Sociologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 101690,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 3400
+  },
+  {
+    "id": "software-developers",
+    "title": "Software developers, quality assurance analysts, and testers",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 131450,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 1895500
+  },
+  {
+    "id": "solar-photovoltaic-installers",
+    "title": "Solar photovoltaic installers",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 51860,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 28600
+  },
+  {
+    "id": "special-education-teachers",
+    "title": "Special education teachers",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 64270,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 559500
+  },
+  {
+    "id": "multimedia-artists-and-animators",
+    "title": "Special effects artists and animators",
+    "category": "arts-and-design",
+    "median_pay_annual_usd": 99800,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 57100
+  },
+  {
+    "id": "speech-language-pathologists",
+    "title": "Speech-language pathologists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 95410,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 187400
+  },
+  {
+    "id": "stationary-engineers-and-boiler-operators",
+    "title": "Stationary engineers and boiler operators",
+    "category": "production",
+    "median_pay_annual_usd": 75190,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 33300
+  },
+  {
+    "id": "substance-abuse-behavioral-disorder-and-mental-health-counselors",
+    "title": "Substance abuse, behavioral disorder, and mental health counselors",
+    "category": "community-and-social-service",
+    "median_pay_annual_usd": 59190,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 483500
+  },
+  {
+    "id": "surgical-technologists",
+    "title": "Surgical assistants and technologists",
+    "category": "healthcare",
+    "median_pay_annual_usd": 62480,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 141000
+  },
+  {
+    "id": "survey-researchers",
+    "title": "Survey researchers",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 63380,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 8800
+  },
+  {
+    "id": "surveying-and-mapping-technicians",
+    "title": "Surveying and mapping technicians",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 51940,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 59400
+  },
+  {
+    "id": "surveyors",
+    "title": "Surveyors",
+    "category": "architecture-and-engineering",
+    "median_pay_annual_usd": 72740,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 56100
+  },
+  {
+    "id": "tax-examiners-and-collectors-and-revenue-agents",
+    "title": "Tax examiners and collectors, and revenue agents",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 59740,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 57600
+  },
+  {
+    "id": "taxi-drivers-and-chauffeurs",
+    "title": "Taxi drivers, shuttle drivers, and chauffeurs",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 36660,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 447900
+  },
+  {
+    "id": "teacher-assistants",
+    "title": "Teacher assistants",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 35240,
+    "entry_education": "Some college, no degree",
+    "num_jobs_us": 1422800
+  },
+  {
+    "id": "technical-writers",
+    "title": "Technical writers",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 91670,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 56400
+  },
+  {
+    "id": "telecommunications-equipment-installers-and-repairers-except-line-installers",
+    "title": "Telecommunications technicians",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 64310,
+    "entry_education": "Varies",
+    "num_jobs_us": 268500
+  },
+  {
+    "id": "tellers",
+    "title": "Tellers",
+    "category": "office-and-administrative-support",
+    "median_pay_annual_usd": 39340,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 347400
+  },
+  {
+    "id": "top-executives",
+    "title": "Top executives",
+    "category": "management",
+    "median_pay_annual_usd": 105350,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 4022200
+  },
+  {
+    "id": "tour-and-travel-guides",
+    "title": "Tour and travel guides",
+    "category": "personal-care-and-service",
+    "median_pay_annual_usd": 36660,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 55800
+  },
+  {
+    "id": "training-and-development-managers",
+    "title": "Training and development managers",
+    "category": "management",
+    "median_pay_annual_usd": 127090,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 46400
+  },
+  {
+    "id": "training-and-development-specialists",
+    "title": "Training and development specialists",
+    "category": "business-and-financial",
+    "median_pay_annual_usd": 65850,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 452300
+  },
+  {
+    "id": "transportation-storage-and-distribution-managers",
+    "title": "Transportation, storage, and distribution managers",
+    "category": "management",
+    "median_pay_annual_usd": 102010,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 216700
+  },
+  {
+    "id": "travel-agents",
+    "title": "Travel agents",
+    "category": "sales",
+    "median_pay_annual_usd": 48450,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 65700
+  },
+  {
+    "id": "tutors",
+    "title": "Tutors",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 40090,
+    "entry_education": "Some college, no degree",
+    "num_jobs_us": 215500
+  },
+  {
+    "id": "umpires-referees-and-other-sports-officials",
+    "title": "Umpires, referees, and other sports officials",
+    "category": "entertainment-and-sports",
+    "median_pay_annual_usd": 38820,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 19300
+  },
+  {
+    "id": "urban-and-regional-planners",
+    "title": "Urban and regional planners",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 83720,
+    "entry_education": "Master's degree",
+    "num_jobs_us": 44700
+  },
+  {
+    "id": "veterinarians",
+    "title": "Veterinarians",
+    "category": "healthcare",
+    "median_pay_annual_usd": 125510,
+    "entry_education": "Doctoral or professional degree",
+    "num_jobs_us": 86400
+  },
+  {
+    "id": "veterinary-assistants-and-laboratory-animal-caretakers",
+    "title": "Veterinary assistants and laboratory animal caretakers",
+    "category": "healthcare",
+    "median_pay_annual_usd": 37320,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 117800
+  },
+  {
+    "id": "veterinary-technologists-and-technicians",
+    "title": "Veterinary technologists and technicians",
+    "category": "healthcare",
+    "median_pay_annual_usd": 45980,
+    "entry_education": "Associate's degree",
+    "num_jobs_us": 134200
+  },
+  {
+    "id": "waiters-and-waitresses",
+    "title": "Waiters and waitresses",
+    "category": "food-preparation-and-serving",
+    "median_pay_annual_usd": 33760,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 2329700
+  },
+  {
+    "id": "water-and-wastewater-treatment-plant-and-system-operators",
+    "title": "Water and wastewater treatment plant and system operators",
+    "category": "production",
+    "median_pay_annual_usd": 58260,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 132400
+  },
+  {
+    "id": "water-transportation-occupations",
+    "title": "Water transportation workers",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 66490,
+    "entry_education": "Varies",
+    "num_jobs_us": 84300
+  },
+  {
+    "id": "web-developers",
+    "title": "Web developers and digital designers",
+    "category": "computer-and-information-technology",
+    "median_pay_annual_usd": 95380,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 214900
+  },
+  {
+    "id": "welders-cutters-solderers-and-brazers",
+    "title": "Welders, cutters, solderers, and brazers",
+    "category": "production",
+    "median_pay_annual_usd": 51000,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 457300
+  },
+  {
+    "id": "wholesale-and-manufacturing-sales-representatives",
+    "title": "Wholesale and manufacturing sales representatives",
+    "category": "sales",
+    "median_pay_annual_usd": 74100,
+    "entry_education": "Varies",
+    "num_jobs_us": 1613600
+  },
+  {
+    "id": "wind-turbine-technicians",
+    "title": "Wind turbine technicians",
+    "category": "installation-maintenance-and-repair",
+    "median_pay_annual_usd": 62580,
+    "entry_education": "Postsecondary nondegree award",
+    "num_jobs_us": 13600
+  },
+  {
+    "id": "woodworkers",
+    "title": "Woodworkers",
+    "category": "production",
+    "median_pay_annual_usd": 43720,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 214600
+  },
+  {
+    "id": "writers-and-authors",
+    "title": "Writers and authors",
+    "category": "media-and-communication",
+    "median_pay_annual_usd": 72270,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 135400
+  },
+  {
+    "id": "zoologists-and-wildlife-biologists",
+    "title": "Zoologists and wildlife biologists",
+    "category": "life-physical-and-social-science",
+    "median_pay_annual_usd": 72860,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 18200
+  },
+  {
+    "id": "civil-servant-cn",
+    "title": "Civil Servant",
+    "category": "government",
+    "median_pay_annual_usd": 56778,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "food-delivery-driver",
+    "title": "Food Delivery Driver",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 51100,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "courier-express",
+    "title": "Express Courier",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 46842,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "ride-hailing-driver",
+    "title": "Ride-Hailing Driver",
+    "category": "transportation-and-material-moving",
+    "median_pay_annual_usd": 55358,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "ecommerce-operator",
+    "title": "E-commerce Operator",
+    "category": "sales",
+    "median_pay_annual_usd": 68133,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "livestream-seller",
+    "title": "Livestream Seller",
+    "category": "sales",
+    "median_pay_annual_usd": 85167,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "small-business-owner",
+    "title": "Small Business Owner",
+    "category": "management",
+    "median_pay_annual_usd": 59617,
+    "entry_education": "High school diploma or equivalent",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "soe-manager",
+    "title": "State-Owned Enterprise Manager",
+    "category": "management",
+    "median_pay_annual_usd": 127750,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "construction-worker-cn",
+    "title": "Construction Worker",
+    "category": "construction-and-extraction",
+    "median_pay_annual_usd": 42583,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "rural-teacher",
+    "title": "Rural Teacher",
+    "category": "education-training-and-library",
+    "median_pay_annual_usd": 38325,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "public-institution-staff",
+    "title": "Public Institution Staff",
+    "category": "government",
+    "median_pay_annual_usd": 51100,
+    "entry_education": "Bachelor's degree",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  },
+  {
+    "id": "factory-line-worker",
+    "title": "Factory Line Worker",
+    "category": "production",
+    "median_pay_annual_usd": 38325,
+    "entry_education": "No formal educational credential",
+    "num_jobs_us": 0,
+    "country_only": [
+      "CN"
+    ]
+  }
+]

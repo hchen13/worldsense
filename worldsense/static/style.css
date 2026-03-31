@@ -1,0 +1,218 @@
+/* WorldSense – custom styles (Tailwind handles most; this adds extras) */
+
+/* Smooth transitions globally — exclude input elements to avoid blocking drag events */
+*:not(input):not(input[type=range]):not(input[type=range]::-webkit-slider-thumb),
+*::before, *::after {
+  transition-property: background-color, border-color, color, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+/* Range slider — force pointer events, prevent any interference */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: grab;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto !important;
+  touch-action: none;
+  background: linear-gradient(to right, #06b6d4 0%, #06b6d4 0%, #374151 0%, #374151 100%);
+  border-radius: 2px;
+  height: 4px;
+}
+input[type=range]:active {
+  cursor: grabbing;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: grab;
+  border: 2px solid #0ea5e9;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 20;
+  margin-top: -6px; /* (4px track - 16px thumb) / 2 */
+}
+input[type=range]:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  background: #7dd3fc;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+  border-radius: 2px;
+}
+input[type=range]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: grab;
+  border: 2px solid #0ea5e9;
+  pointer-events: auto !important;
+}
+input[type=range]::-moz-range-track {
+  height: 4px;
+  background: transparent;
+  border-radius: 2px;
+}
+
+/* ---- Sidebar nav links ---- */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #94a3b8; /* slate-400 */
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-link:hover {
+  background: #334155; /* surface-700 */
+  color: #e2e8f0;
+}
+.nav-link.active {
+  background: #1e3a5f;
+  color: #38bdf8;
+  font-weight: 500;
+}
+.nav-link svg {
+  flex-shrink: 0;
+}
+
+/* ---- Views ---- */
+.view { animation: fadeIn 0.15s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---- Task card ---- */
+.task-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  cursor: pointer;
+}
+.task-card:hover {
+  border-color: #0ea5e9;
+  background: #1e3a5f22;
+}
+
+/* ---- Status badges ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.badge-pending   { background: #1e3a5f; color: #7dd3fc; }
+.badge-running   { background: #1a2e1a; color: #86efac; }
+.badge-completed { background: #14291a; color: #4ade80; }
+.badge-failed    { background: #2e1a1a; color: #f87171; }
+
+/* ---- Progress bar ---- */
+.progress-bar-track {
+  background: #334155;
+  border-radius: 9999px;
+  height: 6px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+  transition: width 0.4s ease;
+}
+
+/* ---- Metric cards ---- */
+.metric-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #38bdf8;
+}
+.metric-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+/* ---- Segment table ---- */
+.seg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+.seg-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  color: #64748b;
+  font-weight: 500;
+  border-bottom: 1px solid #334155;
+}
+.seg-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1e293b;
+}
+.seg-table tr:hover td {
+  background: #1e3a5f22;
+}
+
+/* ---- Mini bar (for conversion %) ---- */
+.mini-bar-wrap { display: flex; align-items: center; gap: 0.5rem; }
+.mini-bar-track { flex: 1; height: 4px; background: #334155; border-radius: 9999px; overflow: hidden; }
+.mini-bar-fill  { height: 100%; border-radius: 9999px; background: #0ea5e9; }
+
+/* ---- Pulse animation for running tasks ---- */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.pulse-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ---- Code / verbatim ---- */
+.verbatim-box {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* ---- Task detail: prose markdown rendering ---- */
+.prose-ws p { margin-bottom: 0.5rem; }
+.prose-ws p:last-child { margin-bottom: 0; }
+.prose-ws ul { padding-left: 0.25rem; margin-bottom: 0.5rem; }
+.prose-ws h1, .prose-ws h2, .prose-ws h3 { line-height: 1.3; }
+.prose-ws strong { color: #e2e8f0; }
+.prose-ws em { color: #cbd5e1; }
+.prose-ws hr { margin: 0.75rem 0; }

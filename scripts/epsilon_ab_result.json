@@ -1,0 +1,52 @@
+{
+  "persona": "Wei Jianming",
+  "product": "Notion AI",
+  "mode_a": {
+    "mode": "A",
+    "calls": 2,
+    "epsilon_latency_s": 5.82,
+    "epsilon_text": "As a pragmatic planner living in Shenzhen, he feels the steady pressure of supporting his wife and toddler while trying to save for a larger apartment. He balances his moderately adventurous tech curiosity—often trying new productivity apps and IDE plugins—with careful research, usually spending weeks reading GitHub reviews and tech forums before committing to any purchase over a few hundred yuan. Recently, this methodical approach led him to buy a highly-rated but affordable mechanical keyboard that has made his long daily coding sessions significantly more comfortable.",
+    "epsilon_tokens": 463,
+    "eval_latency_s": 80.37,
+    "total_latency_s": 86.18,
+    "eval_tokens": 3146,
+    "total_tokens": 3609,
+    "eval_output": {
+      "purchase_intent": "hesitate",
+      "nps_score": 6,
+      "sentiment_score": 0.3,
+      "key_attraction": "Task extraction from messy meeting notes",
+      "key_concern": "Recurring subscription cost versus free domestic AI alternatives",
+      "verbatim": "The AI task extraction looks useful for organizing our backend team's meeting notes, but $10 a month is a bit steep. I'm already using free domestic models like DeepSeek or Kimi for translation and summarization, so it's hard to justify the extra recurring cost when I need to save money for my family's apartment.",
+      "willingness_to_pay_multiplier": 0.6
+    },
+    "eval_raw": "{\"purchase_intent\":\"hesitate\",\"nps_score\":6,\"sentiment_score\":0.3,\"key_attraction\":\"Task extraction from messy meeting notes\",\"key_concern\":\"Recurring subscription cost versus free domestic AI alternatives\",\"verbatim\":\"The AI task extraction looks useful for organizing our backend team's meeting notes, but $10 a month is a bit steep. I'm already using free domestic models like DeepSeek or Kimi for translation and summarization, so it's hard to justify the extra recurring cost when I need to save money for my family's apartment.\",\"willingness_to_pay_multiplier\":0.6}"
+  },
+  "mode_b": {
+    "mode": "B",
+    "calls": 1,
+    "total_latency_s": 73.29,
+    "total_tokens": 898,
+    "epsilon_text": "我是林浩，今年34岁，和妻子及3岁的女儿一起租住在北京回龙观。作为一名Python后端开发，我经常用Notion来记录工作中的技术方案和家庭开销。最近我刚花3000元买了一台开源皮的3D打印机，用来给女儿打印玩具，这也是我周末最大的爱好。",
+    "eval_output": {
+      "purchase_intent": "hesitate",
+      "nps_score": 6,
+      "sentiment_score": 0.35,
+      "key_attraction": "可以直接在Notion里对我长篇的技术调研文档进行一键总结，并且快速提取出下一步的Task，这能省下不少梳理文档的时间。",
+      "key_concern": "每个月需要额外支付10美元，这对于一个订阅附加功能来说有点贵，我更愿意把它算成人民币来衡量，感觉不太划算，而且偶尔用用的需求可能不足以支撑持续的月费。",
+      "verbatim": "Notion AI的总结和提取任务功能确实很实用，尤其是我整理完长篇技术方案后，用它来提炼重点很省事。不过每个月70多块钱人民币的附加订阅费让我有点犹豫，毕竟现在各处都在压缩开支，如果不是每天高频使用，感觉不值这个价。我会先蹭同事的账号试用一下，好用的话再看有没有包年的折扣。",
+      "willingness_to_pay_multiplier": 0.7
+    },
+    "eval_raw": "{\"epsilon\":\"我是林浩，今年34岁，和妻子及3岁的女儿一起租住在北京回龙观。作为一名Python后端开发，我经常用Notion来记录工作中的技术方案和家庭开销。最近我刚花3000元买了一台开源皮的3D打印机，用来给女儿打印玩具，这也是我周末最大的爱好。\",\"purchase_intent\":\"hesitate\",\"nps_score\":6,\"sentiment_score\":0.35,\"key_attraction\":\"可以直接在Notion里对我长篇的技术调研文档进行一键总结，并且快速提取出下一步的Task，这能省下不少梳理文档的时间。\",\"key_concern\":\"每个月需要额外支付10美元，这对于一个订阅附加功能来说有点贵，我更愿意把它算成人民币来衡量，感觉不太划算，而且偶尔用用的需求可能不足以支撑持续的月费。\",\"verbatim\":\"Notion AI的总结和提取任务功能确实很实用，尤其是我整理完长篇技术方案后，用它来提炼重点很省事。不过每个月70多块钱人民币的附加订阅费让我有点犹豫，毕竟现在各处都在压缩开支，如果不是每天高频使用，感觉不值这个价。我会先蹭同事的账号试用一下，好用的话再看有没有包年的折扣。\",\"willingness_to_pay_multiplier\":0.7}"
+  },
+  "summary": {
+    "latency_a_s": 86.18,
+    "latency_b_s": 73.29,
+    "latency_delta_s": -12.89,
+    "tokens_a": 3609,
+    "tokens_b": 898,
+    "tokens_delta": -2711,
+    "calls_a": 2,
+    "calls_b": 1
+  }
+}

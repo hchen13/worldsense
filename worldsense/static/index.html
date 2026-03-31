@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WorldSense — Research Simulator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50:  '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+            },
+            surface: {
+              900: '#0f172a',
+              800: '#1e293b',
+              700: '#334155',
+              600: '#475569',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Advanced options collapse animation */
+    .adv-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease;
+    }
+    .adv-panel.open {
+      grid-template-rows: 1fr;
+    }
+    .adv-panel > div {
+      overflow: hidden;
+    }
+    .adv-toggle-icon {
+      transition: transform 0.25s ease;
+    }
+    .adv-toggle-icon.open {
+      transform: rotate(180deg);
+    }
+
+    /* Mobile nav */
+    .mobile-nav-link.active { color: #38bdf8; }
+
+    /* Persona preview cards */
+    .persona-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 12px;
+      transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    @media (min-width: 640px) {
+      .persona-card { padding: 16px; }
+    }
+    .persona-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    /* Compact bar */
+    .cog-bar-track {
+      height: 6px;
+      background: #334155;
+      border-radius: 3px;
+      overflow: hidden;
+      flex: 1;
+    }
+    .cog-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      transition: width 0.5s ease;
+    }
+
+    /* Tag selector */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px solid #475569;
+      background: transparent;
+      color: #94a3b8;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .tag-pill.selected {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .tag-pill:hover:not(.selected) {
+      border-color: #94a3b8;
+      color: #e2e8f0;
+    }
+
+    /* Compact weight slider row — stacked layout for long labels */
+    .weight-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 6px 0;
+    }
+    .weight-row .weight-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .weight-row label {
+      font-size: 12px;
+      color: #94a3b8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+    .weight-row .weight-val {
+      font-size: 12px;
+      color: #38bdf8;
+      font-family: monospace;
+      flex-shrink: 0;
+    }
+    .weight-row input[type=range] {
+      width: 100%;
+      accent-color: #38bdf8;
+    }
+
+    /* Country flag tag in nationality section */
+    .country-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+      border: 1px solid #475569;
+      background: transparent;
+      color: #94a3b8;
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .country-tag.selected {
+      background: #0369a1;
+      border-color: #38bdf8;
+      color: #fff;
+    }
+    .country-tag:hover:not(.selected) {
+      border-color: #94a3b8;
+      color: #e2e8f0;
+    }
+
+    /* File attachment chips */
+    .file-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      max-width: 220px;
+    }
+    .file-chip .chip-icon { font-size: 14px; flex-shrink: 0; }
+    .file-chip .chip-name {
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1;
+    }
+    .file-chip .chip-del {
+      flex-shrink: 0; cursor: pointer; color: #64748b;
+      transition: color 0.15s; line-height: 1;
+    }
+    .file-chip .chip-del:hover { color: #ef4444; }
+    .file-chip.chip-image { border-color: #0369a1; background: #0c2436; }
+    .file-chip.chip-pdf   { border-color: #7c3aed; background: #1a0e2e; }
+    .file-chip.chip-word  { border-color: #0891b2; background: #0c1f2e; }
+    .file-chip.chip-text  { border-color: #475569; background: #1e293b; }
+
+    /* Drop-zone drag-over highlight */
+    #drop-zone.drag-over { border-color: #38bdf8; background: rgba(56,189,248,0.06); }
+
+    /* Preview skeleton pulse */
+    .skeleton {
+      background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ===== DOT MATRIX ===== */
+    .dot-matrix {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 4px 0;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.1s ease;
+    }
+    .dot:hover { transform: scale(1.6); }
+    .dot-pending  { background: #475569; }
+    .dot-done     { background: #22c55e; }
+    .dot-failed   { background: #ef4444; }
+    .dot-running  { background: #38bdf8; }
+    .dot-retrying { background: #f59e0b; }
+    @keyframes breathe {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(1.2); }
+    }
+    .dot-animate { animation: breathe 1.4s ease-in-out infinite; }
+    .dot-animate:hover { animation: none; transform: scale(1.6); }
+
+    /* Dot tooltip — rich card style */
+    .dot-tooltip {
+      position: absolute;
+      z-index: 9999;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      min-width: 190px;
+      max-width: 260px;
+      pointer-events: none;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+      overflow: hidden;
+      font-size: 11px;
+    }
+    .dot-tooltip.hidden { display: none; }
+    .dot-tooltip-header {
+      padding: 8px 12px 6px;
+      border-bottom: 2px solid #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .dot-tooltip-status {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .dot-tooltip-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .dot-tooltip-section {
+      padding: 6px 12px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .dot-tooltip-section:last-child { border-bottom: none; }
+    .dot-tooltip-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-bottom: 3px;
+    }
+    .dot-tooltip-row {
+      color: #94a3b8;
+      margin-bottom: 2px;
+      line-height: 1.4;
+    }
+    .dot-tooltip-row.dim { color: #64748b; }
+    .dot-tooltip-row.warn { color: #fbbf24; }
+    .dot-tooltip-llm { background: rgba(56,189,248,0.04); }
+    .dot-tooltip-error { background: rgba(239,68,68,0.06); }
+    .dot-tooltip-error-msg {
+      color: #f87171;
+      word-break: break-word;
+      line-height: 1.4;
+    }
+
+    /* ===== EVALUATION PRESET BUTTONS ===== */
+    .eval-preset-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #475569;
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s;
+    }
+    .eval-preset-btn:hover:not(.selected) {
+      border-color: #94a3b8;
+      background: #1e293b;
+    }
+    .eval-preset-btn.selected {
+      border-color: #38bdf8;
+      background: #0c2436;
+    }
+
+    /* ===== CUSTOM DIMENSIONS ===== */
+    .custom-dim-card {
+      padding: 8px 12px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+    }
+
+    /* ===== SETTINGS PAGE ===== */
+    .settings-tab-btn {
+      background: transparent;
+      color: #94a3b8;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.15s;
+      font-weight: 500;
+    }
+    .settings-tab-btn:hover:not(.active) { color: #e2e8f0; }
+    .settings-tab-btn.active {
+      color: #38bdf8;
+      border-bottom-color: #38bdf8;
+    }
+    .settings-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #cbd5e1;
+      margin-bottom: 0.375rem;
+    }
+    .settings-input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: #f1f5f9;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .settings-input:focus { border-color: #38bdf8; }
+    .settings-input option { background: #1e293b; }
+
+    /* ===== LLM PROFILE SIDEBAR ===== */
+    #llm-profile-list .profile-item-active {
+      background: #334155;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+    #llm-profile-list .profile-item {
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.1s;
+    }
+    #llm-profile-list .profile-item:hover { background: #1e3a4a; }
+  </style>
+</head>
+<body class="dark bg-surface-900 text-slate-100 min-h-screen">
+
+  <!-- Sidebar nav -->
+  <div class="flex h-screen overflow-hidden">
+    <aside id="sidebar" class="hidden sm:flex w-56 bg-surface-800 border-r border-surface-700 flex-col flex-shrink-0">
+      <div class="px-5 py-5 border-b border-surface-700">
+        <div class="flex items-center gap-2">
+          <span class="text-brand-400 text-xl font-bold">⬡</span>
+          <span class="text-lg font-semibold tracking-tight">WorldSense</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">Research Simulator</p>
+      </div>
+      <nav class="flex-1 px-3 py-4 space-y-1">
+        <a href="#" data-view="new-run" class="nav-link active">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          New Research
+        </a>
+        <a href="#" data-view="tasks" class="nav-link">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          Task History
+        </a>
+        <a href="#" data-view="settings" class="nav-link">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Settings
+        </a>
+      </nav>
+      <div class="px-4 py-3 border-t border-surface-700">
+        <p class="text-xs text-slate-600">v0.2.0</p>
+      </div>
+    </aside>
+
+    <!-- Mobile bottom nav -->
+    <nav id="mobile-nav" class="sm:hidden fixed bottom-0 left-0 right-0 bg-surface-800 border-t border-surface-700 flex z-50">
+      <a href="#" data-view="new-run" class="mobile-nav-link flex-1 flex flex-col items-center py-2 text-xs text-slate-400 active">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+        New
+      </a>
+      <a href="#" data-view="tasks" class="mobile-nav-link flex-1 flex flex-col items-center py-2 text-xs text-slate-400">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+        History
+      </a>
+      <a href="#" data-view="settings" class="mobile-nav-link flex-1 flex flex-col items-center py-2 text-xs text-slate-400">
+        <svg class="w-5 h-5 mb-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Settings
+      </a>
+    </nav>
+
+    <!-- Main content -->
+    <main class="flex-1 overflow-y-auto pb-16 sm:pb-0">
+
+      <!-- New Run View -->
+      <div id="view-new-run" class="view p-4 sm:p-8 max-w-3xl mx-auto">
+        <h1 class="text-2xl font-bold mb-1">New Research Run</h1>
+        <p class="text-slate-400 text-sm mb-8">Simulate how a diverse global audience would respond to your product or content.</p>
+
+        <form id="run-form" class="space-y-6">
+          <!-- Zone 1: Scenario Context -->
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1">
+              Scenario Context <span class="text-slate-500 font-normal">/ 场景描述</span>
+              <span class="ml-2 text-xs font-normal text-slate-600">optional</span>
+            </label>
+            <p class="text-xs text-slate-500 mb-2">Describe how the user encounters this content — injected as scenario framing for each persona.</p>
+            <textarea
+              id="input-scenario-context"
+              rows="2"
+              placeholder="Describe the context: where/how does the user encounter this content? e.g., 'You're scrolling through Xiaohongshu and see this post from a new financial media account with no followers yet.'"
+              class="w-full bg-surface-800 border border-surface-600 rounded-lg px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Zone 2: Content to Evaluate -->
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1">
+              Content to Evaluate <span class="text-slate-500 font-normal">/ 待评估内容</span>
+            </label>
+            <p class="text-xs text-slate-500 mb-2">Paste the content, or upload files below.</p>
+
+            <!-- Text area -->
+            <textarea
+              id="input-content"
+              rows="4"
+              placeholder="Paste the content to evaluate, or upload files (PDF, images, txt, docx, md)"
+              class="w-full bg-surface-800 border border-surface-600 rounded-t-lg px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+            ></textarea>
+
+            <!-- Drop zone -->
+            <div id="drop-zone"
+              class="relative border border-t-0 border-surface-600 border-dashed rounded-b-lg px-4 py-4 bg-surface-800/60 transition-colors cursor-pointer group"
+              onclick="document.getElementById('file-input').click()"
+            >
+              <!-- hidden file input -->
+              <input id="file-input" type="file" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.gif,.txt,.docx,.doc,.md"
+                class="absolute inset-0 opacity-0 cursor-pointer" style="pointer-events:none" />
+
+              <!-- Idle state -->
+              <div id="drop-idle" class="flex items-center gap-3 text-slate-500 group-hover:text-slate-400 transition-colors select-none">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                </svg>
+                <div>
+                  <span class="text-xs">Drop files here or <span class="text-brand-400 underline">browse</span></span>
+                  <span class="block text-xs text-slate-600 mt-0.5">PDF · Word (.docx) · TXT · MD (text extracted) · Images (auto-described) &nbsp;·&nbsp; max 50 MB each</span>
+                </div>
+              </div>
+
+              <!-- Drag-over overlay -->
+              <div id="drop-overlay"
+                class="hidden absolute inset-0 rounded-b-lg bg-brand-500/10 border-2 border-brand-400 border-dashed flex items-center justify-center pointer-events-none">
+                <span class="text-brand-400 text-sm font-medium">Release to attach</span>
+              </div>
+            </div>
+
+            <!-- Attached file chips -->
+            <div id="file-chips" class="flex flex-wrap gap-2 mt-2"></div>
+          </div>
+
+          <!-- ===== EVALUATION PRESET SYSTEM (v2) ===== -->
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1">
+              Research Type <span class="text-slate-500 font-normal">/ 研究类型</span>
+            </label>
+            <p class="text-xs text-slate-500 mb-3">Choose a preset or create a custom evaluation.</p>
+
+            <!-- Preset grid -->
+            <div id="eval-preset-list" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+              <!-- JS-rendered preset buttons -->
+            </div>
+
+            <!-- Breakdown preview (shown for non-custom presets) -->
+            <div id="preset-breakdown-preview" class="hidden mb-3 px-3 py-2.5 bg-surface-900/60 border border-surface-700 rounded-xl text-xs">
+              <!-- JS-rendered -->
+            </div>
+
+            <!-- Custom panel (shown when Custom is selected) -->
+            <div id="eval-custom-panel" class="hidden border border-surface-600 rounded-xl p-4 space-y-4 bg-surface-900/50">
+              <!-- Layer 1: Research purpose -->
+              <div>
+                <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
+                  Research Purpose <span class="text-red-400">*</span>
+                </label>
+                <textarea
+                  id="custom-purpose"
+                  rows="3"
+                  placeholder="e.g., 我想了解用户对这款健康追踪 App 的订阅意愿，以及关键障碍是什么"
+                  class="w-full bg-surface-800 border border-surface-600 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
+                ></textarea>
+                <button type="button" id="btn-gen-dimensions"
+                  class="mt-2 flex items-center gap-1.5 text-xs text-brand-400 hover:text-brand-300 transition-colors">
+                  ✨ Auto-generate Dimensions
+                </button>
+              </div>
+
+              <!-- Layer 2: Evaluation dimensions -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                    Evaluation Dimensions <span class="text-slate-600 font-normal normal-case">(optional)</span>
+                  </label>
+                  <button type="button" id="btn-add-dim"
+                    class="text-xs px-2 py-0.5 bg-surface-700 hover:bg-surface-600 rounded transition-colors text-slate-300">
+                    + Add
+                  </button>
+                </div>
+                <div id="custom-dimensions-list" class="space-y-2">
+                  <!-- JS-rendered dimension cards -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ===== END EVALUATION PRESET SYSTEM ===== -->
+
+          <div>
+            <!-- Market -->
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2">Target Market</label>
+              <select id="input-market"
+                class="w-full sm:w-64 bg-surface-800 border border-surface-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                <option value="cn">🇨🇳 China</option>
+                <option value="global">🌐 Global</option>
+                <option value="us">🇺🇸 United States</option>
+                <option value="asia">🌏 Asia</option>
+                <option value="europe">🇪🇺 Europe</option>
+                <option value="latam">🌎 Latin America</option>
+                <option value="africa">🌍 Africa</option>
+                <option value="mena">🌙 MENA</option>
+                <option value="developed">🏦 Developed Markets</option>
+                <option value="emerging">🌱 Emerging Markets</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Language selector -->
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-1">
+              Output Language <span class="text-slate-500 font-normal">/ 输出语言</span>
+            </label>
+            <p class="text-xs text-slate-500 mb-2">
+              Affects simulation output only — not UI language.
+              Persona verbatim uses their native language, plus a translation in the selected language.
+            </p>
+            <select id="input-language"
+              class="w-full sm:w-64 bg-surface-800 border border-surface-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+              <option value="English" selected>🌐 English</option>
+              <option value="中文">🇨🇳 中文 (Chinese)</option>
+              <option value="日本語">🇯🇵 日本語 (Japanese)</option>
+              <option value="한국어">🇰🇷 한국어 (Korean)</option>
+              <option value="Español">🇪🇸 Español (Spanish)</option>
+              <option value="Français">🇫🇷 Français (French)</option>
+              <option value="Deutsch">🇩🇪 Deutsch (German)</option>
+              <option value="Português">🇧🇷 Português (Portuguese)</option>
+              <option value="العربية">🌙 العربية (Arabic)</option>
+              <option value="हिन्दी">🇮🇳 हिन्दी (Hindi)</option>
+            </select>
+          </div>
+
+          <!-- Persona count slider -->
+          <div>
+            <label class="block text-sm font-medium text-slate-300 mb-2">
+              Number of Personas
+              <span class="ml-2 text-brand-400 font-bold" id="persona-count-label">20</span>
+            </label>
+            <div class="flex items-center gap-4">
+              <input type="range" id="input-personas" min="5" max="200" step="5" value="20"
+                class="flex-1 accent-brand-500" />
+              <input type="number" id="input-personas-num" min="1" max="1000" value="20"
+                class="w-20 bg-surface-800 border border-surface-600 rounded px-2 py-1 text-sm text-center focus:outline-none focus:ring-2 focus:ring-brand-500" />
+            </div>
+            <p class="text-xs text-slate-500 mt-1">More personas = more statistical accuracy.</p>
+          </div>
+
+          <!-- ===== ADVANCED OPTIONS ===== -->
+          <div class="border border-surface-600 rounded-xl overflow-hidden">
+            <!-- Toggle header -->
+            <button type="button" id="adv-toggle"
+              class="w-full flex items-center justify-between px-5 py-3.5 bg-surface-800 hover:bg-surface-700 transition-colors text-left">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+                </svg>
+                <span class="text-sm font-medium text-slate-200">Advanced Options</span>
+                <span class="text-xs text-slate-500">/ 高级选项</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="adv-summary" class="text-xs text-brand-400 hidden">Custom config active</span>
+                <svg class="adv-toggle-icon w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Collapsible panel -->
+            <div class="adv-panel" id="adv-panel">
+              <div>
+                <div class="px-5 pt-4 pb-5 space-y-5 bg-surface-900/50">
+
+                  <!-- Section: Nationality -->
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Nationality Distribution</span>
+                      <div class="flex gap-2">
+                        <button type="button" onclick="presetNationality('uniform')"
+                          class="text-xs px-2 py-0.5 bg-surface-700 hover:bg-surface-600 rounded transition-colors">
+                          🌐 Uniform
+                        </button>
+                        <button type="button" onclick="presetNationality('population')"
+                          class="text-xs px-2 py-0.5 bg-surface-700 hover:bg-surface-600 rounded transition-colors">
+                          📊 By Population
+                        </button>
+                      </div>
+                    </div>
+                    <div id="nationality-tags" class="flex flex-wrap gap-1.5 mb-3">
+                      <!-- JS-rendered country tags -->
+                    </div>
+                    <!-- Weight sliders for selected countries — rendered by JS -->
+                    <div id="nationality-weights" class="space-y-1"></div>
+                  </div>
+
+                  <div class="border-t border-surface-700"></div>
+
+                  <!-- Section: Age distribution -->
+                  <div>
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">Age Distribution</span>
+                    <div id="age-weights" class="space-y-1">
+                      <!-- JS-rendered sliders -->
+                    </div>
+                  </div>
+
+                  <div class="border-t border-surface-700"></div>
+
+                  <!-- Section: Gender -->
+                  <div>
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">Gender Distribution</span>
+                    <div id="gender-weights" class="space-y-1"></div>
+                  </div>
+
+                  <div class="border-t border-surface-700"></div>
+
+                  <!-- Section: Income -->
+                  <div>
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">Income Level</span>
+                    <div id="income-weights" class="space-y-1"></div>
+                  </div>
+
+                  <div class="border-t border-surface-700"></div>
+
+                  <!-- Section: Location -->
+                  <div>
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">Location</span>
+                    <div id="location-weights" class="space-y-1"></div>
+                  </div>
+
+                  <div class="border-t border-surface-700"></div>
+
+                  <!-- Section: Occupations -->
+                  <div>
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">Occupation Filter <span class="text-slate-600 font-normal normal-case">(empty = all)</span></span>
+                    <!-- Searchable occupation selector -->
+                    <div class="relative mb-2">
+                      <input id="occupation-search" type="text" placeholder="Search occupations..."
+                        class="w-full bg-surface-700 border border-surface-600 rounded px-2.5 py-1.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
+                        oninput="filterOccupations(this.value)" />
+                    </div>
+                    <!-- Category groups dropdown -->
+                    <div id="occupation-groups" class="max-h-52 overflow-y-auto bg-surface-700 rounded border border-surface-600 hidden">
+                      <!-- JS-rendered -->
+                    </div>
+                    <!-- Selected occupation tags -->
+                    <div id="occupation-tags" class="flex flex-wrap gap-1.5 mt-2">
+                      <!-- JS-rendered selected items -->
+                    </div>
+                  </div>
+
+                  <div class="border-t border-surface-700"></div>
+
+                  <!-- Section: Personality traits -->
+                  <div>
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">Personality Tendencies <span class="text-slate-600 font-normal normal-case">(empty = all)</span></span>
+                    <div id="personality-tags" class="flex flex-wrap gap-1.5">
+                      <!-- JS-rendered -->
+                    </div>
+                  </div>
+
+                  <!-- Reset button -->
+                  <div class="flex justify-end pt-1">
+                    <button type="button" id="btn-reset-adv"
+                      class="text-xs px-3 py-1.5 bg-surface-700 hover:bg-surface-600 text-slate-300 rounded transition-colors">
+                      ↺ Reset to Defaults
+                    </button>
+                  </div>
+
+                </div>
+
+                <!-- Preview section -->
+                <div class="px-5 pb-5 bg-surface-900/50 border-t border-surface-700/50">
+                  <div class="flex items-center justify-between mt-4 mb-4">
+                    <div>
+                      <h3 class="text-sm font-medium text-slate-200">Preview Sample Personas</h3>
+                      <p class="text-xs text-slate-500 mt-0.5">See what your audience looks like before running</p>
+                    </div>
+                    <button type="button" id="btn-preview"
+                      class="flex items-center gap-2 px-4 py-2 bg-brand-700 hover:bg-brand-600 text-white text-sm font-medium rounded-lg transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                      </svg>
+                      Preview Personas
+                    </button>
+                  </div>
+                  <div id="persona-preview-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ===== END ADVANCED OPTIONS ===== -->
+
+          <!-- Model Selector -->
+          <div id="model-selector-container">
+            <!-- Populated by renderModelSelector() in app.js -->
+          </div>
+
+          <!-- Submit -->
+          <div class="flex items-center gap-4 pt-2">
+            <button type="submit" id="btn-submit"
+              class="px-6 py-2.5 bg-brand-600 hover:bg-brand-500 text-white text-sm font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-brand-400">
+              Run Research
+            </button>
+            <span id="submit-msg" class="text-sm text-slate-400"></span>
+          </div>
+        </form>
+
+        <!-- Inline result after submit -->
+        <div id="quick-result" class="hidden mt-8 p-4 bg-surface-800 rounded-lg border border-surface-600">
+          <p class="text-sm font-medium mb-1">Task submitted</p>
+          <p class="text-xs text-slate-400">Task ID: <code id="quick-task-id" class="text-brand-400"></code></p>
+          <p class="text-xs text-slate-400 mt-1">
+            <a href="#" data-view="tasks" class="nav-link-inline text-brand-400 underline hover:no-underline">View in Task History →</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Task History View -->
+      <div id="view-tasks" class="view hidden p-4 sm:p-8">
+        <div class="flex items-center justify-between mb-6 max-w-5xl">
+          <div>
+            <h1 class="text-2xl font-bold mb-1">Task History</h1>
+            <p class="text-slate-400 text-sm">All research runs, newest first.</p>
+          </div>
+          <button id="btn-refresh" class="text-xs px-3 py-1.5 bg-surface-700 hover:bg-surface-600 rounded transition-colors">
+            ↻ Refresh
+          </button>
+        </div>
+        <div id="task-list" class="space-y-3 max-w-5xl">
+          <p class="text-slate-500 text-sm">Loading...</p>
+        </div>
+      </div>
+
+      <!-- Task Detail View -->
+      <div id="view-detail" class="view hidden p-8 max-w-5xl">
+        <button id="btn-back" class="text-xs text-slate-400 hover:text-slate-200 mb-6 flex items-center gap-1">
+          ← Back to History
+        </button>
+        <div id="detail-content">Loading...</div>
+      </div>
+
+      <!-- Settings View -->
+      <div id="view-settings" class="view hidden p-4 sm:p-8">
+        <div class="max-w-2xl mb-6">
+          <h1 class="text-2xl font-bold mb-1">Settings</h1>
+          <p class="text-slate-400 text-sm">Configure LLM backend, concurrency limits, and defaults.</p>
+        </div>
+        <div id="settings-content">
+          <p class="text-slate-500 text-sm">Loading...</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

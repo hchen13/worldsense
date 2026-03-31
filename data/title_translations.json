@@ -1,0 +1,1064 @@
+{
+  "accountants-and-auditors": {
+    "CN": "会计与审计师"
+  },
+  "actors": {
+    "CN": "演员"
+  },
+  "actuaries": {
+    "CN": "精算师"
+  },
+  "administrative-services-managers": {
+    "CN": "行政与设施管理经理"
+  },
+  "adult-literacy-and-ged-teachers": {
+    "CN": "成人基础教育及英语教师"
+  },
+  "advertising-sales-agents": {
+    "CN": "广告销售"
+  },
+  "advertising-promotions-and-marketing-managers": {
+    "CN": "广告、推广与市场营销经理"
+  },
+  "aerospace-engineering-and-operations-technicians": {
+    "CN": "航空航天工程技术人员"
+  },
+  "aerospace-engineers": {
+    "CN": "航空航天工程师"
+  },
+  "agricultural-and-food-science-technicians": {
+    "CN": "农业与食品科学技术员"
+  },
+  "agricultural-and-food-scientists": {
+    "CN": "农业与食品科学家"
+  },
+  "agricultural-engineers": {
+    "CN": "农业工程师"
+  },
+  "agricultural-workers": {
+    "CN": "农业工人"
+  },
+  "air-traffic-controllers": {
+    "CN": "空中交通管制员"
+  },
+  "aircraft-and-avionics-equipment-mechanics-and-technicians": {
+    "CN": "航空器及航电设备维修技术员"
+  },
+  "airline-and-commercial-pilots": {
+    "CN": "民航飞行员"
+  },
+  "animal-care-and-service-workers": {
+    "CN": "动物护理服务人员"
+  },
+  "announcers": {
+    "CN": "播音员和DJ"
+  },
+  "anthropologists-and-archeologists": {
+    "CN": "人类学家与考古学家"
+  },
+  "arbitrators-mediators-and-conciliators": {
+    "CN": "仲裁员与调解员"
+  },
+  "architects": {
+    "CN": "建筑师"
+  },
+  "architectural-and-engineering-managers": {
+    "CN": "建筑与工程管理经理"
+  },
+  "curators-museum-technicians-and-conservators": {
+    "CN": "档案管理员与博物馆工作者"
+  },
+  "art-directors": {
+    "CN": "艺术总监"
+  },
+  "assemblers-and-fabricators": {
+    "CN": "装配工"
+  },
+  "athletes-and-sports-competitors": {
+    "CN": "职业运动员"
+  },
+  "athletic-trainers": {
+    "CN": "运动训练师"
+  },
+  "atmospheric-scientists-including-meteorologists": {
+    "CN": "大气科学家（含气象学家）"
+  },
+  "audiologists": {
+    "CN": "听力学家"
+  },
+  "automotive-body-and-glass-repairers": {
+    "CN": "汽车钣金与玻璃修复工"
+  },
+  "automotive-service-technicians-and-mechanics": {
+    "CN": "汽车维修技工"
+  },
+  "bakers": {
+    "CN": "烘焙师"
+  },
+  "barbers-hairstylists-and-cosmetologists": {
+    "CN": "理发师和美容师"
+  },
+  "bartenders": {
+    "CN": "调酒师"
+  },
+  "bill-and-account-collectors": {
+    "CN": "账款催收员"
+  },
+  "biochemists-and-biophysicists": {
+    "CN": "生物化学家与生物物理学家"
+  },
+  "biomedical-engineers": {
+    "CN": "生物医学工程师"
+  },
+  "biological-technicians": {
+    "CN": "生物技术员"
+  },
+  "boilermakers": {
+    "CN": "锅炉工"
+  },
+  "bookkeeping-accounting-and-auditing-clerks": {
+    "CN": "会计记账员"
+  },
+  "broadcast-and-sound-engineering-technicians": {
+    "CN": "广播、音响与视频技术员"
+  },
+  "budget-analysts": {
+    "CN": "预算分析师"
+  },
+  "bus-drivers": {
+    "CN": "公交车司机"
+  },
+  "butchers-and-meat-cutters": {
+    "CN": "肉食加工工人"
+  },
+  "calibration-technologists-and-technicians": {
+    "CN": "计量校准技术员"
+  },
+  "cardiovascular-technologists-and-technicians": {
+    "CN": "心血管技术员"
+  },
+  "career-and-technical-education-teachers": {
+    "CN": "职业技术教育教师"
+  },
+  "carpenters": {
+    "CN": "木工"
+  },
+  "cartographers-and-photogrammetrists": {
+    "CN": "制图师与摄影测量师"
+  },
+  "cashiers": {
+    "CN": "收银员"
+  },
+  "chefs-and-head-cooks": {
+    "CN": "大厨"
+  },
+  "chemical-engineers": {
+    "CN": "化学工程师"
+  },
+  "chemical-technicians": {
+    "CN": "化学技术员"
+  },
+  "chemists-and-materials-scientists": {
+    "CN": "化学家与材料科学家"
+  },
+  "childcare-workers": {
+    "CN": "托育服务人员"
+  },
+  "chiropractors": {
+    "CN": "脊椎指压治疗师"
+  },
+  "civil-engineering-technicians": {
+    "CN": "土木工程技术员"
+  },
+  "civil-engineers": {
+    "CN": "土木工程师"
+  },
+  "claims-adjusters-appraisers-examiners-and-investigators": {
+    "CN": "理赔员与保险调查员"
+  },
+  "clinical-laboratory-technologists-and-technicians": {
+    "CN": "临床检验技师"
+  },
+  "coaches-and-scouts": {
+    "CN": "教练与球探"
+  },
+  "community-health-workers": {
+    "CN": "社区卫生工作者"
+  },
+  "compensation-and-benefits-managers": {
+    "CN": "薪酬福利经理"
+  },
+  "compensation-benefits-and-job-analysis-specialists": {
+    "CN": "薪酬福利与岗位分析专员"
+  },
+  "compliance-officers": {
+    "CN": "合规专员"
+  },
+  "computer-and-information-research-scientists": {
+    "CN": "计算机与信息研究科学家"
+  },
+  "computer-and-information-systems-managers": {
+    "CN": "信息系统经理"
+  },
+  "computer-hardware-engineers": {
+    "CN": "计算机硬件工程师"
+  },
+  "computer-network-architects": {
+    "CN": "网络架构师"
+  },
+  "computer-programmers": {
+    "CN": "程序员"
+  },
+  "computer-support-specialists": {
+    "CN": "IT技术支持专员"
+  },
+  "computer-systems-analysts": {
+    "CN": "计算机系统分析师"
+  },
+  "concierges": {
+    "CN": "礼宾员"
+  },
+  "conservation-scientists": {
+    "CN": "自然保护科学家与林业员"
+  },
+  "construction-and-building-inspectors": {
+    "CN": "建筑质检员"
+  },
+  "construction-equipment-operators": {
+    "CN": "工程机械操作员"
+  },
+  "construction-laborers-and-helpers": {
+    "CN": "建筑工人"
+  },
+  "construction-managers": {
+    "CN": "施工管理经理"
+  },
+  "cooks": {
+    "CN": "厨师"
+  },
+  "correctional-officers": {
+    "CN": "狱警与法警"
+  },
+  "cost-estimators": {
+    "CN": "成本估算师"
+  },
+  "court-reporters": {
+    "CN": "法庭速记员"
+  },
+  "craft-and-fine-artists": {
+    "CN": "工艺与纯艺术家"
+  },
+  "credit-counselors": {
+    "CN": "信贷顾问"
+  },
+  "customer-service-representatives": {
+    "CN": "客服"
+  },
+  "dancers-and-choreographers": {
+    "CN": "舞蹈演员与编舞"
+  },
+  "data-scientists": {
+    "CN": "数据科学家"
+  },
+  "database-administrators": {
+    "CN": "数据库管理员与架构师"
+  },
+  "delivery-truck-drivers-and-driver-sales-workers": {
+    "CN": "货运司机与送货员"
+  },
+  "dental-and-ophthalmic-laboratory-technicians-and-medical-appliance-technicians": {
+    "CN": "口腔与眼科技术员"
+  },
+  "dental-assistants": {
+    "CN": "口腔助理"
+  },
+  "dental-hygienists": {
+    "CN": "口腔卫生士"
+  },
+  "dentists": {
+    "CN": "牙医"
+  },
+  "desktop-publishers": {
+    "CN": "桌面排版专员"
+  },
+  "diagnostic-medical-sonographers": {
+    "CN": "超声诊断师"
+  },
+  "diesel-service-technicians-and-mechanics": {
+    "CN": "柴油机维修技工"
+  },
+  "dietitians-and-nutritionists": {
+    "CN": "营养师"
+  },
+  "drafters": {
+    "CN": "制图员"
+  },
+  "drywall-and-ceiling-tile-installers-and-tapers": {
+    "CN": "石膏板安装与吊顶工"
+  },
+  "economists": {
+    "CN": "经济学家"
+  },
+  "editors": {
+    "CN": "编辑"
+  },
+  "electrical-and-electronics-engineering-technicians": {
+    "CN": "电气与电子工程技术员"
+  },
+  "electrical-and-electronics-engineers": {
+    "CN": "电气工程师"
+  },
+  "electrical-and-electronics-installers-and-repairers": {
+    "CN": "电气设备安装维修工"
+  },
+  "line-installers-and-repairers": {
+    "CN": "电力线路安装维修工"
+  },
+  "electricians": {
+    "CN": "电工"
+  },
+  "electro-mechanical-technicians": {
+    "CN": "机电技术员"
+  },
+  "elementary-middle-and-high-school-principals": {
+    "CN": "中小学校长"
+  },
+  "elevator-installers-and-repairers": {
+    "CN": "电梯安装维修工"
+  },
+  "emergency-management-directors": {
+    "CN": "应急管理指挥官"
+  },
+  "emts-and-paramedics": {
+    "CN": "急救医疗技术员"
+  },
+  "entertainment-and-recreation-managers": {
+    "CN": "娱乐休闲场所经理"
+  },
+  "environmental-engineering-technicians": {
+    "CN": "环境工程技术员"
+  },
+  "environmental-engineers": {
+    "CN": "环境工程师"
+  },
+  "environmental-science-and-protection-technicians": {
+    "CN": "环保科学技术员"
+  },
+  "environmental-scientists-and-specialists": {
+    "CN": "环境科学家与专家"
+  },
+  "epidemiologists": {
+    "CN": "流行病学家"
+  },
+  "exercise-physiologists": {
+    "CN": "运动生理学家"
+  },
+  "farmers-ranchers-and-other-agricultural-managers": {
+    "CN": "农民与农场经营者"
+  },
+  "fashion-designers": {
+    "CN": "服装设计师"
+  },
+  "film-and-video-editors-and-camera-operators": {
+    "CN": "影视剪辑师与摄影师"
+  },
+  "financial-analysts": {
+    "CN": "金融分析师"
+  },
+  "financial-clerks": {
+    "CN": "财务文员"
+  },
+  "financial-examiners": {
+    "CN": "金融审查员"
+  },
+  "financial-managers": {
+    "CN": "财务总监"
+  },
+  "fire-inspectors-and-investigators": {
+    "CN": "消防检查员"
+  },
+  "firefighters": {
+    "CN": "消防员"
+  },
+  "fishers-and-related-fishing-workers": {
+    "CN": "渔民与猎人"
+  },
+  "fitness-trainers-and-instructors": {
+    "CN": "健身教练"
+  },
+  "flight-attendants": {
+    "CN": "空乘"
+  },
+  "tile-and-marble-setters": {
+    "CN": "地板及瓷砖铺装工"
+  },
+  "floral-designers": {
+    "CN": "花艺设计师"
+  },
+  "food-and-beverage-serving-and-related-workers": {
+    "CN": "餐饮服务人员"
+  },
+  "food-preparation-workers": {
+    "CN": "餐饮备餐工"
+  },
+  "food-and-tobacco-processing-workers": {
+    "CN": "食品加工机械操作工"
+  },
+  "food-service-managers": {
+    "CN": "餐饮经理"
+  },
+  "forensic-science-technicians": {
+    "CN": "法医技术员"
+  },
+  "forest-and-conservation-workers": {
+    "CN": "林业与生态保护工作者"
+  },
+  "fundraisers": {
+    "CN": "募款专员"
+  },
+  "funeral-service-occupations": {
+    "CN": "殡仪服务人员"
+  },
+  "gaming-services-occupations": {
+    "CN": "博彩服务人员"
+  },
+  "general-maintenance-and-repair-workers": {
+    "CN": "综合维修工"
+  },
+  "general-office-clerks": {
+    "CN": "普通文员"
+  },
+  "genetic-counselors": {
+    "CN": "遗传咨询师"
+  },
+  "geographers": {
+    "CN": "地理学家"
+  },
+  "geological-and-petroleum-technicians": {
+    "CN": "地质与水文技术员"
+  },
+  "geoscientists": {
+    "CN": "地球科学家"
+  },
+  "glaziers": {
+    "CN": "玻璃工"
+  },
+  "graphic-designers": {
+    "CN": "平面设计师"
+  },
+  "grounds-maintenance-workers": {
+    "CN": "绿化维护工"
+  },
+  "hand-laborers-and-material-movers": {
+    "CN": "搬运工"
+  },
+  "hazardous-materials-removal-workers": {
+    "CN": "危险品处置工"
+  },
+  "health-and-safety-engineers": {
+    "CN": "健康安全工程师"
+  },
+  "health-educators": {
+    "CN": "健康教育专家"
+  },
+  "health-information-technologists-and-medical-registrars": {
+    "CN": "医疗信息技术员"
+  },
+  "heating-air-conditioning-and-refrigeration-mechanics-and-installers": {
+    "CN": "暖通空调维修技工"
+  },
+  "heavy-and-tractor-trailer-truck-drivers": {
+    "CN": "重型卡车司机"
+  },
+  "heavy-vehicle-and-mobile-equipment-service-technicians": {
+    "CN": "重型机械维修技工"
+  },
+  "high-school-teachers": {
+    "CN": "高中教师"
+  },
+  "historians": {
+    "CN": "历史学家"
+  },
+  "home-health-aides-and-personal-care-aides": {
+    "CN": "家政护理人员"
+  },
+  "human-resources-managers": {
+    "CN": "人力资源经理"
+  },
+  "human-resources-specialists": {
+    "CN": "人力资源专员"
+  },
+  "hydrologists": {
+    "CN": "水文学家"
+  },
+  "industrial-designers": {
+    "CN": "工业设计师"
+  },
+  "industrial-engineering-technicians": {
+    "CN": "工业工程技术员"
+  },
+  "industrial-engineers": {
+    "CN": "工业工程师"
+  },
+  "industrial-machinery-mechanics-and-maintenance-workers-and-millwrights": {
+    "CN": "工业机械维修工"
+  },
+  "industrial-production-managers": {
+    "CN": "生产经理"
+  },
+  "information-clerks": {
+    "CN": "信息服务文员"
+  },
+  "information-security-analysts": {
+    "CN": "信息安全分析师"
+  },
+  "instructional-coordinators": {
+    "CN": "教学协调员"
+  },
+  "insulation-workers": {
+    "CN": "绝热工程工人"
+  },
+  "insurance-sales-agents": {
+    "CN": "保险销售员"
+  },
+  "insurance-underwriters": {
+    "CN": "保险核保员"
+  },
+  "interior-designers": {
+    "CN": "室内设计师"
+  },
+  "interpreters-and-translators": {
+    "CN": "口译与笔译人员"
+  },
+  "structural-iron-and-steel-workers": {
+    "CN": "铁工"
+  },
+  "janitors-and-building-cleaners": {
+    "CN": "清洁工"
+  },
+  "jewelers-and-precious-stone-and-metal-workers": {
+    "CN": "珠宝首饰工匠"
+  },
+  "judges-and-hearing-officers": {
+    "CN": "法官与裁判员"
+  },
+  "kindergarten-and-elementary-school-teachers": {
+    "CN": "幼儿园及小学教师"
+  },
+  "labor-relations-specialists": {
+    "CN": "劳动关系专员"
+  },
+  "landscape-architects": {
+    "CN": "景观设计师"
+  },
+  "lawyers": {
+    "CN": "律师"
+  },
+  "librarians": {
+    "CN": "图书馆员与媒体专员"
+  },
+  "library-technicians-and-assistants": {
+    "CN": "图书馆助理"
+  },
+  "licensed-practical-and-licensed-vocational-nurses": {
+    "CN": "执业护士（初级）"
+  },
+  "loan-officers": {
+    "CN": "贷款专员"
+  },
+  "lodging-managers": {
+    "CN": "住宿业经理"
+  },
+  "logging-workers": {
+    "CN": "伐木工"
+  },
+  "logisticians": {
+    "CN": "物流工程师"
+  },
+  "machinists-and-tool-and-die-makers": {
+    "CN": "机械工与模具制造工"
+  },
+  "management-analysts": {
+    "CN": "管理咨询顾问"
+  },
+  "manicurists-and-pedicurists": {
+    "CN": "美甲师"
+  },
+  "marine-engineers-and-naval-architects": {
+    "CN": "船舶工程师"
+  },
+  "market-research-analysts": {
+    "CN": "市场调研分析师"
+  },
+  "marriage-and-family-therapists": {
+    "CN": "婚姻与家庭咨询师"
+  },
+  "brickmasons-blockmasons-and-stonemasons": {
+    "CN": "砌筑工"
+  },
+  "massage-therapists": {
+    "CN": "按摩师"
+  },
+  "material-moving-machine-operators": {
+    "CN": "物料搬运机械操作员"
+  },
+  "material-recording-clerks": {
+    "CN": "仓储记录文员"
+  },
+  "materials-engineers": {
+    "CN": "材料工程师"
+  },
+  "mathematicians-and-statisticians": {
+    "CN": "数学家与统计学家"
+  },
+  "mechanical-engineering-technicians": {
+    "CN": "机械工程技术员"
+  },
+  "mechanical-engineers": {
+    "CN": "机械工程师"
+  },
+  "medical-and-health-services-managers": {
+    "CN": "医疗卫生服务经理"
+  },
+  "medical-assistants": {
+    "CN": "医疗助理"
+  },
+  "medical-dosimetrists": {
+    "CN": "医疗剂量师"
+  },
+  "medical-equipment-repairers": {
+    "CN": "医疗设备维修员"
+  },
+  "medical-records-and-health-information-technicians": {
+    "CN": "病历专员"
+  },
+  "medical-scientists": {
+    "CN": "医学科研人员"
+  },
+  "medical-transcriptionists": {
+    "CN": "医疗文字录入员"
+  },
+  "meeting-convention-and-event-planners": {
+    "CN": "会议与活动策划师"
+  },
+  "metal-and-plastic-machine-workers": {
+    "CN": "金属与塑料机床操作工"
+  },
+  "microbiologists": {
+    "CN": "微生物学家"
+  },
+  "middle-school-teachers": {
+    "CN": "初中教师"
+  },
+  "military-careers": {
+    "CN": "军人"
+  },
+  "mining-and-geological-engineers": {
+    "CN": "采矿与地质工程师"
+  },
+  "models": {
+    "CN": "模特"
+  },
+  "music-directors-and-composers": {
+    "CN": "音乐总监与作曲家"
+  },
+  "musicians-and-singers": {
+    "CN": "音乐家与歌手"
+  },
+  "natural-sciences-managers": {
+    "CN": "自然科学研究经理"
+  },
+  "network-and-computer-systems-administrators": {
+    "CN": "网络与计算机系统管理员"
+  },
+  "reporters-correspondents-and-broadcast-news-analysts": {
+    "CN": "记者与新闻分析师"
+  },
+  "nuclear-engineers": {
+    "CN": "核工程师"
+  },
+  "nuclear-medicine-technologists": {
+    "CN": "核医学技术员"
+  },
+  "nuclear-technicians": {
+    "CN": "核技术员"
+  },
+  "nurse-anesthetists-nurse-midwives-and-nurse-practitioners": {
+    "CN": "高级执业护士"
+  },
+  "nursing-assistants": {
+    "CN": "护理助理"
+  },
+  "occupational-health-and-safety-specialists-and-technicians": {
+    "CN": "职业健康安全专员"
+  },
+  "occupational-therapists": {
+    "CN": "职能治疗师"
+  },
+  "occupational-therapy-assistants-and-aides": {
+    "CN": "职能治疗助理"
+  },
+  "oil-and-gas-workers": {
+    "CN": "石油天然气工人"
+  },
+  "operations-research-analysts": {
+    "CN": "运筹学分析师"
+  },
+  "opticians-dispensing": {
+    "CN": "验光配镜师"
+  },
+  "optometrists": {
+    "CN": "验光师"
+  },
+  "orthotists-and-prosthetists": {
+    "CN": "矫形器与假肢技师"
+  },
+  "painters-construction-and-maintenance": {
+    "CN": "建筑油漆工"
+  },
+  "painting-and-coating-workers": {
+    "CN": "喷涂工"
+  },
+  "paralegals-and-legal-assistants": {
+    "CN": "法律助理"
+  },
+  "personal-financial-advisors": {
+    "CN": "个人理财顾问"
+  },
+  "pest-control-workers": {
+    "CN": "害虫防治人员"
+  },
+  "petroleum-engineers": {
+    "CN": "石油工程师"
+  },
+  "pharmacists": {
+    "CN": "药剂师"
+  },
+  "pharmacy-technicians": {
+    "CN": "药房技术员"
+  },
+  "phlebotomists": {
+    "CN": "采血员"
+  },
+  "photographers": {
+    "CN": "摄影师"
+  },
+  "physical-therapist-assistants-and-aides": {
+    "CN": "物理治疗助理"
+  },
+  "physical-therapists": {
+    "CN": "物理治疗师"
+  },
+  "physician-assistants": {
+    "CN": "医师助理"
+  },
+  "physicians-and-surgeons": {
+    "CN": "医生与外科医生"
+  },
+  "physicists-and-astronomers": {
+    "CN": "物理学家与天文学家"
+  },
+  "plumbers-pipefitters-and-steamfitters": {
+    "CN": "管道工"
+  },
+  "podiatrists": {
+    "CN": "足病医生"
+  },
+  "police-and-detectives": {
+    "CN": "警察与侦探"
+  },
+  "political-scientists": {
+    "CN": "政治学家"
+  },
+  "postal-service-workers": {
+    "CN": "邮政工作人员"
+  },
+  "postsecondary-education-administrators": {
+    "CN": "高等院校行政管理人员"
+  },
+  "postsecondary-teachers": {
+    "CN": "大学教授"
+  },
+  "power-plant-operators-distributors-and-dispatchers": {
+    "CN": "电厂运营与调度员"
+  },
+  "preschool-and-childcare-center-directors": {
+    "CN": "幼儿园园长"
+  },
+  "preschool-teachers": {
+    "CN": "幼儿园教师"
+  },
+  "private-detectives-and-investigators": {
+    "CN": "私家侦探"
+  },
+  "probation-officers-and-correctional-treatment-specialists": {
+    "CN": "缓刑官与矫治专员"
+  },
+  "producers-and-directors": {
+    "CN": "制片人与导演"
+  },
+  "project-management-specialists": {
+    "CN": "项目管理专员"
+  },
+  "appraisers-and-assessors-of-real-estate": {
+    "CN": "房产评估师"
+  },
+  "property-real-estate-and-community-association-managers": {
+    "CN": "物业经理"
+  },
+  "psychiatric-technicians-and-aides": {
+    "CN": "精神科护理助理"
+  },
+  "psychologists": {
+    "CN": "心理学家"
+  },
+  "public-relations-managers": {
+    "CN": "公关与募款经理"
+  },
+  "public-relations-specialists": {
+    "CN": "公关专员"
+  },
+  "police-fire-and-ambulance-dispatchers": {
+    "CN": "应急通信员"
+  },
+  "purchasing-managers-buyers-and-purchasing-agents": {
+    "CN": "采购经理与采购员"
+  },
+  "quality-control-inspectors": {
+    "CN": "质检员"
+  },
+  "radiation-therapists": {
+    "CN": "放射治疗师"
+  },
+  "radiologic-technologists": {
+    "CN": "放射与磁共振技师"
+  },
+  "railroad-occupations": {
+    "CN": "铁路工人"
+  },
+  "real-estate-brokers-and-sales-agents": {
+    "CN": "房产中介"
+  },
+  "receptionists": {
+    "CN": "前台接待"
+  },
+  "recreation-workers": {
+    "CN": "娱乐休闲服务人员"
+  },
+  "recreational-therapists": {
+    "CN": "娱乐治疗师"
+  },
+  "registered-nurses": {
+    "CN": "注册护士"
+  },
+  "rehabilitation-counselors": {
+    "CN": "康复辅导员"
+  },
+  "respiratory-therapists": {
+    "CN": "呼吸治疗师"
+  },
+  "retail-sales-workers": {
+    "CN": "零售销售员"
+  },
+  "roofers": {
+    "CN": "屋面工"
+  },
+  "sales-engineers": {
+    "CN": "销售工程师"
+  },
+  "sales-managers": {
+    "CN": "销售经理"
+  },
+  "school-and-career-counselors": {
+    "CN": "学校心理辅导员与职业顾问"
+  },
+  "secretaries-and-administrative-assistants": {
+    "CN": "秘书与行政助理"
+  },
+  "securities-commodities-and-financial-services-sales-agents": {
+    "CN": "证券与金融销售员"
+  },
+  "security-guards": {
+    "CN": "保安"
+  },
+  "semiconductor-processing-technicians": {
+    "CN": "半导体加工技术员"
+  },
+  "set-and-exhibit-designers": {
+    "CN": "舞台与展览设计师"
+  },
+  "sheet-metal-workers": {
+    "CN": "钣金工"
+  },
+  "skincare-specialists": {
+    "CN": "皮肤护理师"
+  },
+  "small-engine-mechanics": {
+    "CN": "小型发动机维修工"
+  },
+  "social-and-community-service-managers": {
+    "CN": "社区服务机构管理者"
+  },
+  "social-and-human-service-assistants": {
+    "CN": "社会服务助理"
+  },
+  "social-workers": {
+    "CN": "社会工作者"
+  },
+  "sociologists": {
+    "CN": "社会学家"
+  },
+  "software-developers": {
+    "CN": "软件开发工程师"
+  },
+  "solar-photovoltaic-installers": {
+    "CN": "太阳能光伏安装工"
+  },
+  "special-education-teachers": {
+    "CN": "特殊教育教师"
+  },
+  "multimedia-artists-and-animators": {
+    "CN": "特效师与动画师"
+  },
+  "speech-language-pathologists": {
+    "CN": "言语治疗师"
+  },
+  "stationary-engineers-and-boiler-operators": {
+    "CN": "锅炉与固定式机械操作员"
+  },
+  "substance-abuse-behavioral-disorder-and-mental-health-counselors": {
+    "CN": "心理健康与成瘾咨询师"
+  },
+  "surgical-technologists": {
+    "CN": "手术助手与外科技术员"
+  },
+  "survey-researchers": {
+    "CN": "调查研究员"
+  },
+  "surveying-and-mapping-technicians": {
+    "CN": "测量与制图技术员"
+  },
+  "surveyors": {
+    "CN": "测量师"
+  },
+  "tax-examiners-and-collectors-and-revenue-agents": {
+    "CN": "税务审查员与税务官"
+  },
+  "taxi-drivers-and-chauffeurs": {
+    "CN": "出租车司机与专职司机"
+  },
+  "teacher-assistants": {
+    "CN": "教学助理"
+  },
+  "technical-writers": {
+    "CN": "技术文档工程师"
+  },
+  "telecommunications-equipment-installers-and-repairers-except-line-installers": {
+    "CN": "电信技术员"
+  },
+  "tellers": {
+    "CN": "银行柜员"
+  },
+  "top-executives": {
+    "CN": "企业高管"
+  },
+  "tour-and-travel-guides": {
+    "CN": "导游"
+  },
+  "training-and-development-managers": {
+    "CN": "培训与发展经理"
+  },
+  "training-and-development-specialists": {
+    "CN": "培训专员"
+  },
+  "transportation-storage-and-distribution-managers": {
+    "CN": "运输仓储物流经理"
+  },
+  "travel-agents": {
+    "CN": "旅行社代理人"
+  },
+  "tutors": {
+    "CN": "家教"
+  },
+  "umpires-referees-and-other-sports-officials": {
+    "CN": "裁判员"
+  },
+  "urban-and-regional-planners": {
+    "CN": "城市与区域规划师"
+  },
+  "veterinarians": {
+    "CN": "兽医"
+  },
+  "veterinary-assistants-and-laboratory-animal-caretakers": {
+    "CN": "兽医助理与实验动物饲养员"
+  },
+  "veterinary-technologists-and-technicians": {
+    "CN": "兽医技术员"
+  },
+  "waiters-and-waitresses": {
+    "CN": "餐厅服务员"
+  },
+  "water-and-wastewater-treatment-plant-and-system-operators": {
+    "CN": "水处理与污水处理操作员"
+  },
+  "water-transportation-occupations": {
+    "CN": "水运工作者"
+  },
+  "web-developers": {
+    "CN": "网页开发与数字设计师"
+  },
+  "welders-cutters-solderers-and-brazers": {
+    "CN": "焊工"
+  },
+  "wholesale-and-manufacturing-sales-representatives": {
+    "CN": "批发与制造业销售代表"
+  },
+  "wind-turbine-technicians": {
+    "CN": "风力发电机维修技工"
+  },
+  "woodworkers": {
+    "CN": "木工工人"
+  },
+  "writers-and-authors": {
+    "CN": "作家与文案"
+  },
+  "zoologists-and-wildlife-biologists": {
+    "CN": "动物学家与野生生物学家"
+  },
+  "civil-servant-cn": {
+    "CN": "公务员"
+  },
+  "food-delivery-driver": {
+    "CN": "外卖骑手"
+  },
+  "courier-express": {
+    "CN": "快递员"
+  },
+  "ride-hailing-driver": {
+    "CN": "网约车司机"
+  },
+  "ecommerce-operator": {
+    "CN": "电商运营"
+  },
+  "livestream-seller": {
+    "CN": "直播带货"
+  },
+  "small-business-owner": {
+    "CN": "个体工商户"
+  },
+  "soe-manager": {
+    "CN": "国企中层管理"
+  },
+  "construction-worker-cn": {
+    "CN": "建筑工人"
+  },
+  "rural-teacher": {
+    "CN": "乡镇教师"
+  },
+  "public-institution-staff": {
+    "CN": "事业单位职员"
+  },
+  "factory-line-worker": {
+    "CN": "流水线工人"
+  }
+}

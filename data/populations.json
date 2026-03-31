@@ -1,0 +1,71 @@
+{
+  "_meta": {
+    "source": "UN World Population Prospects 2023 (approximate shares)",
+    "note": "Weights are relative population share for sampling. Normalized to sum to 1.0.",
+    "markets": {
+      "global": "all countries",
+      "us": "United States only",
+      "cn": "China only",
+      "asia": "CN, JP, KR, IN, ID, TH, VN, PH, SG, MY",
+      "europe": "DE, FR, GB, IT, ES, NL, SE, RU",
+      "latam": "BR, MX, AR",
+      "africa": "NG, ZA, EG",
+      "mena": "SA, EG, TR"
+    }
+  },
+  "country_weights": {
+    "CN": 0.178,
+    "IN": 0.178,
+    "US": 0.043,
+    "ID": 0.035,
+    "PK": 0.029,
+    "BR": 0.028,
+    "NG": 0.028,
+    "BD": 0.021,
+    "RU": 0.018,
+    "MX": 0.017,
+    "ET": 0.015,
+    "JP": 0.016,
+    "PH": 0.015,
+    "EG": 0.014,
+    "CD": 0.013,
+    "VN": 0.012,
+    "TR": 0.011,
+    "DE": 0.010,
+    "TH": 0.009,
+    "GB": 0.009,
+    "FR": 0.008,
+    "SA": 0.045,
+    "ZA": 0.008,
+    "KR": 0.007,
+    "AR": 0.006,
+    "AU": 0.003,
+    "MY": 0.004,
+    "SG": 0.001,
+    "CA": 0.005,
+    "NL": 0.002,
+    "SE": 0.001,
+    "IT": 0.008,
+    "ES": 0.006
+  },
+  "age_distribution": {
+    "18-24": 0.15,
+    "25-34": 0.22,
+    "35-44": 0.20,
+    "45-54": 0.17,
+    "55-64": 0.14,
+    "65+": 0.12
+  },
+  "gender_distribution": {
+    "male": 0.50,
+    "female": 0.49,
+    "non-binary": 0.01
+  },
+  "income_distribution": {
+    "low": 0.35,
+    "lower-middle": 0.25,
+    "middle": 0.20,
+    "upper-middle": 0.12,
+    "high": 0.08
+  }
+}

@@ -1,0 +1,684 @@
+{
+  "US": {
+    "name": "United States",
+    "currency": "USD",
+    "ppp_multiplier": 1.0,
+    "default_weight": 1.0,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "metro-coastal",
+        "label_en": "Major Coastal Metro (NYC/SF/LA/Boston)",
+        "weight": 15,
+        "income_scale": 1.4,
+        "novelty_adj": 0.08,
+        "price_sensitivity_adj": -0.06
+      },
+      {
+        "id": "metro-inland",
+        "label_en": "Major Inland Metro (Chicago/Dallas/Denver/Atlanta)",
+        "weight": 15,
+        "income_scale": 1.1,
+        "novelty_adj": 0.03,
+        "price_sensitivity_adj": -0.02
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City (Portland/Nashville/Salt Lake City)",
+        "weight": 20,
+        "income_scale": 0.95,
+        "novelty_adj": 0.0,
+        "price_sensitivity_adj": 0.0
+      },
+      {
+        "id": "suburban",
+        "label_en": "Suburban",
+        "weight": 25,
+        "income_scale": 0.9,
+        "novelty_adj": -0.03,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "small-town",
+        "label_en": "Small Town",
+        "weight": 15,
+        "income_scale": 0.75,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.06
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 10,
+        "income_scale": 0.65,
+        "novelty_adj": -0.08,
+        "price_sensitivity_adj": 0.1
+      }
+    ]
+  },
+  "CN": {
+    "name": "China",
+    "currency": "CNY",
+    "ppp_multiplier": 1.409,
+    "default_weight": 0.5,
+    "weight_overrides": {
+      "civil-servant-cn": 3.0,
+      "small-business-owner": 3.0,
+      "factory-line-worker": 3.0,
+      "food-delivery-driver": 2.5,
+      "construction-worker-cn": 2.5,
+      "courier-express": 2.0,
+      "ride-hailing-driver": 2.0,
+      "ecommerce-operator": 2.0,
+      "public-institution-staff": 2.0,
+      "livestream-seller": 1.5,
+      "soe-manager": 1.5,
+      "rural-teacher": 1.5
+    },
+    "pay_brackets": [
+      {
+        "above_usd": 150000,
+        "scale": 1.418
+      },
+      {
+        "above_usd": 100000,
+        "scale": 1.322
+      },
+      {
+        "above_usd": 50000,
+        "scale": 1.106
+      },
+      {
+        "above_usd": 0,
+        "scale": 1.0
+      }
+    ],
+    "city_tiers": [
+      {
+        "id": "t1",
+        "label": "一线",
+        "label_en": "Tier 1 (Beijing/Shanghai/Guangzhou/Shenzhen)",
+        "weight": 5,
+        "income_scale": 1.5,
+        "novelty_adj": 0.1,
+        "price_sensitivity_adj": -0.08
+      },
+      {
+        "id": "new-t1",
+        "label": "新一线",
+        "label_en": "New Tier 1 (Chengdu/Hangzhou/Wuhan/Nanjing)",
+        "weight": 8,
+        "income_scale": 1.2,
+        "novelty_adj": 0.05,
+        "price_sensitivity_adj": -0.04
+      },
+      {
+        "id": "t2",
+        "label": "二线",
+        "label_en": "Tier 2 (Provincial capitals)",
+        "weight": 15,
+        "income_scale": 1.0,
+        "novelty_adj": 0.0,
+        "price_sensitivity_adj": 0.0
+      },
+      {
+        "id": "t3",
+        "label": "三线",
+        "label_en": "Tier 3 (Prefecture-level cities)",
+        "weight": 20,
+        "income_scale": 0.8,
+        "novelty_adj": -0.05,
+        "price_sensitivity_adj": 0.05
+      },
+      {
+        "id": "t4-5",
+        "label": "四五线",
+        "label_en": "Tier 4-5 (County-level cities)",
+        "weight": 25,
+        "income_scale": 0.6,
+        "novelty_adj": -0.1,
+        "price_sensitivity_adj": 0.1
+      },
+      {
+        "id": "rural",
+        "label": "农村",
+        "label_en": "Rural (Towns and villages)",
+        "weight": 27,
+        "income_scale": 0.4,
+        "novelty_adj": -0.12,
+        "price_sensitivity_adj": 0.15
+      }
+    ]
+  },
+  "JP": {
+    "name": "Japan",
+    "currency": "JPY",
+    "ppp_multiplier": 105.0,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "tokyo-metro",
+        "label_en": "Tokyo Metropolitan (23 wards + suburbs)",
+        "weight": 30,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.04
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major Cities (Osaka/Nagoya/Fukuoka/Sapporo)",
+        "weight": 20,
+        "income_scale": 1.1,
+        "novelty_adj": 0.03,
+        "price_sensitivity_adj": -0.02
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City (Sendai/Hiroshima/Kobe)",
+        "weight": 20,
+        "income_scale": 0.95,
+        "novelty_adj": 0.0,
+        "price_sensitivity_adj": 0.0
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural/Small Town (地方/田舎)",
+        "weight": 30,
+        "income_scale": 0.75,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "KR": {
+    "name": "South Korea",
+    "currency": "KRW",
+    "ppp_multiplier": 845.0,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "DE": {
+    "name": "Germany",
+    "currency": "EUR",
+    "ppp_multiplier": 0.85,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "capital",
+        "label_en": "Capital/Major Metro",
+        "weight": 25,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major City",
+        "weight": 25,
+        "income_scale": 1.05,
+        "novelty_adj": 0.02,
+        "price_sensitivity_adj": -0.01
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City/Town",
+        "weight": 30,
+        "income_scale": 0.9,
+        "novelty_adj": -0.02,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 20,
+        "income_scale": 0.7,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "FR": {
+    "name": "France",
+    "currency": "EUR",
+    "ppp_multiplier": 0.82,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "capital",
+        "label_en": "Capital/Major Metro",
+        "weight": 25,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major City",
+        "weight": 25,
+        "income_scale": 1.05,
+        "novelty_adj": 0.02,
+        "price_sensitivity_adj": -0.01
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City/Town",
+        "weight": 30,
+        "income_scale": 0.9,
+        "novelty_adj": -0.02,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 20,
+        "income_scale": 0.7,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "GB": {
+    "name": "United Kingdom",
+    "currency": "GBP",
+    "ppp_multiplier": 0.711,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "capital",
+        "label_en": "Capital/Major Metro",
+        "weight": 25,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major City",
+        "weight": 25,
+        "income_scale": 1.05,
+        "novelty_adj": 0.02,
+        "price_sensitivity_adj": -0.01
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City/Town",
+        "weight": 30,
+        "income_scale": 0.9,
+        "novelty_adj": -0.02,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 20,
+        "income_scale": 0.7,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "BR": {
+    "name": "Brazil",
+    "currency": "BRL",
+    "ppp_multiplier": 1.0,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "IN": {
+    "name": "India",
+    "currency": "INR",
+    "ppp_multiplier": 9.96,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "NG": {
+    "name": "Nigeria",
+    "currency": "NGN",
+    "ppp_multiplier": 160.0,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "AU": {
+    "name": "Australia",
+    "currency": "AUD",
+    "ppp_multiplier": 1.3376,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "MX": {
+    "name": "Mexico",
+    "currency": "MXN",
+    "ppp_multiplier": 3.06,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "RU": {
+    "name": "Russia",
+    "currency": "RUB",
+    "ppp_multiplier": 19.8,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "TR": {
+    "name": "Turkey",
+    "currency": "TRY",
+    "ppp_multiplier": 4.5,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "ID": {
+    "name": "Indonesia",
+    "currency": "IDR",
+    "ppp_multiplier": 2028.0,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "SA": {
+    "name": "Saudi Arabia",
+    "currency": "SAR",
+    "ppp_multiplier": 1.6875,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "ZA": {
+    "name": "South Africa",
+    "currency": "ZAR",
+    "ppp_multiplier": 3.24,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "AR": {
+    "name": "Argentina",
+    "currency": "ARS",
+    "ppp_multiplier": 59.5,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "EG": {
+    "name": "Egypt",
+    "currency": "EGP",
+    "ppp_multiplier": 6.5,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "IT": {
+    "name": "Italy",
+    "currency": "EUR",
+    "ppp_multiplier": 0.7,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "capital",
+        "label_en": "Capital/Major Metro",
+        "weight": 25,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major City",
+        "weight": 25,
+        "income_scale": 1.05,
+        "novelty_adj": 0.02,
+        "price_sensitivity_adj": -0.01
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City/Town",
+        "weight": 30,
+        "income_scale": 0.9,
+        "novelty_adj": -0.02,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 20,
+        "income_scale": 0.7,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "ES": {
+    "name": "Spain",
+    "currency": "EUR",
+    "ppp_multiplier": 0.65,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "capital",
+        "label_en": "Capital/Major Metro",
+        "weight": 25,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major City",
+        "weight": 25,
+        "income_scale": 1.05,
+        "novelty_adj": 0.02,
+        "price_sensitivity_adj": -0.01
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City/Town",
+        "weight": 30,
+        "income_scale": 0.9,
+        "novelty_adj": -0.02,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 20,
+        "income_scale": 0.7,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "NL": {
+    "name": "Netherlands",
+    "currency": "EUR",
+    "ppp_multiplier": 0.86,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "capital",
+        "label_en": "Capital/Major Metro",
+        "weight": 25,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major City",
+        "weight": 25,
+        "income_scale": 1.05,
+        "novelty_adj": 0.02,
+        "price_sensitivity_adj": -0.01
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City/Town",
+        "weight": 30,
+        "income_scale": 0.9,
+        "novelty_adj": -0.02,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 20,
+        "income_scale": 0.7,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "SE": {
+    "name": "Sweden",
+    "currency": "SEK",
+    "ppp_multiplier": 8.4,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "capital",
+        "label_en": "Capital/Major Metro",
+        "weight": 25,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "major-city",
+        "label_en": "Major City",
+        "weight": 25,
+        "income_scale": 1.05,
+        "novelty_adj": 0.02,
+        "price_sensitivity_adj": -0.01
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City/Town",
+        "weight": 30,
+        "income_scale": 0.9,
+        "novelty_adj": -0.02,
+        "price_sensitivity_adj": 0.03
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 20,
+        "income_scale": 0.7,
+        "novelty_adj": -0.06,
+        "price_sensitivity_adj": 0.08
+      }
+    ]
+  },
+  "SG": {
+    "name": "Singapore",
+    "currency": "SGD",
+    "ppp_multiplier": 1.005,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "TH": {
+    "name": "Thailand",
+    "currency": "THB",
+    "ppp_multiplier": 7.0,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "PH": {
+    "name": "Philippines",
+    "currency": "PHP",
+    "ppp_multiplier": 8.96,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "PK": {
+    "name": "Pakistan",
+    "currency": "PKR",
+    "ppp_multiplier": 30.8,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "MY": {
+    "name": "Malaysia",
+    "currency": "MYR",
+    "ppp_multiplier": 1.175,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "VN": {
+    "name": "Vietnam",
+    "currency": "VND",
+    "ppp_multiplier": 3600.0,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": []
+  },
+  "CA": {
+    "name": "Canada",
+    "currency": "CAD",
+    "ppp_multiplier": 1.2512,
+    "default_weight": 0.5,
+    "weight_overrides": {},
+    "pay_brackets": [],
+    "city_tiers": [
+      {
+        "id": "major-metro",
+        "label_en": "Major Metro (Toronto/Vancouver/Montreal)",
+        "weight": 35,
+        "income_scale": 1.3,
+        "novelty_adj": 0.06,
+        "price_sensitivity_adj": -0.05
+      },
+      {
+        "id": "mid-city",
+        "label_en": "Mid-size City (Calgary/Ottawa/Edmonton)",
+        "weight": 25,
+        "income_scale": 1.0,
+        "novelty_adj": 0.0,
+        "price_sensitivity_adj": 0.0
+      },
+      {
+        "id": "small-city",
+        "label_en": "Small City/Town",
+        "weight": 25,
+        "income_scale": 0.8,
+        "novelty_adj": -0.05,
+        "price_sensitivity_adj": 0.05
+      },
+      {
+        "id": "rural",
+        "label_en": "Rural",
+        "weight": 15,
+        "income_scale": 0.65,
+        "novelty_adj": -0.08,
+        "price_sensitivity_adj": 0.1
+      }
+    ]
+  }
+}
