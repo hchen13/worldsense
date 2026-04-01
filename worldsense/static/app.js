@@ -1045,26 +1045,28 @@ function renderBreakdownPreview() {
 
   const dims = getBreakdownDimensions(_selectedPreset);
   const intentCfg = INTENT_LABEL_CONFIG[_selectedPreset] || {};
+  const slot1 = intentCfg.slot1Label || 'Yes';
+  const slot2 = intentCfg.slot2Label || 'Maybe';
 
   container.classList.remove('hidden');
   container.innerHTML = `
-    <div class="flex items-start gap-3 flex-wrap">
-      <div class="flex-shrink-0">
-        <div class="text-xs text-slate-500 mb-1">Evaluates</div>
-        <div class="text-xs text-slate-400 leading-relaxed max-w-xs">${escHtml(preset.desc_en)}</div>
-      </div>
-      <div class="flex-1 min-w-0">
-        <div class="text-xs text-slate-500 mb-1.5">${escHtml(intentCfg.breakdownTitle || 'Intent Breakdown')}</div>
-        <div class="flex flex-wrap gap-1.5">
-          ${dims.map(d => `<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-800 border border-surface-600 rounded text-xs text-slate-300">
-            ${d.emoji} ${escHtml(d.label)}
-          </span>`).join('')}
+    <div class="space-y-3">
+      <div class="text-xs text-slate-400 leading-relaxed">${escHtml(preset.desc_en)}</div>
+
+      <div>
+        <div class="text-xs text-slate-500 mb-1.5">Decision Output <span class="text-slate-600">/ 决策输出 — LLM 为每个 persona 三选一:</span></div>
+        <div class="flex gap-2">
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-green-900/30 border border-green-700/40 rounded-lg text-xs text-green-400 font-medium">🟢 ${escHtml(slot1)}</span>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-yellow-900/30 border border-yellow-700/40 rounded-lg text-xs text-yellow-400 font-medium">🟡 ${escHtml(slot2)}</span>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-red-900/30 border border-red-700/40 rounded-lg text-xs text-red-400 font-medium">🔴 Pass</span>
         </div>
-        ${intentCfg.slot1Label ? `<div class="text-xs text-slate-600 mt-1.5">
-          → LLM measures <strong class="text-slate-400">${escHtml(intentCfg.slot1Label)}</strong> /
-          <strong class="text-slate-400">${escHtml(intentCfg.slot2Label || 'Consider')}</strong> /
-          <strong class="text-slate-400">Pass</strong> per persona
-        </div>` : ''}
+      </div>
+
+      <div>
+        <div class="text-xs text-slate-500 mb-1.5">Evaluation Focus <span class="text-slate-600">/ 评估角度 — 引导 LLM 从这些角度展开分析:</span></div>
+        <div class="flex flex-wrap gap-1.5">
+          ${dims.map(d => `<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-800 border border-surface-600 rounded text-xs text-slate-300">${d.emoji} ${escHtml(d.label)}</span>`).join('')}
+        </div>
       </div>
     </div>`;
 }
@@ -2026,29 +2028,32 @@ function renderDetail(data) {
     </div>`;
   }
 
-  // 1b. Research type + intent breakdown
+  // 1b. Research type + decision output + evaluation focus
+  const slot1 = intentConfig.slot1Label || 'Yes';
+  const slot2 = intentConfig.slot2Label || 'Maybe';
   html += `<div>
-    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">🔬 Research Type &amp; Intent Breakdown</div>
-    <div class="flex flex-wrap items-center gap-2">
+    <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">🔬 Research Type</div>
+    <div class="flex flex-wrap items-center gap-2 mb-3">
       <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-brand-700/30 border border-brand-600/40 rounded-lg text-xs text-brand-300 font-medium">
         ${preset ? preset.emoji + ' ' : ''}${escHtml(getResearchTypeLabel(researchType))}
-      </span>`;
+      </span>
+    </div>
+    <div class="text-xs text-slate-500 mb-1.5">Decision Output <span class="text-slate-600">/ 决策输出:</span></div>
+    <div class="flex gap-2 mb-3">
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-green-900/30 border border-green-700/40 rounded text-xs text-green-400 font-medium">🟢 ${escHtml(slot1)}</span>
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-yellow-900/30 border border-yellow-700/40 rounded text-xs text-yellow-400 font-medium">🟡 ${escHtml(slot2)}</span>
+      <span class="inline-flex items-center gap-1 px-2 py-0.5 bg-red-900/30 border border-red-700/40 rounded text-xs text-red-400 font-medium">🔴 Pass</span>
+    </div>`;
 
-  // Show intent breakdown dimensions
   const breakdownDims = getBreakdownDimensions(researchType);
   if (breakdownDims.length > 0) {
-    html += breakdownDims.map(d => `
-      <span class="inline-flex items-center gap-1 px-2 py-1 bg-surface-700 border border-surface-600 rounded text-xs text-slate-400">
-        ${d.emoji} ${escHtml(d.label)}
-      </span>`).join('');
+    html += `<div class="text-xs text-slate-500 mb-1.5">Evaluation Focus <span class="text-slate-600">/ 评估角度:</span></div>
+    <div class="flex flex-wrap gap-1.5">
+      ${breakdownDims.map(d => `<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-700 border border-surface-600 rounded text-xs text-slate-400">${d.emoji} ${escHtml(d.label)}</span>`).join('')}
+    </div>`;
   }
 
-  if (intentConfig.breakdownTitle) {
-    html += `<span class="text-xs text-slate-600">→ ${escHtml(intentConfig.breakdownTitle)}</span>`;
-  }
-
-  html += `</div>
-  </div>`;
+  html += `</div>`;
 
   // 1c. Attached files (inline images, PDF links, text files)
   if (attachments.length > 0) {
