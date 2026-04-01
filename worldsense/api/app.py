@@ -633,8 +633,55 @@ def _is_video_platform(url: str) -> bool:
     return bool(_VIDEO_PATTERN.search(url))
 
 
-def _extract_youtube_subtitles(url: str) -> tuple[str, dict]:
-    """Extract subtitles from YouTube video via yt-dlp. Returns (text, metadata)."""
+_WHISPER_BIN = "/Users/claire/projects/podcast/cosyvoice-env/bin/whisper"
+
+
+def _transcribe_video_audio(url: str, tmpdir: str, meta: dict) -> tuple[str, dict]:
+    """Download audio via yt-dlp, transcribe via whisper. Returns (text, meta)."""
+    import shutil as _shutil2
+    audio_path = os.path.join(tmpdir, "audio.m4a")
+    try:
+        # Download audio only (best audio, m4a format)
+        dl_result = _subprocess.run(
+            ["yt-dlp", "-x", "--audio-format", "m4a", "-o", audio_path, url],
+            capture_output=True, text=True, timeout=300,
+        )
+        # yt-dlp may rename the file — find whatever audio file was created
+        import glob
+        audio_files = glob.glob(os.path.join(tmpdir, "audio.*"))
+        if not audio_files:
+            return "", {**meta, "error": "Failed to download audio"}
+        actual_audio = audio_files[0]
+
+        # Transcribe with whisper
+        whisper_result = _subprocess.run(
+            [_WHISPER_BIN, actual_audio,
+             "--model", "medium",
+             "--output_format", "txt",
+             "--output_dir", tmpdir],
+            capture_output=True, text=True, timeout=600,
+        )
+
+        # Find output txt file
+        txt_files = glob.glob(os.path.join(tmpdir, "*.txt"))
+        if not txt_files:
+            return "", {**meta, "error": f"Whisper produced no output. stderr: {whisper_result.stderr[:200]}"}
+
+        text = Path(txt_files[0]).read_text(errors="replace").strip()
+        meta["transcribed"] = True
+        meta["char_count"] = len(text)
+        return text, meta
+
+    except FileNotFoundError as e:
+        return "", {**meta, "error": f"Missing tool: {e}"}
+    except _subprocess.TimeoutExpired:
+        return "", {**meta, "error": "Audio transcription timed out (>10min)"}
+    except Exception as e:
+        return "", {**meta, "error": f"Transcription error: {e}"}
+
+
+def _extract_video_content(url: str) -> tuple[str, dict]:
+    """Extract subtitles (or fallback to title+description) from video via yt-dlp."""
     import glob
     meta = {"source": "video", "url": url}
     tmpdir = _tempfile.mkdtemp(prefix="ws-yt-")
@@ -665,7 +712,11 @@ def _extract_youtube_subtitles(url: str) -> tuple[str, dict]:
             sub_files = []
 
         if not sub_files:
-            return "", {**meta, "error": "No subtitles available"}
+            # No subtitles — fallback to audio download + whisper transcription
+            text, meta = _transcribe_video_audio(url, tmpdir, meta)
+            if text:
+                return text, meta
+            return "", {**meta, "error": "No subtitles available and audio transcription failed"}
 
         # Parse subtitle file — strip timestamps, deduplicate lines
         raw = Path(sub_files[0]).read_text(errors="replace")
@@ -739,7 +790,7 @@ async def extract_url(req: ExtractUrlRequest):
     loop = asyncio.get_event_loop()
 
     if _is_video_platform(url):
-        text, meta = await loop.run_in_executor(None, _extract_youtube_subtitles, url)
+        text, meta = await loop.run_in_executor(None, _extract_video_content, url)
     else:
         text, meta = await loop.run_in_executor(None, _extract_web_article, url)
 
