@@ -774,7 +774,7 @@ async function extractUrlContent() {
 
     if (statusEl) {
       const meta = data.metadata || {};
-      const source = meta.source === 'youtube' ? 'YouTube subtitles' : 'article text';
+      const source = meta.source === 'video' ? 'video subtitles' : 'article text';
       const chars = data.text?.length || 0;
       statusEl.className = 'mb-2 px-3 py-2 rounded-lg text-xs bg-green-900/30 border border-green-700/30 text-green-400';
       statusEl.innerHTML = `Extracted ${chars.toLocaleString()} chars from ${escHtml(source)}${meta.title ? ' — <strong>' + escHtml(meta.title) + '</strong>' : ''}`;

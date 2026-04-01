@@ -592,7 +592,15 @@ import subprocess as _subprocess
 import tempfile as _tempfile
 
 _URL_PATTERN = _re.compile(r'https?://\S+')
-_YT_PATTERN = _re.compile(r'(youtube\.com/watch|youtu\.be/|youtube\.com/shorts/)')
+_VIDEO_PATTERN = _re.compile(
+    r'(youtube\.com/watch|youtu\.be/|youtube\.com/shorts/'
+    r'|bilibili\.com/video|b23\.tv/'
+    r'|tiktok\.com/|douyin\.com/'
+    r'|vimeo\.com/|dailymotion\.com/'
+    r'|twitter\.com/.*/status|x\.com/.*/status'
+    r'|weibo\.com/.*video)',
+    _re.IGNORECASE,
+)
 _BLOCKED_HOSTS = _re.compile(
     r'^(localhost|127\.|10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.|169\.254\.|0\.|::1|\[::1\])',
     _re.IGNORECASE,
@@ -621,14 +629,14 @@ class ExtractUrlRequest(BaseModel):
     url: str
 
 
-def _is_youtube(url: str) -> bool:
-    return bool(_YT_PATTERN.search(url))
+def _is_video_platform(url: str) -> bool:
+    return bool(_VIDEO_PATTERN.search(url))
 
 
 def _extract_youtube_subtitles(url: str) -> tuple[str, dict]:
     """Extract subtitles from YouTube video via yt-dlp. Returns (text, metadata)."""
     import glob
-    meta = {"source": "youtube", "url": url}
+    meta = {"source": "video", "url": url}
     tmpdir = _tempfile.mkdtemp(prefix="ws-yt-")
     try:
         # First get video info
@@ -730,7 +738,7 @@ async def extract_url(req: ExtractUrlRequest):
     import asyncio
     loop = asyncio.get_event_loop()
 
-    if _is_youtube(url):
+    if _is_video_platform(url):
         text, meta = await loop.run_in_executor(None, _extract_youtube_subtitles, url)
     else:
         text, meta = await loop.run_in_executor(None, _extract_web_article, url)
