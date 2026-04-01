@@ -587,10 +587,34 @@ async def get_task(task_id: str):
 # ---------------------------------------------------------------------------
 
 import re as _re
+import socket as _socket
 import subprocess as _subprocess
+import tempfile as _tempfile
 
 _URL_PATTERN = _re.compile(r'https?://\S+')
 _YT_PATTERN = _re.compile(r'(youtube\.com/watch|youtu\.be/|youtube\.com/shorts/)')
+_BLOCKED_HOSTS = _re.compile(
+    r'^(localhost|127\.|10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.|169\.254\.|0\.|::1|\[::1\])',
+    _re.IGNORECASE,
+)
+
+
+def _validate_url_safe(url: str) -> None:
+    """Block SSRF: reject private/loopback/link-local URLs."""
+    from urllib.parse import urlparse
+    parsed = urlparse(url)
+    host = parsed.hostname or ""
+    if _BLOCKED_HOSTS.search(host):
+        raise HTTPException(status_code=400, detail="URLs pointing to internal/private networks are not allowed")
+    # Resolve DNS and check IP
+    try:
+        ip = _socket.gethostbyname(host)
+        import ipaddress
+        addr = ipaddress.ip_address(ip)
+        if addr.is_private or addr.is_loopback or addr.is_link_local or addr.is_reserved:
+            raise HTTPException(status_code=400, detail="URL resolves to a private/reserved IP address")
+    except _socket.gaierror:
+        raise HTTPException(status_code=400, detail=f"Cannot resolve hostname: {host}")
 
 
 class ExtractUrlRequest(BaseModel):
@@ -603,7 +627,9 @@ def _is_youtube(url: str) -> bool:
 
 def _extract_youtube_subtitles(url: str) -> tuple[str, dict]:
     """Extract subtitles from YouTube video via yt-dlp. Returns (text, metadata)."""
+    import glob
     meta = {"source": "youtube", "url": url}
+    tmpdir = _tempfile.mkdtemp(prefix="ws-yt-")
     try:
         # First get video info
         info_result = _subprocess.run(
@@ -611,67 +637,57 @@ def _extract_youtube_subtitles(url: str) -> tuple[str, dict]:
             capture_output=True, text=True, timeout=30,
         )
         if info_result.returncode == 0:
-            import json as _json2
-            info = _json2.loads(info_result.stdout)
+            info = json.loads(info_result.stdout)
             meta["title"] = info.get("title", "")
             meta["duration"] = info.get("duration")
             meta["channel"] = info.get("channel", "")
 
         # Try to get subtitles: prefer manual subs, fall back to auto-generated
-        sub_result = _subprocess.run(
-            ["yt-dlp", "--write-subs", "--write-auto-subs", "--sub-langs", "zh,en,ja,ko",
-             "--sub-format", "vtt", "--skip-download", "--print", "%(requested_subtitles)j",
-             "-o", "/tmp/ws-yt-%(id)s", url],
-            capture_output=True, text=True, timeout=60,
-        )
-
-        # Find the downloaded subtitle file
-        import glob
-        sub_files = glob.glob("/tmp/ws-yt-*.vtt")
-        if not sub_files:
-            # Fallback: try srt
+        out_tmpl = os.path.join(tmpdir, "%(id)s")
+        for fmt in ("vtt", "srt"):
             _subprocess.run(
                 ["yt-dlp", "--write-subs", "--write-auto-subs", "--sub-langs", "zh,en,ja,ko",
-                 "--sub-format", "srt", "--skip-download", "-o", "/tmp/ws-yt-%(id)s", url],
+                 "--sub-format", fmt, "--skip-download", "-o", out_tmpl, url],
                 capture_output=True, text=True, timeout=60,
             )
-            sub_files = glob.glob("/tmp/ws-yt-*.srt")
+            sub_files = glob.glob(os.path.join(tmpdir, f"*.{fmt}"))
+            if sub_files:
+                break
+        else:
+            sub_files = []
 
-        if sub_files:
-            # Parse subtitle file — strip timestamps, deduplicate lines
-            raw = Path(sub_files[0]).read_text(errors="replace")
-            lines = []
-            seen = set()
-            for line in raw.split("\n"):
-                line = line.strip()
-                # Skip VTT headers, timestamps, sequence numbers
-                if not line or "-->" in line or line.startswith("WEBVTT") or line.startswith("Kind:") or line.startswith("Language:"):
-                    continue
-                if line.isdigit():
-                    continue
-                # Strip HTML tags
-                clean = _re.sub(r'<[^>]+>', '', line)
-                if clean and clean not in seen:
-                    seen.add(clean)
-                    lines.append(clean)
+        if not sub_files:
+            return "", {**meta, "error": "No subtitles available"}
 
-            # Cleanup temp files
-            for f in glob.glob("/tmp/ws-yt-*"):
-                try:
-                    os.remove(f)
-                except Exception:
-                    pass
+        # Parse subtitle file — strip timestamps, deduplicate lines
+        raw = Path(sub_files[0]).read_text(errors="replace")
+        lines = []
+        seen = set()
+        for line in raw.split("\n"):
+            line = line.strip()
+            if not line or "-->" in line or line.startswith("WEBVTT") or line.startswith("Kind:") or line.startswith("Language:"):
+                continue
+            if line.isdigit():
+                continue
+            clean = _re.sub(r'<[^>]+>', '', line)
+            if clean and clean not in seen:
+                seen.add(clean)
+                lines.append(clean)
 
-            text = " ".join(lines)
-            meta["subtitle_lines"] = len(lines)
-            return text, meta
+        text = " ".join(lines)
+        meta["subtitle_lines"] = len(lines)
+        return text, meta
 
-        return "", {**meta, "error": "No subtitles available"}
-
+    except FileNotFoundError:
+        return "", {**meta, "error": "yt-dlp is not installed (required for YouTube extraction)"}
     except _subprocess.TimeoutExpired:
         return "", {**meta, "error": "yt-dlp timed out"}
     except Exception as e:
         return "", {**meta, "error": str(e)}
+    finally:
+        # Always clean up temp directory
+        import shutil as _shutil
+        _shutil.rmtree(tmpdir, ignore_errors=True)
 
 
 def _extract_web_article(url: str) -> tuple[str, dict]:
@@ -679,29 +695,24 @@ def _extract_web_article(url: str) -> tuple[str, dict]:
     meta = {"source": "web", "url": url}
     try:
         import trafilatura
+        from trafilatura import bare_extraction
         downloaded = trafilatura.fetch_url(url)
         if not downloaded:
             return "", {**meta, "error": "Failed to fetch URL"}
 
-        text = trafilatura.extract(downloaded, include_comments=False, include_tables=True)
-        if not text:
+        result = bare_extraction(downloaded, include_comments=False, include_tables=True)
+        if not result or not result.get("text"):
             return "", {**meta, "error": "No readable content extracted"}
 
-        # Get metadata
-        doc_meta = trafilatura.extract(downloaded, output_format="json", include_comments=False)
-        if doc_meta:
-            import json as _json3
-            try:
-                parsed_meta = _json3.loads(doc_meta)
-                meta["title"] = parsed_meta.get("title", "")
-                meta["author"] = parsed_meta.get("author", "")
-                meta["hostname"] = parsed_meta.get("hostname", "")
-            except Exception:
-                pass
-
+        text = result["text"]
+        meta["title"] = result.get("title", "")
+        meta["author"] = result.get("author", "")
+        meta["hostname"] = result.get("hostname", "")
         meta["char_count"] = len(text)
         return text, meta
 
+    except ImportError:
+        return "", {**meta, "error": "trafilatura is not installed"}
     except Exception as e:
         return "", {**meta, "error": str(e)}
 
@@ -712,6 +723,9 @@ async def extract_url(req: ExtractUrlRequest):
     url = req.url.strip()
     if not _URL_PATTERN.match(url):
         raise HTTPException(status_code=400, detail="Invalid URL")
+
+    # SSRF protection: block private/internal URLs
+    _validate_url_safe(url)
 
     import asyncio
     loop = asyncio.get_event_loop()
