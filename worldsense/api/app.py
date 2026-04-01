@@ -583,6 +583,151 @@ async def get_task(task_id: str):
 
 
 # ---------------------------------------------------------------------------
+# API: POST /api/extract-url
+# ---------------------------------------------------------------------------
+
+import re as _re
+import subprocess as _subprocess
+
+_URL_PATTERN = _re.compile(r'https?://\S+')
+_YT_PATTERN = _re.compile(r'(youtube\.com/watch|youtu\.be/|youtube\.com/shorts/)')
+
+
+class ExtractUrlRequest(BaseModel):
+    url: str
+
+
+def _is_youtube(url: str) -> bool:
+    return bool(_YT_PATTERN.search(url))
+
+
+def _extract_youtube_subtitles(url: str) -> tuple[str, dict]:
+    """Extract subtitles from YouTube video via yt-dlp. Returns (text, metadata)."""
+    meta = {"source": "youtube", "url": url}
+    try:
+        # First get video info
+        info_result = _subprocess.run(
+            ["yt-dlp", "--dump-json", "--no-download", url],
+            capture_output=True, text=True, timeout=30,
+        )
+        if info_result.returncode == 0:
+            import json as _json2
+            info = _json2.loads(info_result.stdout)
+            meta["title"] = info.get("title", "")
+            meta["duration"] = info.get("duration")
+            meta["channel"] = info.get("channel", "")
+
+        # Try to get subtitles: prefer manual subs, fall back to auto-generated
+        sub_result = _subprocess.run(
+            ["yt-dlp", "--write-subs", "--write-auto-subs", "--sub-langs", "zh,en,ja,ko",
+             "--sub-format", "vtt", "--skip-download", "--print", "%(requested_subtitles)j",
+             "-o", "/tmp/ws-yt-%(id)s", url],
+            capture_output=True, text=True, timeout=60,
+        )
+
+        # Find the downloaded subtitle file
+        import glob
+        sub_files = glob.glob("/tmp/ws-yt-*.vtt")
+        if not sub_files:
+            # Fallback: try srt
+            _subprocess.run(
+                ["yt-dlp", "--write-subs", "--write-auto-subs", "--sub-langs", "zh,en,ja,ko",
+                 "--sub-format", "srt", "--skip-download", "-o", "/tmp/ws-yt-%(id)s", url],
+                capture_output=True, text=True, timeout=60,
+            )
+            sub_files = glob.glob("/tmp/ws-yt-*.srt")
+
+        if sub_files:
+            # Parse subtitle file — strip timestamps, deduplicate lines
+            raw = Path(sub_files[0]).read_text(errors="replace")
+            lines = []
+            seen = set()
+            for line in raw.split("\n"):
+                line = line.strip()
+                # Skip VTT headers, timestamps, sequence numbers
+                if not line or "-->" in line or line.startswith("WEBVTT") or line.startswith("Kind:") or line.startswith("Language:"):
+                    continue
+                if line.isdigit():
+                    continue
+                # Strip HTML tags
+                clean = _re.sub(r'<[^>]+>', '', line)
+                if clean and clean not in seen:
+                    seen.add(clean)
+                    lines.append(clean)
+
+            # Cleanup temp files
+            for f in glob.glob("/tmp/ws-yt-*"):
+                try:
+                    os.remove(f)
+                except Exception:
+                    pass
+
+            text = " ".join(lines)
+            meta["subtitle_lines"] = len(lines)
+            return text, meta
+
+        return "", {**meta, "error": "No subtitles available"}
+
+    except _subprocess.TimeoutExpired:
+        return "", {**meta, "error": "yt-dlp timed out"}
+    except Exception as e:
+        return "", {**meta, "error": str(e)}
+
+
+def _extract_web_article(url: str) -> tuple[str, dict]:
+    """Extract main text content from a web page via trafilatura."""
+    meta = {"source": "web", "url": url}
+    try:
+        import trafilatura
+        downloaded = trafilatura.fetch_url(url)
+        if not downloaded:
+            return "", {**meta, "error": "Failed to fetch URL"}
+
+        text = trafilatura.extract(downloaded, include_comments=False, include_tables=True)
+        if not text:
+            return "", {**meta, "error": "No readable content extracted"}
+
+        # Get metadata
+        doc_meta = trafilatura.extract(downloaded, output_format="json", include_comments=False)
+        if doc_meta:
+            import json as _json3
+            try:
+                parsed_meta = _json3.loads(doc_meta)
+                meta["title"] = parsed_meta.get("title", "")
+                meta["author"] = parsed_meta.get("author", "")
+                meta["hostname"] = parsed_meta.get("hostname", "")
+            except Exception:
+                pass
+
+        meta["char_count"] = len(text)
+        return text, meta
+
+    except Exception as e:
+        return "", {**meta, "error": str(e)}
+
+
+@app.post("/api/extract-url")
+async def extract_url(req: ExtractUrlRequest):
+    """Extract text content from a URL (web article or YouTube video)."""
+    url = req.url.strip()
+    if not _URL_PATTERN.match(url):
+        raise HTTPException(status_code=400, detail="Invalid URL")
+
+    import asyncio
+    loop = asyncio.get_event_loop()
+
+    if _is_youtube(url):
+        text, meta = await loop.run_in_executor(None, _extract_youtube_subtitles, url)
+    else:
+        text, meta = await loop.run_in_executor(None, _extract_web_article, url)
+
+    if not text:
+        raise HTTPException(status_code=422, detail=meta.get("error", "Could not extract content"))
+
+    return {"text": text, "metadata": meta}
+
+
+# ---------------------------------------------------------------------------
 # API: POST /api/personas  (still JSON)
 # ---------------------------------------------------------------------------
 

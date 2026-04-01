@@ -30,7 +30,7 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
   <style>
     /* Advanced options collapse animation */
     .adv-panel {
@@ -462,13 +462,26 @@
             <label class="block text-sm font-medium text-slate-300 mb-1">
               Content to Evaluate <span class="text-slate-500 font-normal">/ 待评估内容</span>
             </label>
-            <p class="text-xs text-slate-500 mb-2">Paste the content, or upload files below.</p>
+            <p class="text-xs text-slate-500 mb-2">Paste text, a URL (article or YouTube), or upload files.</p>
+
+            <!-- URL input bar -->
+            <div class="flex gap-2 mb-2">
+              <input id="input-url" type="url"
+                placeholder="Paste a URL to extract content (article, YouTube video, etc.)"
+                class="flex-1 bg-surface-800 border border-surface-600 rounded-lg px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+              <button type="button" id="btn-extract-url"
+                class="px-3 py-2 bg-brand-700 hover:bg-brand-600 text-white text-xs font-medium rounded-lg transition-colors whitespace-nowrap">
+                Extract
+              </button>
+            </div>
+            <!-- URL extraction status -->
+            <div id="url-extract-status" class="hidden mb-2 px-3 py-2 rounded-lg text-xs"></div>
 
             <!-- Text area -->
             <textarea
               id="input-content"
               rows="6"
-              placeholder="Paste the content to evaluate, or upload files (PDF, images, txt, docx, md)"
+              placeholder="Paste the content to evaluate, or use the URL bar above, or upload files below"
               class="w-full bg-surface-800 border border-surface-600 rounded-t-lg px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 resize-none"
             ></textarea>
 
@@ -874,6 +887,6 @@
     </main>
   </div>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

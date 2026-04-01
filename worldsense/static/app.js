@@ -717,6 +717,79 @@ const btnResetAdv = document.getElementById('btn-reset-adv');
 if (btnResetAdv) btnResetAdv.addEventListener('click', resetAdvanced);
 
 // ---------------------------------------------------------------------------
+// URL Content Extraction
+// ---------------------------------------------------------------------------
+const btnExtractUrl = document.getElementById('btn-extract-url');
+const inputUrl = document.getElementById('input-url');
+if (btnExtractUrl) btnExtractUrl.addEventListener('click', extractUrlContent);
+
+// Auto-detect URL paste into content textarea
+const inputContent = document.getElementById('input-content');
+if (inputContent) {
+  inputContent.addEventListener('paste', (e) => {
+    setTimeout(() => {
+      const val = inputContent.value.trim();
+      if (/^https?:\/\/\S+$/.test(val) && inputUrl) {
+        inputUrl.value = val;
+        inputContent.value = '';
+        extractUrlContent();
+      }
+    }, 50);
+  });
+}
+
+async function extractUrlContent() {
+  const url = inputUrl?.value?.trim();
+  if (!url) return;
+
+  const statusEl = document.getElementById('url-extract-status');
+  const contentEl = document.getElementById('input-content');
+  const btn = document.getElementById('btn-extract-url');
+
+  // Show loading
+  if (statusEl) {
+    statusEl.classList.remove('hidden');
+    statusEl.className = 'mb-2 px-3 py-2 rounded-lg text-xs bg-brand-700/20 border border-brand-600/30 text-brand-300';
+    statusEl.textContent = 'Extracting content…';
+  }
+  if (btn) { btn.disabled = true; btn.textContent = '…'; }
+
+  try {
+    const data = await apiFetch('/api/extract-url', {
+      method: 'POST',
+      body: JSON.stringify({ url }),
+    });
+
+    if (contentEl && data.text) {
+      // Prepend source info, then extracted text
+      const meta = data.metadata || {};
+      let header = '';
+      if (meta.title) header += `[${meta.title}]\n`;
+      if (meta.source === 'youtube' && meta.channel) header += `Channel: ${meta.channel}\n`;
+      if (meta.source === 'web' && meta.author) header += `Author: ${meta.author}\n`;
+      header += `Source: ${url}\n---\n`;
+
+      contentEl.value = header + data.text;
+    }
+
+    if (statusEl) {
+      const meta = data.metadata || {};
+      const source = meta.source === 'youtube' ? 'YouTube subtitles' : 'article text';
+      const chars = data.text?.length || 0;
+      statusEl.className = 'mb-2 px-3 py-2 rounded-lg text-xs bg-green-900/30 border border-green-700/30 text-green-400';
+      statusEl.innerHTML = `Extracted ${chars.toLocaleString()} chars from ${escHtml(source)}${meta.title ? ' — <strong>' + escHtml(meta.title) + '</strong>' : ''}`;
+    }
+  } catch (err) {
+    if (statusEl) {
+      statusEl.className = 'mb-2 px-3 py-2 rounded-lg text-xs bg-red-900/30 border border-red-700/30 text-red-400';
+      statusEl.textContent = 'Extraction failed: ' + (err.message || err);
+    }
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Extract'; }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Prompt Preview
 // ---------------------------------------------------------------------------
 const promptPreviewToggle = document.getElementById('prompt-preview-toggle');
