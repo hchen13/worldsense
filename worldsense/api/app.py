@@ -701,13 +701,13 @@ def _extract_web_article(url: str) -> tuple[str, dict]:
             return "", {**meta, "error": "Failed to fetch URL"}
 
         result = bare_extraction(downloaded, include_comments=False, include_tables=True)
-        if not result or not result.get("text"):
+        if not result or not getattr(result, "text", None):
             return "", {**meta, "error": "No readable content extracted"}
 
-        text = result["text"]
-        meta["title"] = result.get("title", "")
-        meta["author"] = result.get("author", "")
-        meta["hostname"] = result.get("hostname", "")
+        text = result.text
+        meta["title"] = getattr(result, "title", "") or ""
+        meta["author"] = getattr(result, "author", "") or ""
+        meta["hostname"] = getattr(result, "sitename", "") or ""
         meta["char_count"] = len(text)
         return text, meta
 
