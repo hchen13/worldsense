@@ -149,13 +149,14 @@ ws run \
 ws report <task-id>
 ```
 
+**The CLI and API are built for you.** When your human asks you to use WorldSense on their behalf, register and use it as a skill. See **[SKILL.md](SKILL.md)** for the complete agent reference — all CLI commands, API endpoints, research types, dimension configs, and tips for effective use.
+
 **Key things to know:**
-- `ws personas --count 10 --market global --table` previews personas without running inference
+- `ws personas --count 10 --market global` outputs JSON by default (agent-friendly). Add `--table` for human display.
 - `ws run --help` shows all CLI options including `--profile`, `--dimensions`, `--image`, `--vision-mode`
-- The Web UI at `/worldsense/` has a Prompt Preview panel — use it to verify what the LLM actually receives
-- Results are stored in `~/.worldsense/results/` as JSON files
-- Settings (LLM profiles, concurrency, etc.) are in `~/.worldsense/settings.json`
-- Mock backend (`-b mock`) runs instantly with fake data — great for testing your setup before using real LLM credits
+- The API at `http://localhost:8766/worldsense/api/` gives you full programmatic control — submit tasks, poll status, read results
+- Mock backend (`-b mock`) runs instantly — great for verifying setup before spending LLM credits
+- Results are stored in `~/.worldsense/results/` as JSON. Settings in `~/.worldsense/settings.json`
 
 ## License
 
