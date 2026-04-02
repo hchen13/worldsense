@@ -55,7 +55,7 @@ Output ONLY the JSON object, no markdown fences, no extra text.
 FEEDBACK_RESPONSE_SCHEMA = {
     "type": "object",
     "properties": {
-        "purchase_intent": {"type": "string", "enum": ["buy", "hesitate", "pass"]},
+        "intent": {"type": "string", "enum": ["buy", "hesitate", "pass"]},
         "nps_score": {"type": "integer", "minimum": 0, "maximum": 10},
         "sentiment_score": {"type": "number", "minimum": -1.0, "maximum": 1.0},
         "key_attraction": {"type": "string", "description": "Main appeal to you"},
@@ -63,7 +63,7 @@ FEEDBACK_RESPONSE_SCHEMA = {
         "verbatim": {"type": "string", "description": "Your natural-language reaction (2-3 sentences)"},
         "willingness_to_pay_multiplier": {"type": "number", "description": "Relative WTP vs average price"}
     },
-    "required": ["purchase_intent", "nps_score", "sentiment_score", "key_attraction", "key_concern", "verbatim"]
+    "required": ["intent", "nps_score", "sentiment_score", "key_attraction", "key_concern", "verbatim"]
 }
 
 

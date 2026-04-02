@@ -568,7 +568,7 @@ async def get_persona_states(task_id: str):
             pid = r.get("persona_id") or ps.get("persona_id")
             if pid:
                 persona_map[pid] = {**ps,
-                    "purchase_intent": r.get("purchase_intent"),
+                    "intent": r.get("intent"),
                     "nps_score": r.get("nps_score"),
                     "sentiment_score": r.get("sentiment_score"),
                     "verbatim": r.get("verbatim", ""),

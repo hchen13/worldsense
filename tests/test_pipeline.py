@@ -3,7 +3,7 @@
 import asyncio
 import pytest
 from worldsense.llm.backend import MockBackend
-from worldsense.core.result import TaskResults, PurchaseIntent
+from worldsense.core.result import TaskResults
 from worldsense.persona.generator import PersonaGenerator
 from worldsense.core.task import ResearchTask
 from worldsense.pipeline.worker import WorkerPool
@@ -16,8 +16,8 @@ async def test_mock_backend_basic():
     assert "content" in response
     assert "parsed" in response
     parsed = response["parsed"]
-    assert "purchase_intent" in parsed
-    assert parsed["purchase_intent"] in ("buy", "hesitate", "pass")
+    assert "intent" in parsed
+    assert parsed["intent"] in ("buy", "hesitate", "pass")
     assert 0 <= parsed["nps_score"] <= 10
     assert -1 <= parsed["sentiment_score"] <= 1
 
@@ -38,7 +38,7 @@ async def test_mock_backend_with_persona_data():
     prompt = f"Test content\nPERSONA_DATA: {json.dumps(persona_data)}"
     response = await backend.generate(prompt)
     # With high price sensitivity and low risk, should lean toward pass/hesitate
-    assert response["parsed"]["purchase_intent"] in ("buy", "hesitate", "pass")
+    assert response["parsed"]["intent"] in ("buy", "hesitate", "pass")
 
 
 @pytest.mark.asyncio
@@ -66,7 +66,7 @@ async def test_worker_pool_small():
     assert len(results) == 5
     for r in batch:
         assert r.persona_id.startswith("p_")
-        assert r.purchase_intent in (PurchaseIntent.BUY, PurchaseIntent.HESITATE, PurchaseIntent.PASS, "buy", "hesitate", "pass")
+        assert r.intent in ("buy", "hesitate", "pass")
 
 
 def test_task_results_aggregation():
@@ -76,7 +76,7 @@ def test_task_results_aggregation():
         PersonaResult(
             persona_id=f"p_{i:04d}",
             task_id="test",
-            purchase_intent="buy",
+            intent="buy",
             nps_score=9,
             sentiment_score=0.7,
             key_attraction="Great value",
@@ -89,7 +89,7 @@ def test_task_results_aggregation():
         PersonaResult(
             persona_id=f"p_{i:04d}",
             task_id="test",
-            purchase_intent="pass",
+            intent="pass",
             nps_score=3,
             sentiment_score=-0.5,
             key_attraction="Nothing",

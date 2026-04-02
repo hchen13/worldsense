@@ -23,7 +23,7 @@ class PersonaResult(BaseModel):
 
     # Core feedback — stored as raw str to support research-type-specific intents
     # (e.g. "follow"/"consider"/"pass" for social_follow, "buy"/"hesitate"/"pass" for product_purchase)
-    purchase_intent: str
+    intent: str
     nps_score: int = Field(..., ge=0, le=10, description="Net Promoter Score (0-10)")
     sentiment_score: float = Field(..., ge=-1.0, le=1.0, description="-1=negative, 0=neutral, 1=positive")
 
@@ -90,8 +90,8 @@ class TaskResults(BaseModel):
         # Intent slot 3: always "pass"
         _SLOT1 = {"buy", "follow", "subscribe", "trial", "switch", "watch", "resonate"}
         _SLOT2 = {"hesitate", "consider", "maybe"}
-        buy = sum(1 for r in results if r.purchase_intent in _SLOT1)
-        hesitate = sum(1 for r in results if r.purchase_intent in _SLOT2)
+        buy = sum(1 for r in results if r.intent in _SLOT1)
+        hesitate = sum(1 for r in results if r.intent in _SLOT2)
         nps_scores = [r.nps_score for r in results]
         sentiments = [r.sentiment_score for r in results]
         promoters = sum(1 for s in nps_scores if s >= 9)
@@ -127,7 +127,7 @@ class TaskResults(BaseModel):
                 return {"count": 0}
             return {
                 "count": ng,
-                "buy_rate": round(sum(1 for x in group if x.purchase_intent in _SLOT1) / ng, 3),
+                "buy_rate": round(sum(1 for x in group if x.intent in _SLOT1) / ng, 3),
                 "avg_nps": round(sum(x.nps_score for x in group) / ng, 2),
                 "avg_sentiment": round(sum(x.sentiment_score for x in group) / ng, 3),
             }

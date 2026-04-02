@@ -1775,7 +1775,7 @@ function showDotTooltip(event, personaId, status, error, attempt) {
 
   // ---- Feedback section (only for completed personas with result data) ----
   if (status === 'done' && persona) {
-    const intent = persona.purchase_intent;
+    const intent = persona.intent;
     const nps = persona.nps_score;
     const sentiment = persona.sentiment_score;
     const verbatim = persona.verbatim;

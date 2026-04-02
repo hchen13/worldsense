@@ -186,7 +186,7 @@ class MockBackend(LLMBackend):
                 intent = slot3
 
         parsed = {
-            "purchase_intent": intent,
+            "intent": intent,
             "nps_score": nps,
             "sentiment_score": round(sentiment, 3),
             "key_attraction": attraction,

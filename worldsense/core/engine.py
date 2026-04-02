@@ -160,7 +160,7 @@ class ResearchEngine:
         if state.result is not None:
             entry["persona"] = {
                 **(entry.get("persona") or {}),
-                "purchase_intent": state.result.purchase_intent,
+                "intent": state.result.intent,
                 "nps_score": state.result.nps_score,
                 "sentiment_score": state.result.sentiment_score,
                 "verbatim": state.result.verbatim,

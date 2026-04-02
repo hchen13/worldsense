@@ -69,7 +69,7 @@ DEFAULT_INTENT_PRESET = INTENT_PRESETS["product_purchase"]
 FEEDBACK_JSON_SCHEMA = {
     "type": "object",
     "properties": {
-        "purchase_intent": {
+        "intent": {
             "type": "string",
             "enum": ["buy", "hesitate", "pass"],
             "description": "Would this persona buy the product? (default schema; overridden by research_type in merged prompt)"
@@ -104,7 +104,7 @@ FEEDBACK_JSON_SCHEMA = {
         }
     },
     "required": [
-        "purchase_intent",
+        "intent",
         "nps_score",
         "sentiment_score",
         "key_attraction",
@@ -160,7 +160,7 @@ def _build_language_instruction(country_name: str, language: str) -> str:
         f"(they are from {country_name} — use the language native speakers there would naturally use). "
         f"Then, if the native language differs from {language}, append on a new line: "
         f'"[Translation]: <{language} translation of the verbatim>"\n'
-        f"- All other fields (purchase_intent enum values, numbers): unchanged."
+        f"- All other fields (intent enum values, numbers): unchanged."
     )
 
 
@@ -178,7 +178,7 @@ def build_merged_prompt(
     Phase 2: LLM evaluates the content as that specific person.
 
     Returns a JSON response with epsilon + all standard evaluation fields.
-    The purchase_intent field uses values determined by research_type:
+    The intent field uses values determined by research_type:
       - product_purchase: buy / hesitate / pass
       - social_follow:    follow / consider / pass
       - content_reaction: watch / maybe / pass
@@ -256,7 +256,7 @@ EVALUATION FOCUS:
 
 {language_instruction}
 
-INTENT VALUES — Use exactly one of these for "purchase_intent":
+INTENT VALUES — Use exactly one of these for "intent":
 - "{v1}": {d1}
 - "{v2}": {d2}
 - "{v3}": {d3}
@@ -266,7 +266,7 @@ REQUIRED RESPONSE FORMAT — Respond ONLY with a valid JSON object. No markdown 
 {{
   "epsilon": "<2-3 sentence personal background + leisure interests you imagined in Phase 1>",
   "name": "<culturally authentic full name, native script + romanization if non-Latin, e.g. '陈浩 (Chen Hao)'>",
-  "purchase_intent": "{v1}" | "{v2}" | "{v3}",
+  "intent": "{v1}" | "{v2}" | "{v3}",
   "nps_score": <integer 0-10>,
   "sentiment_score": <float -1.0 to 1.0>,
   "key_attraction": "<what most appeals to you>",
@@ -315,7 +315,7 @@ Respond ONLY with a valid JSON object. No markdown fences. No explanation text.
 
 The JSON must have exactly these fields:
 {{
-  "purchase_intent": "buy" | "hesitate" | "pass",
+  "intent": "buy" | "hesitate" | "pass",
   "nps_score": <integer 0-10>,
   "sentiment_score": <float -1.0 to 1.0>,
   "key_attraction": "<what most appeals to you>",

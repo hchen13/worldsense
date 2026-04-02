@@ -25,7 +25,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Awaitable, Callable, Optional
 
-from worldsense.core.result import PersonaResult, PurchaseIntent
+from worldsense.core.result import PersonaResult
 from worldsense.core.task import ResearchTask
 from worldsense.llm import get_backend
 from worldsense.llm.backend import LLMBackend
@@ -165,7 +165,7 @@ class WorkerPool:
                     error_result = PersonaResult(
                         persona_id=persona.persona_id,
                         task_id=self.task.task_id,
-                        purchase_intent="pass",
+                        intent="pass",
                         nps_score=5,
                         sentiment_score=0.0,
                         error=str(res),
@@ -307,7 +307,7 @@ class WorkerPool:
             persona.name = llm_name.strip()
 
         # Map to PersonaResult — use raw string so research-type-specific intents are preserved
-        intent_raw = parsed.get("purchase_intent", "pass")
+        intent_raw = parsed.get("intent", "pass")
         # Normalize synonyms before validation (e.g. old "subscribe" → "follow" for social_follow)
         _INTENT_SYNONYMS = {
             "subscribe": "follow",  # social_follow: LLM may still return old slot2 value
@@ -330,7 +330,7 @@ class WorkerPool:
         return PersonaResult(
             persona_id=persona.persona_id,
             task_id=self.task.task_id,
-            purchase_intent=intent_raw,
+            intent=intent_raw,
             nps_score=int(parsed.get("nps_score", 5)),
             sentiment_score=float(parsed.get("sentiment_score", 0.0)),
             key_attraction=parsed.get("key_attraction", ""),
