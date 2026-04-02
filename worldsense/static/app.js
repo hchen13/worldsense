@@ -2112,15 +2112,21 @@ function renderDetail(data) {
     </div>
   </div>`;
 
+  // ----- Two-column layout starts here (anatomy + results in left, matrix in right) -----
+  let rightCol = `<div id="dot-matrix-${task.task_id}" class="metric-card">
+    <p class="text-xs text-slate-600">Loading persona matrix...</p>
+  </div>`;
+  let leftCol = '';
+
   // ----- Zone 1: Survey anatomy — "how content was sent to LLM" -----
-  html += `<div class="metric-card mb-5 space-y-4">
+  leftCol += `<div class="metric-card mb-5 space-y-4">
     <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Survey Input Anatomy
       <span class="ml-2 font-normal normal-case text-slate-600">— what each persona received</span>
     </h2>`;
 
   // 1a. Scenario context
   if (task.scenario_context) {
-    html += `<div>
+    leftCol += `<div>
       <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">🎭 Scenario Context</div>
       <div class="bg-surface-900/60 border border-surface-700 rounded-lg px-3 py-2 text-sm text-slate-300 italic">
         ${escHtml(task.scenario_context)}
@@ -2131,7 +2137,7 @@ function renderDetail(data) {
   // 1b. Research type + decision output + evaluation focus
   const slot1 = intentConfig.slot1Label || 'Yes';
   const slot2 = intentConfig.slot2Label || 'Maybe';
-  html += `<div>
+  leftCol += `<div>
     <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">🔬 Research Type</div>
     <div class="flex flex-wrap items-center gap-2 mb-3">
       <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-brand-700/30 border border-brand-600/40 rounded-lg text-xs text-brand-300 font-medium">
@@ -2147,62 +2153,60 @@ function renderDetail(data) {
 
   const breakdownDims = getBreakdownDimensions(researchType);
   if (breakdownDims.length > 0) {
-    html += `<div class="text-xs text-slate-500 mb-1.5">Evaluation Focus <span class="text-slate-600">/ 评估角度:</span></div>
+    leftCol += `<div class="text-xs text-slate-500 mb-1.5">Evaluation Focus <span class="text-slate-600">/ 评估角度:</span></div>
     <div class="flex flex-wrap gap-1.5">
       ${breakdownDims.map(d => `<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-surface-700 border border-surface-600 rounded text-xs text-slate-400">${d.emoji} ${escHtml(d.label)}</span>`).join('')}
     </div>`;
   }
 
-  html += `</div>`;
+  leftCol += `</div>`;
 
   // 1c. Attached files (images in grid, others inline)
   if (attachments.length > 0) {
     const imageAtts = attachments.filter(a => a.file_type === 'image');
     const otherAtts = attachments.filter(a => a.file_type !== 'image');
 
-    html += `<div>
+    leftCol += `<div>
       <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">📎 Attached Files</div>`;
 
     if (imageAtts.length > 0) {
-      html += `<div class="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-3">`;
+      leftCol += `<div class="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-3">`;
       imageAtts.forEach(att => {
         const fileUrl = `${API_BASE}/api/uploads/${task.task_id}/${encodeURIComponent(att.saved_name)}`;
-        html += `<div>
+        leftCol += `<div>
           <img src="${fileUrl}" alt="${escHtml(att.original_name)}"
             class="w-full rounded-lg border border-surface-700 object-contain cursor-pointer hover:opacity-90 transition-opacity"
             onclick="window.open('${fileUrl}', '_blank')" />
           <div class="text-xs text-slate-600 mt-1">${escHtml(att.original_name)} (${Math.round(att.size_bytes / 1024)} KB)</div>
         </div>`;
       });
-      html += `</div>`;
+      leftCol += `</div>`;
     }
 
     if (otherAtts.length > 0) {
-      html += `<div class="flex flex-wrap gap-2">`;
+      leftCol += `<div class="flex flex-wrap gap-2">`;
       otherAtts.forEach(att => {
         const fileUrl = `${API_BASE}/api/uploads/${task.task_id}/${encodeURIComponent(att.saved_name)}`;
         if (att.file_type === 'pdf') {
-          html += `<a href="${fileUrl}" target="_blank" rel="noopener"
+          leftCol += `<a href="${fileUrl}" target="_blank" rel="noopener"
             class="inline-flex items-center gap-2 px-3 py-2 bg-violet-900/30 border border-violet-700/40 rounded-lg text-xs text-violet-300 hover:bg-violet-900/50 transition-colors">
             📄 ${escHtml(att.original_name)} <span class="text-violet-500">(${Math.round(att.size_bytes / 1024)} KB) ↗</span>
           </a>`;
         } else {
           const icon = att.file_type === 'word' ? '📝' : att.file_type === 'text' ? '📃' : '📎';
-          html += `<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-700 border border-surface-600 rounded-lg text-xs text-slate-300">
+          leftCol += `<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-700 border border-surface-600 rounded-lg text-xs text-slate-300">
             ${icon} ${escHtml(att.original_name)} <span class="text-slate-500">(${Math.round(att.size_bytes / 1024)} KB)</span>
           </div>`;
         }
       });
-      html += `</div>`;
+      leftCol += `</div>`;
     }
 
-    html += `</div>`;
+    leftCol += `</div>`;
   }
 
   // 1d. Main content / what was evaluated
   const rawContent = task.content || '';
-  // Strip the appended file content + EVALUATION FOCUS block for display
-  // (these are added programmatically — show the user-facing content only)
   let displayContent = rawContent;
   const fileContentIdx = displayContent.indexOf('\n\n[Attached file content:]');
   if (fileContentIdx !== -1) displayContent = displayContent.substring(0, fileContentIdx);
@@ -2211,7 +2215,7 @@ function renderDetail(data) {
   displayContent = displayContent.trim();
 
   if (displayContent) {
-    html += `<div>
+    leftCol += `<div>
       <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">📋 Content to Evaluate</div>
       <div class="bg-surface-900/60 border border-surface-700 rounded-lg px-3 py-2">
         ${renderCollapsibleMarkdown(displayContent)}
@@ -2223,35 +2227,26 @@ function renderDetail(data) {
   const evalCriteria = task.metadata?.evaluation_criteria || [];
   const customInstr = task.metadata?.custom_instructions || '';
   if (evalCriteria.length > 0 || customInstr) {
-    html += `<div>
+    leftCol += `<div>
       <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">🎯 Evaluation Focus</div>
       <div class="bg-surface-900/60 border border-surface-700 rounded-lg px-3 py-2 space-y-1">`;
     if (evalCriteria.length > 0) {
       evalCriteria.forEach(c => {
         const dim = EVAL_DIMENSIONS_MAP[c];
         if (dim) {
-          html += `<div class="text-xs text-slate-300">${dim.emoji} <strong>${dim.label}</strong> — ${dim.desc}</div>`;
+          leftCol += `<div class="text-xs text-slate-300">${dim.emoji} <strong>${dim.label}</strong> — ${dim.desc}</div>`;
         } else {
-          html += `<div class="text-xs text-slate-300">• ${escHtml(c)}</div>`;
+          leftCol += `<div class="text-xs text-slate-300">• ${escHtml(c)}</div>`;
         }
       });
     }
     if (customInstr) {
-      html += `<div class="text-xs text-slate-500 mt-1 italic">${renderCollapsibleMarkdown(customInstr, 5)}</div>`;
+      leftCol += `<div class="text-xs text-slate-500 mt-1 italic">${renderCollapsibleMarkdown(customInstr, 5)}</div>`;
     }
-    html += `</div></div>`;
+    leftCol += `</div></div>`;
   }
 
-  html += `</div>`; // end metric-card anatomy
-
-  // ----- Two-column layout: left = results, right = persona matrix -----
-  // Right column: persona matrix (always present)
-  let rightCol = `<div id="dot-matrix-${task.task_id}" class="metric-card">
-    <p class="text-xs text-slate-600">Loading persona matrix...</p>
-  </div>`;
-
-  // Left column: progress + results
-  let leftCol = '';
+  leftCol += `</div>`; // end metric-card anatomy
 
   // Running progress
   if (isRunning && task.total_personas > 0) {
