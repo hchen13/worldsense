@@ -80,6 +80,9 @@ def cmd_run(
             if not img_path.exists():
                 console.print(f"[red]Image not found: {img_path}[/red]")
                 raise typer.Exit(1)
+            if img_path.stat().st_size > 5 * 1024 * 1024:
+                console.print(f"[red]Image too large (max 5MB): {img_path}[/red]")
+                raise typer.Exit(1)
             suffix = img_path.suffix.lower().lstrip(".")
             mime_map = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
                         "webp": "image/webp", "gif": "image/gif"}
@@ -91,6 +94,8 @@ def cmd_run(
             console.print("[dim]Images provided — using per_persona vision mode[/dim]")
             vision_mode = "per_persona"
     if vision_mode == "per_persona":
+        if not metadata.get("image_data_urls"):
+            console.print("[yellow]Warning: --vision-mode per_persona set but no images provided (--image). Falling back to text-only.[/yellow]")
         metadata["vision_mode"] = "per_persona"
     if dimensions_json:
         try:

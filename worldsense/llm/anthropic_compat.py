@@ -110,6 +110,9 @@ class AnthropicCompatBackend(LLMBackend):
                             "type": "image",
                             "source": {"type": "base64", "media_type": m.group(1), "data": m.group(2)},
                         })
+                    else:
+                        import logging
+                        logging.getLogger(__name__).warning("Skipped malformed image data URL (Anthropic backend)")
                 content_blocks.append({"type": "text", "text": prompt})
                 user_content = content_blocks
             else:
