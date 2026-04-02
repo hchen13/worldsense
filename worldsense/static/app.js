@@ -1687,14 +1687,9 @@ function renderDotMatrix(containerId, states, personas, taskComplete) {
   const dotsHtml = states.map(s => {
     const cfg = DOT_STATUS_CONFIG[s.status] || DOT_STATUS_CONFIG.pending;
     const animClass = (s.status === 'running' || s.status === 'retrying') ? ' dot-animate' : '';
-    // Fallback title for accessibility (rich tooltip is rendered via JS)
-    const persona = personaMap[s.persona_id];
-    const titleText = persona ? `#${s.index + 1} ${persona.name || ''}` : `#${s.index + 1}`;
-
     return `<span class="dot ${cfg.cls}${animClass}"
       data-persona-id="${escHtml(s.persona_id)}"
       data-status="${s.status}"
-      title="${escHtml(titleText)}"
       onmouseenter="showDotTooltip(event, '${escHtml(s.persona_id)}', '${s.status}', '${(s.error||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').substring(0,100)}', ${s.attempt || 0})"
       onmouseleave="hideDotTooltip()"></span>`;
   }).join('');
@@ -1793,7 +1788,20 @@ function showDotTooltip(event, personaId, status, error, attempt) {
     html += `</div>`;
   }
 
-  // ---- Error (only for failed) ----
+  // ---- Timing + LLM metadata ----
+  if (state) {
+    const metaParts = [];
+    if (state.llm_elapsed_ms != null) metaParts.push(`${(state.llm_elapsed_ms / 1000).toFixed(1)}s`);
+    else if (state.started_at && status === 'running') metaParts.push(`${((Date.now() / 1000) - state.started_at).toFixed(0)}s…`);
+    if (state.llm_model) metaParts.push(state.llm_model);
+    if (state.llm_prompt_tokens != null) metaParts.push(`${state.llm_prompt_tokens}+${state.llm_completion_tokens ?? '?'} tok`);
+    if (attempt > 0) metaParts.push(`attempt #${attempt + 1}`);
+    if (metaParts.length > 0) {
+      html += `<div class="dot-tooltip-row dim" style="padding:3px 8px;font-size:10px;color:#475569">${escHtml(metaParts.join(' · '))}</div>`;
+    }
+  }
+
+  // ---- Error ----
   if (error) {
     html += `<div class="dot-tooltip-section dot-tooltip-error">`;
     html += `<div class="dot-tooltip-error-msg">⚠ ${escHtml(error.substring(0, 150))}</div>`;
