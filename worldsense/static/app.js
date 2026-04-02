@@ -1766,8 +1766,9 @@ function showDotTooltip(event, personaId, status, error, attempt) {
   }
 
   // ---- Feedback (shown for completed personas) ----
-  if (persona && (persona.intent != null || persona.nps_score != null)) {
-    const intent = persona.intent;
+  const _intent = persona?.intent ?? persona?.purchase_intent;
+  if (persona && (_intent != null || persona.nps_score != null)) {
+    const intent = _intent;
     const nps = persona.nps_score;
     const sentiment = persona.sentiment_score;
     const verbatim = persona.verbatim;
@@ -1789,16 +1790,25 @@ function showDotTooltip(event, personaId, status, error, attempt) {
   }
 
   // ---- Timing + LLM metadata ----
-  if (state) {
-    const metaParts = [];
-    if (state.llm_elapsed_ms != null) metaParts.push(`${(state.llm_elapsed_ms / 1000).toFixed(1)}s`);
-    else if (state.started_at && status === 'running') metaParts.push(`${((Date.now() / 1000) - state.started_at).toFixed(0)}s…`);
-    if (state.llm_model) metaParts.push(state.llm_model);
-    if (state.llm_prompt_tokens != null) metaParts.push(`${state.llm_prompt_tokens}+${state.llm_completion_tokens ?? '?'} tok`);
-    if (attempt > 0) metaParts.push(`attempt #${attempt + 1}`);
-    if (metaParts.length > 0) {
-      html += `<div class="dot-tooltip-row dim" style="padding:3px 8px;font-size:10px;color:#475569">${escHtml(metaParts.join(' · '))}</div>`;
+  if (state && (state.llm_model || state.llm_elapsed_ms != null || (state.started_at && status === 'running'))) {
+    html += `<div class="dot-tooltip-section dot-tooltip-llm">`;
+    html += `<div class="dot-tooltip-label">LLM Call</div>`;
+    if (state.llm_model) {
+      html += `<div class="dot-tooltip-row">🤖 ${escHtml(state.llm_model)}</div>`;
     }
+    if (state.llm_elapsed_ms != null) {
+      html += `<div class="dot-tooltip-row dim">⏳ ${(state.llm_elapsed_ms / 1000).toFixed(1)}s</div>`;
+    } else if (state.started_at && status === 'running') {
+      const elapsed = ((Date.now() / 1000) - state.started_at).toFixed(0);
+      html += `<div class="dot-tooltip-row dim">⏳ Running ${elapsed}s…</div>`;
+    }
+    if (state.llm_prompt_tokens != null || state.llm_completion_tokens != null) {
+      html += `<div class="dot-tooltip-row dim">🪙 ${state.llm_prompt_tokens ?? '?'}+${state.llm_completion_tokens ?? '?'} tokens</div>`;
+    }
+    if (attempt > 0) {
+      html += `<div class="dot-tooltip-row warn">⚠ Attempt #${attempt + 1}</div>`;
+    }
+    html += `</div>`;
   }
 
   // ---- Error ----
