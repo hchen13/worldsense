@@ -32,29 +32,87 @@ console = Console()
 
 @app.command("run")
 def cmd_run(
-    content: str = typer.Option(..., "--content", "-c", help="Product/content description to evaluate"),
+    content: str = typer.Option("", "--content", "-c", help="Product/content description to evaluate"),
+    content_file: Optional[Path] = typer.Option(None, "--content-file", "-f", help="Read content from file (markdown, txt, etc.)"),
     personas: int = typer.Option(100, "--personas", "-n", help="Number of personas to simulate"),
     market: str = typer.Option("global", "--market", "-m", help="Target market (global/us/cn/asia/europe/latam/africa/mena/developed/emerging)"),
-    backend: str = typer.Option("mock", "--backend", "-b", help="LLM backend (mock/openai_compat)"),
+    backend: str = typer.Option("", "--backend", "-b", help="LLM backend (auto-detected from profile; override: mock/openai_compat/anthropic)", hidden=True),
+    profile: Optional[str] = typer.Option(None, "--profile", "-p", help="LLM profile name (from Settings; default: active profile)"),
     concurrency: int = typer.Option(10, "--concurrency", help="Max concurrent LLM calls"),
     report: bool = typer.Option(True, "--report/--no-report", help="Generate Markdown report after run"),
     language: str = typer.Option("English", "--language", "-l", help="Output language for LLM responses (e.g. English, Chinese, Japanese)"),
     scenario_context: Optional[str] = typer.Option(None, "--scenario-context", "-s", help="Scenario context describing how personas encounter the content"),
+    research_type: str = typer.Option("product_purchase", "--research-type", "-r", help="Research type (product_purchase/social_follow/content_reaction/app_trial/concept_test/competitive_switch)"),
+    dimensions_json: Optional[str] = typer.Option(None, "--dimensions", "-d", help="Dimension config as JSON string (e.g. '{\"location_weights\":{\"t1\":1}}')"),
 ):
     """Run a full research simulation."""
     from worldsense.core.task import ResearchTask
     from worldsense.core.engine import ResearchEngine
     from worldsense.report.aggregator import ReportGenerator
+    from worldsense.persona.generator import DimensionConfig
+    from worldsense.core.settings import load_settings, get_active_profile
+
+    # Resolve content: --content-file takes precedence
+    effective_content = content
+    if content_file:
+        if not content_file.exists():
+            console.print(f"[red]File not found: {content_file}[/red]")
+            raise typer.Exit(1)
+        effective_content = content_file.read_text(encoding="utf-8")
+        if content:
+            effective_content = content + "\n\n" + effective_content
+
+    if not effective_content:
+        console.print("[red]Provide --content or --content-file[/red]")
+        raise typer.Exit(1)
+
+    # Parse dimensions
+    metadata: dict = {"language": language}
+    if dimensions_json:
+        try:
+            metadata["dimensions"] = json.loads(dimensions_json)
+        except json.JSONDecodeError:
+            console.print("[red]Invalid --dimensions JSON[/red]")
+            raise typer.Exit(1)
+
+    # Resolve LLM profile
+    settings = load_settings()
+    if profile:
+        chosen = next((p for p in settings.llm_profiles if p.name == profile), None)
+        if not chosen:
+            available = [p.name for p in settings.llm_profiles]
+            console.print(f"[red]Profile '{profile}' not found. Available: {available}[/red]")
+            raise typer.Exit(1)
+    else:
+        chosen = get_active_profile(settings)
+
+    # Backend from profile provider (unless explicitly overridden)
+    resolved_backend = backend if backend else chosen.provider
+    if resolved_backend in ("", "custom"):
+        resolved_backend = "openai_compat"
+
+    # Store profile credentials in metadata for engine
+    if chosen.model or chosen.api_key or chosen.endpoint:
+        metadata["llm_profile"] = {
+            "name": chosen.name,
+            "model": chosen.model,
+            "api_key": chosen.api_key,
+            "endpoint": chosen.endpoint,
+            "provider": chosen.provider,
+        }
+
+    console.print(f"[dim]Using LLM profile: {chosen.name} ({chosen.model or 'default model'})[/dim]")
 
     task = ResearchTask(
-        content=content,
+        content=effective_content,
         persona_count=personas,
         market=market,
-        backend=backend,
+        backend=resolved_backend,
         concurrency=concurrency,
         language=language,
+        research_type=research_type,
         scenario_context=scenario_context or "",
-        metadata={"language": language},
+        metadata=metadata,
     )
 
     engine = ResearchEngine(task)
