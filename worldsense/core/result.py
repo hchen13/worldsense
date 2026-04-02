@@ -88,7 +88,7 @@ class TaskResults(BaseModel):
         # Note: "subscribe" is treated as slot1 (same action as "follow") for backward compat with old results.
         # Intent slot 2 ("neutral/uncertain"): hesitate / consider / maybe / etc.
         # Intent slot 3: always "pass"
-        _SLOT1 = {"buy", "follow", "subscribe", "trial", "switch", "watch"}
+        _SLOT1 = {"buy", "follow", "subscribe", "trial", "switch", "watch", "resonate"}
         _SLOT2 = {"hesitate", "consider", "maybe"}
         buy = sum(1 for r in results if r.purchase_intent in _SLOT1)
         hesitate = sum(1 for r in results if r.purchase_intent in _SLOT2)
@@ -119,7 +119,7 @@ class TaskResults(BaseModel):
                     bucket[key] = []
                 bucket[key].append(r)
 
-        _SLOT1 = {"buy", "follow", "subscribe", "trial", "switch", "watch"}
+        _SLOT1 = {"buy", "follow", "subscribe", "trial", "switch", "watch", "resonate"}
 
         def _slice_stats(group: list[PersonaResult]) -> dict:
             ng = len(group)

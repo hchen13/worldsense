@@ -44,10 +44,10 @@ INTENT_PRESETS: dict[str, dict] = {
         "question": "Would this persona try this app or service?",
     },
     "concept_test": {
-        "values": ["buy", "hesitate", "pass"],
+        "values": ["resonate", "consider", "pass"],
         "descriptions": {
-            "buy": "Strongly resonates with this concept / would act on it",
-            "hesitate": "Interesting concept but uncertain about real-world viability",
+            "resonate": "Strongly resonates with this concept / would act on it",
+            "consider": "Interesting concept but uncertain about real-world viability",
             "pass": "Concept does not resonate",
         },
         "question": "How does this persona respond to this concept?",

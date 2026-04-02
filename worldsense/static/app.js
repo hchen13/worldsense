@@ -1058,8 +1058,8 @@ const INTENT_LABEL_CONFIG = {
   },
   'concept_test': {
     breakdownTitle: 'Concept Resonance Breakdown',
-    slot1Label: 'Resonates', slot1Desc: 'concept resonates',
-    slot2Label: 'Hesitate',
+    slot1Label: 'Resonate', slot1Desc: 'concept resonates',
+    slot2Label: 'Consider',
     rateLabel: 'Resonance Rate', rateLabelCn: '共鸣率',
   },
   'competitive_switch': {
