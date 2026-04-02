@@ -283,7 +283,7 @@ class WorkerPool:
             schema=None,           # Merged call uses json_mode=True (json_object)
             system_prompt=MERGED_SYSTEM_PROMPT,
             temperature=temperature,
-            max_tokens=800,
+            max_tokens=2000,
             extra_body={"enable_thinking": False},
             json_mode=True,
         )
