@@ -44,7 +44,7 @@ def cmd_run(
     scenario_context: Optional[str] = typer.Option(None, "--scenario-context", "-s", help="Scenario context describing how personas encounter the content"),
     research_type: str = typer.Option("product_purchase", "--research-type", "-r", help="Research type (product_purchase/social_follow/content_reaction/app_trial/concept_test/competitive_switch)"),
     dimensions_json: Optional[str] = typer.Option(None, "--dimensions", "-d", help="Dimension config as JSON string (e.g. '{\"location_weights\":{\"t1\":1}}')"),
-    vision_mode: str = typer.Option("summary", "--vision-mode", help="Image understanding: 'summary' (one-time description) or 'per_persona' (each persona sees images)"),
+    vision_mode: str = typer.Option("per_persona", "--vision-mode", help="Image understanding: 'per_persona' (each persona sees images) or 'summary' (one-time description)"),
     image: Optional[list[Path]] = typer.Option(None, "--image", "-i", help="Image file(s) to include (can be repeated)"),
 ):
     """Run a full research simulation."""

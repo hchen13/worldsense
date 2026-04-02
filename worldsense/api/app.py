@@ -349,7 +349,7 @@ async def create_run(
     # LLM profile to use (empty = use default active profile)
     profile_name: Annotated[str, Form()] = "",
     # Vision mode: "summary" (default, one-time system description) or "per_persona" (each persona sees images)
-    vision_mode: Annotated[str, Form()] = "summary",
+    vision_mode: Annotated[str, Form()] = "per_persona",
     # Optional file attachments
     files: Annotated[list[UploadFile], File()] = [],
 ):
