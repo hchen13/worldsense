@@ -1739,7 +1739,7 @@ function showDotTooltip(event, personaId, status, error, attempt) {
   const state = statesMap[personaId];
   const cfg = DOT_STATUS_CONFIG[status] || DOT_STATUS_CONFIG.pending;
 
-  // ---- Persona card section ----
+  // ---- Header: status + name ----
   let html = `<div class="dot-tooltip-header" style="border-color:${cfg.color}">`;
   html += `<span class="dot-tooltip-status" style="color:${cfg.color}">${cfg.label.toUpperCase()}</span>`;
   if (persona?.name) {
@@ -1749,105 +1749,54 @@ function showDotTooltip(event, personaId, status, error, attempt) {
   }
   html += `</div>`;
 
+  // ---- Persona info (always shown if available) ----
   if (persona) {
     html += `<div class="dot-tooltip-section">`;
-    // Demographics row
     const demoParts = [
       persona.country_name ? `🌍 ${persona.country_name}` : '',
       persona.age ? `${persona.age}y` : '',
       persona.gender || '',
     ].filter(Boolean);
     html += `<div class="dot-tooltip-row">${escHtml(demoParts.join(' · '))}</div>`;
-    // Occupation
     if (persona.occupation_label || persona.occupation_title) {
       html += `<div class="dot-tooltip-row">💼 ${escHtml(persona.occupation_label || persona.occupation_title)}</div>`;
     }
-    // Income
     if (persona.income_display) {
       html += `<div class="dot-tooltip-row dim">💰 ${escHtml(persona.income_display)}</div>`;
     }
-    // Personality
     if (persona.personality_type) {
       html += `<div class="dot-tooltip-row dim">🧠 ${escHtml(persona.personality_type.replace(/_/g,' '))}${persona.mbti ? ' · ' + escHtml(persona.mbti) : ''}</div>`;
     }
     html += `</div>`;
   }
 
-  // ---- Feedback section (only for completed personas with result data) ----
-  if (status === 'done' && persona) {
+  // ---- Feedback (shown for completed personas) ----
+  if (persona && (persona.intent != null || persona.nps_score != null)) {
     const intent = persona.intent;
     const nps = persona.nps_score;
     const sentiment = persona.sentiment_score;
     const verbatim = persona.verbatim;
-    if (intent != null || nps != null) {
-      html += `<div class="dot-tooltip-section" style="background:rgba(34,197,94,0.06)">`;
-      // Intent + NPS + sentiment in one row
-      const intentColors = {buy:'#22c55e', follow:'#22c55e', trial:'#22c55e', watch:'#22c55e', switch:'#22c55e',
-                            hesitate:'#f59e0b', consider:'#f59e0b', maybe:'#f59e0b',
-                            pass:'#ef4444'};
-      const iColor = intentColors[intent] || '#94a3b8';
-      let feedbackParts = [];
-      if (intent) feedbackParts.push(`<span style="color:${iColor};font-weight:600">${escHtml(intent).toUpperCase()}</span>`);
-      if (nps != null) feedbackParts.push(`NPS ${nps}/10`);
-      if (sentiment != null) feedbackParts.push(`${sentiment >= 0 ? '+' : ''}${Number(sentiment).toFixed(2)}`);
-      html += `<div class="dot-tooltip-row">${feedbackParts.join(' · ')}</div>`;
-      // Verbatim (truncated)
-      if (verbatim) {
-        const vShort = verbatim.length > 80 ? verbatim.substring(0, 80) + '…' : verbatim;
-        html += `<div class="dot-tooltip-row dim" style="font-style:italic;line-height:1.4">"${escHtml(vShort)}"</div>`;
-      }
-      html += `</div>`;
-    }
-  }
-
-  // ---- Timing section (started_at / duration) — show what's available ----
-  if (state) {
-    const hasStarted = state.started_at != null;
-    const hasDone = state.completed_at != null || state.llm_elapsed_ms != null;
-    if (hasStarted || hasDone) {
-      html += `<div class="dot-tooltip-section">`;
-      if (hasStarted) {
-        const startDate = new Date(state.started_at * 1000);
-        const startStr = startDate.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit', second:'2-digit'});
-        html += `<div class="dot-tooltip-row dim">🕐 Started ${escHtml(startStr)}</div>`;
-      }
-      if (state.llm_elapsed_ms != null) {
-        const secs = (state.llm_elapsed_ms / 1000).toFixed(1);
-        html += `<div class="dot-tooltip-row dim">⏳ Duration ${secs}s</div>`;
-      } else if (hasStarted && status === 'running') {
-        // Live duration for in-flight persona
-        const elapsed = ((Date.now() / 1000) - state.started_at).toFixed(0);
-        html += `<div class="dot-tooltip-row dim">⏳ Running ${elapsed}s…</div>`;
-      }
-      html += `</div>`;
-    }
-  }
-
-  // ---- LLM call section (only for done/failed states with metadata) ----
-  if (state && (state.llm_model || state.llm_prompt_tokens != null || state.llm_completion_tokens != null)) {
-    html += `<div class="dot-tooltip-section dot-tooltip-llm">`;
-    html += `<div class="dot-tooltip-label">LLM Call</div>`;
-    if (state.llm_model) {
-      html += `<div class="dot-tooltip-row">🤖 ${escHtml(state.llm_model)}</div>`;
-    }
-    if (state.llm_prompt_tokens != null || state.llm_completion_tokens != null) {
-      const ptok = state.llm_prompt_tokens ?? '?';
-      const ctok = state.llm_completion_tokens ?? '?';
-      html += `<div class="dot-tooltip-row">🪙 ${ptok}+${ctok} tokens</div>`;
-    }
-    if (attempt > 0) {
-      html += `<div class="dot-tooltip-row warn">⚠ Attempt #${attempt + 1}</div>`;
+    const intentColors = {buy:'#22c55e', follow:'#22c55e', trial:'#22c55e', watch:'#22c55e', switch:'#22c55e', resonate:'#22c55e',
+                          hesitate:'#f59e0b', consider:'#f59e0b', maybe:'#f59e0b',
+                          pass:'#ef4444'};
+    const iColor = intentColors[intent] || '#94a3b8';
+    html += `<div class="dot-tooltip-section" style="background:rgba(34,197,94,0.06)">`;
+    let parts = [];
+    if (intent) parts.push(`<span style="color:${iColor};font-weight:600">${escHtml(intent).toUpperCase()}</span>`);
+    if (nps != null) parts.push(`NPS ${nps}/10`);
+    if (sentiment != null) parts.push(`${sentiment >= 0 ? '+' : ''}${Number(sentiment).toFixed(2)}`);
+    html += `<div class="dot-tooltip-row">${parts.join(' · ')}</div>`;
+    if (verbatim) {
+      const vShort = verbatim.length > 100 ? verbatim.substring(0, 100) + '…' : verbatim;
+      html += `<div class="dot-tooltip-row dim" style="font-style:italic;line-height:1.4">"${escHtml(vShort)}"</div>`;
     }
     html += `</div>`;
-  } else if (attempt > 0) {
-    html += `<div class="dot-tooltip-row warn" style="padding:4px 8px">⚠ Attempt #${attempt + 1}</div>`;
   }
 
-  // ---- Error section ----
+  // ---- Error (only for failed) ----
   if (error) {
     html += `<div class="dot-tooltip-section dot-tooltip-error">`;
-    html += `<div class="dot-tooltip-label">Error</div>`;
-    html += `<div class="dot-tooltip-error-msg">${escHtml(error.substring(0, 150))}</div>`;
+    html += `<div class="dot-tooltip-error-msg">⚠ ${escHtml(error.substring(0, 150))}</div>`;
     html += `</div>`;
   }
 

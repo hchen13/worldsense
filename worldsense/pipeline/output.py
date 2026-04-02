@@ -15,6 +15,7 @@ INTENT_PRESETS: dict[str, dict] = {
             "pass": "Would not buy / not interested",
         },
         "question": "Would this persona buy the product?",
+        "has_wtp": True,
     },
     "social_follow": {
         "values": ["follow", "consider", "pass"],
@@ -42,6 +43,7 @@ INTENT_PRESETS: dict[str, dict] = {
             "pass": "Would not try this app/service",
         },
         "question": "Would this persona try this app or service?",
+        "has_wtp": True,
     },
     "concept_test": {
         "values": ["resonate", "consider", "pass"],
@@ -60,6 +62,7 @@ INTENT_PRESETS: dict[str, dict] = {
             "pass": "Would not switch, prefers current solution",
         },
         "question": "Would this persona switch from their current solution to this?",
+        "has_wtp": True,
     },
 }
 
@@ -187,6 +190,7 @@ def build_merged_prompt(
     """
     # Resolve intent preset
     intent_preset = INTENT_PRESETS.get(research_type, DEFAULT_INTENT_PRESET)
+    has_wtp = intent_preset.get("has_wtp", False)
     v1, v2, v3 = intent_preset["values"]
     d1 = intent_preset["descriptions"][v1]
     d2 = intent_preset["descriptions"][v2]
@@ -271,8 +275,8 @@ REQUIRED RESPONSE FORMAT — Respond ONLY with a valid JSON object. No markdown 
   "sentiment_score": <float -1.0 to 1.0>,
   "key_attraction": "<what most appeals to you>",
   "key_concern": "<your main worry or objection>",
-  "verbatim": "<your authentic reaction — see language instructions>",
-  "willingness_to_pay_multiplier": <float, 1.0 = average, 0.5 = half, 2.0 = double>
+  "verbatim": "<your authentic reaction — see language instructions>"{"," if has_wtp else ""}
+{"  \"willingness_to_pay_multiplier\": <float, 1.0 = average, 0.5 = half, 2.0 = double>" if has_wtp else ""}
 }}
 
 Be honest and authentic — not uniformly positive. Reflect your real cognitive style, cultural background, financial situation, and personal interests. Do NOT evaluate solely based on your job — consider your full identity as a person with hobbies, curiosities, and a life outside work."""
