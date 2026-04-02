@@ -354,6 +354,8 @@ async def create_run(
     files: Annotated[list[UploadFile], File()] = [],
 ):
     """Submit a new research task (multipart form — supports file attachments)."""
+    if vision_mode not in ("summary", "per_persona"):
+        raise HTTPException(status_code=400, detail="vision_mode must be 'summary' or 'per_persona'")
     if market not in MARKET_COUNTRIES:
         raise HTTPException(
             status_code=400,

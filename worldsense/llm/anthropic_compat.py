@@ -100,11 +100,11 @@ class AnthropicCompatBackend(LLMBackend):
         async with self._rate_limiter:
             # Build user content: text + optional images (Anthropic vision format)
             if images:
-                import re as _re_img
+                import re
                 content_blocks: list[dict] = []
                 for img_url in images:
                     # Parse data URL: data:image/png;base64,...
-                    m = _re_img.match(r'data:(image/\w+);base64,(.+)', img_url)
+                    m = re.match(r'data:(image/[\w+.-]+);base64,(.+)', img_url)
                     if m:
                         content_blocks.append({
                             "type": "image",

@@ -169,8 +169,12 @@ class ResearchEngine:
     def _save_results(self, agg: TaskResults) -> Path:
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         path = OUTPUT_DIR / f"{self.task.task_id}.json"
+        task_data = self.task.model_dump(mode="json")
+        # Strip bulky image data from persisted metadata (images are saved as files)
+        if "image_data_urls" in task_data.get("metadata", {}):
+            del task_data["metadata"]["image_data_urls"]
         data = {
-            "task": self.task.model_dump(mode="json"),
+            "task": task_data,
             "summary": agg.model_dump(mode="json"),
             "results": [r.model_dump(mode="json") for r in self._results],
         }

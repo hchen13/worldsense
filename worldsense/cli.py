@@ -44,7 +44,8 @@ def cmd_run(
     scenario_context: Optional[str] = typer.Option(None, "--scenario-context", "-s", help="Scenario context describing how personas encounter the content"),
     research_type: str = typer.Option("product_purchase", "--research-type", "-r", help="Research type (product_purchase/social_follow/content_reaction/app_trial/concept_test/competitive_switch)"),
     dimensions_json: Optional[str] = typer.Option(None, "--dimensions", "-d", help="Dimension config as JSON string (e.g. '{\"location_weights\":{\"t1\":1}}')"),
-    vision_mode: str = typer.Option("summary", "--vision-mode", help="Image understanding: 'summary' (one-time system description) or 'per_persona' (each persona sees images)"),
+    vision_mode: str = typer.Option("summary", "--vision-mode", help="Image understanding: 'summary' (one-time description) or 'per_persona' (each persona sees images)"),
+    image: Optional[list[Path]] = typer.Option(None, "--image", "-i", help="Image file(s) to include (can be repeated)"),
 ):
     """Run a full research simulation."""
     from worldsense.core.task import ResearchTask
@@ -69,6 +70,26 @@ def cmd_run(
 
     # Parse dimensions
     metadata: dict = {"language": language}
+    if vision_mode not in ("summary", "per_persona"):
+        console.print("[red]--vision-mode must be 'summary' or 'per_persona'[/red]")
+        raise typer.Exit(1)
+    if image:
+        import base64
+        image_data_urls = []
+        for img_path in image:
+            if not img_path.exists():
+                console.print(f"[red]Image not found: {img_path}[/red]")
+                raise typer.Exit(1)
+            suffix = img_path.suffix.lower().lstrip(".")
+            mime_map = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+                        "webp": "image/webp", "gif": "image/gif"}
+            mime = mime_map.get(suffix, "image/jpeg")
+            b64 = base64.b64encode(img_path.read_bytes()).decode("utf-8")
+            image_data_urls.append(f"data:{mime};base64,{b64}")
+        metadata["image_data_urls"] = image_data_urls
+        if vision_mode == "summary":
+            console.print("[dim]Images provided — using per_persona vision mode[/dim]")
+            vision_mode = "per_persona"
     if vision_mode == "per_persona":
         metadata["vision_mode"] = "per_persona"
     if dimensions_json:
