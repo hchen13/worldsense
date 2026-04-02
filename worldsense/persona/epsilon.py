@@ -30,15 +30,9 @@ EPSILON_SYSTEM_PROMPT = (
 
 EPSILON_PROMPT_TEMPLATE = """\
 Given this person's profile, generate a unique 2-3 sentence personal background.
-Pick 2-3 details from this list (vary your selection each time, do NOT always pick the same ones):
-- Family situation (single/married/divorced, kids or not)
-- A hobby, interest, or side passion
-- How they discover new products or get recommendations
-- A recent purchase they were excited about
-- A personal goal or aspiration
-- A social media habit or entertainment preference
-Be specific and realistic. Vary the tone naturally — some people have worries, some are content, some are ambitious, some are carefree. Reflect what's realistic for their income and life stage.
-IMPORTANT: The background MUST be consistent with this person's cognitive traits below. A low novelty-seeker sticks to familiar brands/routines. A high novelty-seeker actively tries new things. A high risk-taker makes bold choices. Reflect these traits naturally in the background details.
+Pick 2-3 personal details (family, hobby, recent purchase/goal, social media habit). Then identify 2-3 LEISURE INTERESTS — topics this person follows outside of work (e.g. investing/finance, cooking, gaming, fitness, parenting, travel, tech, celebrity gossip, sports, politics, fashion, pets, cars). These should feel natural for their age, income, and personality.
+Be specific and realistic. Vary the tone naturally — some people have worries, some are content, some are ambitious, some are carefree.
+IMPORTANT: Background and interests MUST be consistent with this person's cognitive traits below. High novelty-seeker = explores diverse topics; low risk-appetite = sticks to mainstream interests.
 Do NOT repeat the occupation or income info already given.
 
 Profile: {age}-year-old {gender} from {country_name}, {occupation_title}, ~{income_display}, {location_label}, {personality_label} ({mbti}) personality.

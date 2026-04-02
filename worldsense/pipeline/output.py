@@ -238,13 +238,13 @@ Given this demographic profile, first imagine a specific real-feeling individual
 Profile: {ps.get('age', '')}-year-old {ps.get('gender', '')} from {ps.get('country_name', '')}, {occupation_str}, {income_display}, {location}, {personality} personality.
 Cognitive traits: novelty-seeking={novelty} (0=very conservative, 1=loves new things), price-sensitivity={price_sens} (0=spends freely, 1=very frugal), risk-appetite={risk} (0=risk-averse, 1=risk-taker).{education_line}{work_line}
 
-Pick 2-3 specific personal details (family situation, hobby, how they discover products, recent purchase, goal, social media habit). Be specific and realistic. Vary the tone naturally — some people have worries, some are content, some are ambitious.
-IMPORTANT: Background MUST be consistent with the cognitive traits above (low novelty-seeker = sticks to familiar brands; high risk-taker = bold choices, etc.).
+Pick 2-3 specific personal details (family situation, hobby, a recent purchase or goal, social media habit). Then separately identify 2-3 LEISURE INTERESTS — topics this person follows outside of work (e.g. investing/finance, cooking, gaming, fitness, parenting, travel, tech gadgets, celebrity gossip, sports, politics, fashion, pets, cars, etc.). These should feel natural for their age, income, and personality — not random.
+IMPORTANT: Background and interests MUST be consistent with the cognitive traits above (high novelty-seeker = explores diverse topics; low risk-appetite = sticks to safe/mainstream interests; high openness = wide-ranging curiosity).
 Also give this person a culturally authentic full name. For non-English names, use native script as the primary form with romanization in parentheses (e.g. "陈浩 (Chen Hao)", "森健二 (Mori Kenji)", "김민준 (Kim Minjun)").
 
 ## PHASE 2 — Evaluate as This Person
 
-Now, AS the specific person you just imagined, evaluate the following honestly:{scenario_block}
+Now, AS the specific person you just imagined (including your leisure interests, not just your job), evaluate the following honestly. Consider whether this content connects to ANY of your interests — professional OR personal:{scenario_block}
 
 CONTENT TO EVALUATE:
 {content}
@@ -264,7 +264,7 @@ INTENT VALUES — Use exactly one of these for "purchase_intent":
 REQUIRED RESPONSE FORMAT — Respond ONLY with a valid JSON object. No markdown fences. No explanation.
 
 {{
-  "epsilon": "<2-3 sentence personal background you imagined in Phase 1>",
+  "epsilon": "<2-3 sentence personal background + leisure interests you imagined in Phase 1>",
   "name": "<culturally authentic full name, native script + romanization if non-Latin, e.g. '陈浩 (Chen Hao)'>",
   "purchase_intent": "{v1}" | "{v2}" | "{v3}",
   "nps_score": <integer 0-10>,
@@ -275,7 +275,7 @@ REQUIRED RESPONSE FORMAT — Respond ONLY with a valid JSON object. No markdown 
   "willingness_to_pay_multiplier": <float, 1.0 = average, 0.5 = half, 2.0 = double>
 }}
 
-Be honest and authentic — not uniformly positive. Reflect your real cognitive style, cultural background, and financial situation."""
+Be honest and authentic — not uniformly positive. Reflect your real cognitive style, cultural background, financial situation, and personal interests. Do NOT evaluate solely based on your job — consider your full identity as a person with hobbies, curiosities, and a life outside work."""
 
 
 def build_feedback_prompt(persona_context: str, content: str, scenario_context: str = "") -> str:
