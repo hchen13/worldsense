@@ -57,11 +57,27 @@ ws run \
 
 ## Web UI
 
-Features include:
-- Two-column research creation page (content input + config/preview)
-- URL auto-extraction (web articles, video subtitles/transcription)
-- File uploads (images, PDF, Word) + vision mode selector
-- Real-time Persona Matrix dot visualization (hover for per-persona details and feedback)
+### Create Research Task
+
+Two-column layout: content input on the left (text/URL/file upload), configuration on the right (market, language, persona count, advanced options). 6 research type presets.
+
+![New Research](docs/screenshots/new-research.png)
+
+### Task Detail & Persona Matrix
+
+Left side shows survey input, statistics, and segmentation analysis. Right side has a sticky Persona Matrix — hover any dot to see persona details and feedback.
+
+![Task Detail](docs/screenshots/task-detail.png)
+
+### LLM Settings
+
+Multi-profile management with OpenAI-compatible and Anthropic-compatible endpoints. Auto vision capability detection.
+
+![Settings](docs/screenshots/settings-llm.png)
+
+### More Features
+- URL auto-extraction (web articles, YouTube/Bilibili subtitles/transcription)
+- Image upload + per-persona vision understanding
 - Prompt Preview (see the exact prompt sent to the LLM)
 - One-click Rerun (copy historical task parameters for a new run)
 
@@ -116,6 +132,21 @@ Features include:
 - Python 3.11+
 - Core: typer, rich, pydantic, httpx, FastAPI, trafilatura
 - Optional: yt-dlp (video subtitle extraction), whisper (audio transcription)
+
+## OpenClaw Compatible
+
+WorldSense is compatible with the [OpenClaw](https://github.com/anthropics/openclaw) agent framework. Two steps to integrate:
+
+1. **Start the WorldSense service**
+   ```bash
+   cd worldsense && ./start.sh
+   ```
+
+2. **Register SKILL.md as an agent skill**
+
+   Add this project's [SKILL.md](SKILL.md) as a skill in your agent configuration. It contains complete CLI and API usage instructions — once loaded, the agent can autonomously operate WorldSense.
+
+Once integrated, agents can create and manage research tasks via CLI (`ws run`) or API (`/api/run`) without human interaction with the Web UI.
 
 ## If You Are an AI Agent
 

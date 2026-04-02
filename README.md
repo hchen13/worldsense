@@ -57,15 +57,27 @@ ws run \
 
 ## Web UI
 
-<p align="center">
-  <img src="docs/screenshot-new-run.png" alt="New Research" width="80%" />
-</p>
+### 创建研究任务
 
-功能包括：
-- 两栏布局的研究创建页面（内容输入 + 配置/预览）
-- URL 自动提取（网页正文、视频字幕/转录）
-- 文件上传（图片、PDF、Word）+ Vision 模式选择
-- 实时 Persona Matrix 点阵可视化（hover 查看每个 persona 的详情和反馈）
+两栏布局：左侧内容输入（文本/URL/文件上传），右侧配置（市场、语言、人数、高级选项）。支持 6 种研究类型预设。
+
+![New Research](docs/screenshots/new-research.png)
+
+### 任务详情与 Persona Matrix
+
+左侧展示调研输入、统计结果、分段分析；右侧 Persona Matrix 点阵固定展示，hover 可查看每个 persona 的详情和反馈。
+
+![Task Detail](docs/screenshots/task-detail.png)
+
+### LLM 设置
+
+多 Profile 管理，支持 OpenAI 兼容 / Anthropic 兼容端点，自动 Vision 能力检测。
+
+![Settings](docs/screenshots/settings-llm.png)
+
+### 更多功能
+- URL 自动提取（网页正文、YouTube/Bilibili 字幕/转录）
+- 图片上传 + Per-persona 视觉理解
 - Prompt Preview（查看实际发给 LLM 的完整 prompt）
 - 一键 Rerun（复制历史任务参数重新运行）
 
@@ -147,6 +159,21 @@ worldsense/
 - Python 3.11+
 - 主要依赖：typer, rich, pydantic, httpx, FastAPI, trafilatura
 - 可选：yt-dlp（视频字幕提取）、whisper（音频转录）
+
+## OpenClaw Compatible
+
+WorldSense 兼容 [OpenClaw](https://github.com/anthropics/openclaw) agent 框架。只需两步即可接入：
+
+1. **启动 WorldSense 服务**
+   ```bash
+   cd worldsense && ./start.sh
+   ```
+
+2. **将 SKILL.md 注册为 agent skill**
+
+   将本项目的 [SKILL.md](SKILL.md) 作为 skill 配置接入你的 agent。SKILL.md 包含完整的 CLI 和 API 使用说明，agent 读取后即可自主操作 WorldSense。
+
+接入后，agent 可以通过 CLI（`ws run`）或 API（`/api/run`）自主创建和管理调研任务，无需人类手动操作 Web UI。
 
 ## If You Are an AI Agent
 
