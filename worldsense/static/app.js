@@ -2155,38 +2155,48 @@ function renderDetail(data) {
 
   html += `</div>`;
 
-  // 1c. Attached files (inline images, PDF links, text files)
+  // 1c. Attached files (images in grid, others inline)
   if (attachments.length > 0) {
+    const imageAtts = attachments.filter(a => a.file_type === 'image');
+    const otherAtts = attachments.filter(a => a.file_type !== 'image');
+
     html += `<div>
-      <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">📎 Attached Files</div>
-      <div class="space-y-3">`;
+      <div class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">📎 Attached Files</div>`;
 
-    attachments.forEach(att => {
-      const fileUrl = `${API_BASE}/api/uploads/${task.task_id}/${encodeURIComponent(att.saved_name)}`;
-      if (att.file_type === 'image') {
+    if (imageAtts.length > 0) {
+      html += `<div class="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-3">`;
+      imageAtts.forEach(att => {
+        const fileUrl = `${API_BASE}/api/uploads/${task.task_id}/${encodeURIComponent(att.saved_name)}`;
         html += `<div>
-          <div class="text-xs text-slate-600 mb-1">${escHtml(att.original_name)} (${Math.round(att.size_bytes / 1024)} KB)</div>
           <img src="${fileUrl}" alt="${escHtml(att.original_name)}"
-            class="max-w-sm max-h-64 rounded-lg border border-surface-700 object-contain cursor-pointer hover:opacity-90 transition-opacity"
+            class="w-full rounded-lg border border-surface-700 object-contain cursor-pointer hover:opacity-90 transition-opacity"
             onclick="window.open('${fileUrl}', '_blank')" />
-          ${att.image_description ? `<p class="text-xs text-slate-500 italic mt-1 max-w-sm">AI description: ${escHtml(att.image_description)}</p>` : ''}
+          <div class="text-xs text-slate-600 mt-1">${escHtml(att.original_name)} (${Math.round(att.size_bytes / 1024)} KB)</div>
         </div>`;
-      } else if (att.file_type === 'pdf') {
-        html += `<a href="${fileUrl}" target="_blank" rel="noopener"
-          class="inline-flex items-center gap-2 px-3 py-2 bg-violet-900/30 border border-violet-700/40 rounded-lg text-xs text-violet-300 hover:bg-violet-900/50 transition-colors">
-          📄 ${escHtml(att.original_name)}
-          <span class="text-violet-500">(${Math.round(att.size_bytes / 1024)} KB) ↗</span>
-        </a>`;
-      } else {
-        const icon = att.file_type === 'word' ? '📝' : att.file_type === 'text' ? '📃' : '📎';
-        html += `<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-700 border border-surface-600 rounded-lg text-xs text-slate-300">
-          ${icon} ${escHtml(att.original_name)}
-          <span class="text-slate-500">(${Math.round(att.size_bytes / 1024)} KB)</span>
-        </div>`;
-      }
-    });
+      });
+      html += `</div>`;
+    }
 
-    html += `</div></div>`;
+    if (otherAtts.length > 0) {
+      html += `<div class="flex flex-wrap gap-2">`;
+      otherAtts.forEach(att => {
+        const fileUrl = `${API_BASE}/api/uploads/${task.task_id}/${encodeURIComponent(att.saved_name)}`;
+        if (att.file_type === 'pdf') {
+          html += `<a href="${fileUrl}" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 px-3 py-2 bg-violet-900/30 border border-violet-700/40 rounded-lg text-xs text-violet-300 hover:bg-violet-900/50 transition-colors">
+            📄 ${escHtml(att.original_name)} <span class="text-violet-500">(${Math.round(att.size_bytes / 1024)} KB) ↗</span>
+          </a>`;
+        } else {
+          const icon = att.file_type === 'word' ? '📝' : att.file_type === 'text' ? '📃' : '📎';
+          html += `<div class="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-700 border border-surface-600 rounded-lg text-xs text-slate-300">
+            ${icon} ${escHtml(att.original_name)} <span class="text-slate-500">(${Math.round(att.size_bytes / 1024)} KB)</span>
+          </div>`;
+        }
+      });
+      html += `</div>`;
+    }
+
+    html += `</div>`;
   }
 
   // 1d. Main content / what was evaluated
@@ -2346,7 +2356,7 @@ function renderDetail(data) {
   <div class="flex flex-col lg:flex-row gap-6">
     <div class="flex-1 min-w-0">${leftCol}</div>
     <div class="w-full lg:w-80 flex-shrink-0">
-      <div class="lg:sticky lg:top-4">${rightCol}</div>
+      <div class="lg:sticky" style="top:1rem; max-height:calc(100vh - 2rem); overflow-y:auto">${rightCol}</div>
     </div>
   </div>`;
 
