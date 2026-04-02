@@ -1184,6 +1184,9 @@ function renderEvalPresets() {
 function selectPreset(id) {
   _selectedPreset = id;
   renderEvalPresets();
+  // Auto-refresh prompt preview if panel is open
+  const panel = document.getElementById('prompt-preview-panel');
+  if (panel && !panel.classList.contains('hidden')) loadPromptPreview();
 }
 
 function renderCustomPresetPanel() {

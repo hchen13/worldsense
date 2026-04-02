@@ -156,6 +156,15 @@ class ResearchEngine:
         # Include persona summary snapshot for live tooltip during runs
         if state.persona_summary is not None:
             entry["persona"] = state.persona_summary
+        # Include result feedback for completed personas (live tooltip during run)
+        if state.result is not None:
+            entry["persona"] = {
+                **(entry.get("persona") or {}),
+                "purchase_intent": state.result.purchase_intent,
+                "nps_score": state.result.nps_score,
+                "sentiment_score": state.result.sentiment_score,
+                "verbatim": state.result.verbatim,
+            }
         self._persona_states[state.persona_id] = entry
         # Write to a lightweight states file alongside results
         states_path = OUTPUT_DIR / f"{self.task.task_id}.states.json"
