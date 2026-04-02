@@ -2086,12 +2086,18 @@ function renderDetail(data) {
   // ----- Zone 0: Header -----
   let html = `
   <div class="mb-5">
-    <div class="flex items-center gap-3 mb-1">
-      <h1 class="text-xl font-bold">Task <span class="font-mono text-brand-400">${task.task_id}</span></h1>
-      <span class="badge badge-${task.status}">
-        ${isRunning ? '<span class="pulse-dot"></span>' : ''}
-        ${task.status}
-      </span>
+    <div class="flex items-center justify-between mb-1">
+      <div class="flex items-center gap-3">
+        <h1 class="text-xl font-bold">Task <span class="font-mono text-brand-400">${task.task_id}</span></h1>
+        <span class="badge badge-${task.status}">
+          ${isRunning ? '<span class="pulse-dot"></span>' : ''}
+          ${task.status}
+        </span>
+      </div>
+      <button onclick="rerunTask('${task.task_id}')"
+        class="flex items-center gap-1.5 px-3 py-1.5 bg-brand-700 hover:bg-brand-600 text-white text-xs font-medium rounded-lg transition-colors">
+        ↻ Rerun
+      </button>
     </div>
     <div class="flex flex-wrap gap-3 mt-1 text-xs text-slate-500">
       <span>🌐 ${task.market}</span>
@@ -3015,6 +3021,98 @@ function fmtSentiment(val) {
   const n = parseFloat(val).toFixed(2);
   const color = val >= 0.1 ? 'text-green-400' : val <= -0.1 ? 'text-red-400' : 'text-slate-400';
   return `<span class="${color}">${n}</span>`;
+}
+
+// ---------------------------------------------------------------------------
+// Rerun Task — copy params from completed task to New Research form
+// ---------------------------------------------------------------------------
+
+async function rerunTask(taskId) {
+  try {
+    const data = await apiFetch(`/api/tasks/${taskId}`);
+    const task = data.task || data;
+    const meta = task.metadata || {};
+
+    // Navigate to New Research
+    showView('new-run');
+
+    // Wait for DOM to be ready
+    await new Promise(r => setTimeout(r, 100));
+
+    // Prefill content
+    const contentEl = document.getElementById('input-content');
+    if (contentEl) {
+      // Strip appended file content / evaluation focus blocks for clean re-use
+      let content = task.content || '';
+      const fileIdx = content.indexOf('\n\n[Attached file content:]');
+      if (fileIdx !== -1) content = content.substring(0, fileIdx);
+      const evalIdx = content.indexOf('\n\n---\nEVALUATION FOCUS:');
+      if (evalIdx !== -1) content = content.substring(0, evalIdx);
+      contentEl.value = content.trim();
+    }
+
+    // Scenario context
+    const scenarioEl = document.getElementById('input-scenario-context');
+    if (scenarioEl) scenarioEl.value = task.scenario_context || '';
+
+    // Market
+    const marketEl = document.getElementById('input-market');
+    if (marketEl) {
+      marketEl.value = task.market || 'global';
+      marketEl.dispatchEvent(new Event('change'));
+    }
+
+    // Language
+    const langEl = document.getElementById('input-language');
+    if (langEl) langEl.value = task.language || meta.language || 'English';
+
+    // Persona count
+    const slider = document.getElementById('input-personas');
+    const numInput = document.getElementById('input-personas-num');
+    const countLabel = document.getElementById('persona-count-label');
+    const count = task.persona_count || 20;
+    if (slider) slider.value = Math.min(count, 200);
+    if (numInput) numInput.value = count;
+    if (countLabel) countLabel.textContent = count;
+
+    // Research type
+    if (task.research_type && task.research_type !== 'custom') {
+      selectPreset(task.research_type);
+    }
+
+    // Profile
+    const profileEl = document.getElementById('input-profile');
+    if (profileEl && meta.llm_profile?.name) {
+      profileEl.value = meta.llm_profile.name;
+    }
+
+    // Dimensions — reload advanced panel weights
+    if (meta.dimensions) {
+      // Set nationality weights
+      if (meta.dimensions.nationality_weights) {
+        advState.nationalityWeights = {...meta.dimensions.nationality_weights};
+        advState.selectedCountries = new Set(Object.keys(meta.dimensions.nationality_weights));
+      }
+      // Set location weights
+      if (meta.dimensions.location_weights) {
+        advState.locationWeights = {...meta.dimensions.location_weights};
+      }
+      // Set age weights
+      if (meta.dimensions.age_weights) {
+        advState.ageWeights = {...meta.dimensions.age_weights};
+      }
+      // Set gender weights
+      if (meta.dimensions.gender_weights) {
+        advState.genderWeights = {...meta.dimensions.gender_weights};
+      }
+      renderAllAdvanced();
+    }
+
+    showMsg('Task parameters loaded — adjust and run again', 'success');
+
+  } catch (err) {
+    showMsg('Failed to load task: ' + err.message, 'error');
+  }
 }
 
 // ---------------------------------------------------------------------------
