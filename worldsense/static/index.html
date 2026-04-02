@@ -30,7 +30,7 @@
       }
     }
   </script>
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
   <style>
     /* Advanced options collapse animation */
     .adv-panel {
@@ -515,6 +515,29 @@
 
             <!-- Attached file chips -->
             <div id="file-chips" class="flex flex-wrap gap-2 mt-2"></div>
+
+            <!-- Vision mode selector (shown when images are attached) -->
+            <div id="vision-mode-selector" class="hidden mt-3 px-3 py-2.5 bg-surface-900/60 border border-surface-700 rounded-lg">
+              <div class="text-xs font-medium text-slate-300 mb-2">Image Understanding Mode</div>
+              <div class="flex gap-2">
+                <label class="flex items-center gap-2 px-3 py-1.5 bg-surface-800 border border-surface-600 rounded-lg cursor-pointer hover:border-brand-500 transition-colors">
+                  <input type="radio" name="vision_mode" value="per_persona" checked
+                    class="accent-brand-500" />
+                  <div>
+                    <div class="text-xs text-slate-200">Per Persona</div>
+                    <div class="text-xs text-slate-500">Each persona sees the image directly</div>
+                  </div>
+                </label>
+                <label class="flex items-center gap-2 px-3 py-1.5 bg-surface-800 border border-surface-600 rounded-lg cursor-pointer hover:border-brand-500 transition-colors">
+                  <input type="radio" name="vision_mode" value="summary"
+                    class="accent-brand-500" />
+                  <div>
+                    <div class="text-xs text-slate-200">Summary</div>
+                    <div class="text-xs text-slate-500">System describes the image once as text</div>
+                  </div>
+                </label>
+              </div>
+            </div>
           </div>
 
           <!-- ===== EVALUATION PRESET SYSTEM (v2) — stays in left col ===== -->
@@ -887,6 +910,6 @@
     </main>
   </div>
 
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>

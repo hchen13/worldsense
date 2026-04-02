@@ -1346,6 +1346,12 @@ let _attachedFiles = [];
 function renderFileChips() {
   const container = document.getElementById('file-chips');
   if (!container) return;
+
+  // Show/hide vision mode selector based on whether images are attached
+  const hasImages = _attachedFiles.some(f => ['jpg','jpeg','png','webp','gif'].includes(f.name.split('.').pop().toLowerCase()));
+  const visionSel = document.getElementById('vision-mode-selector');
+  if (visionSel) visionSel.classList.toggle('hidden', !hasImages);
+
   if (_attachedFiles.length === 0) { container.innerHTML = ''; return; }
   container.innerHTML = _attachedFiles.map((f, idx) => {
     const ext = f.name.split('.').pop().toLowerCase();
@@ -1492,6 +1498,12 @@ if (runForm) {
       // Append selected profile name
       const profileSel = document.getElementById('input-profile');
       if (profileSel && profileSel.value) fd.append('profile_name', profileSel.value);
+      // Vision mode (per_persona or summary)
+      const visionModeInput = document.querySelector('input[name="vision_mode"]:checked');
+      const hasImageFiles = _attachedFiles.some(f => ['jpg','jpeg','png','webp','gif'].includes(f.name.split('.').pop().toLowerCase()));
+      if (hasImageFiles && visionModeInput) {
+        fd.append('vision_mode', visionModeInput.value);
+      }
       _attachedFiles.forEach(f => fd.append('files', f, f.name));
 
       const res = await apiFetchForm('/api/run', fd);
