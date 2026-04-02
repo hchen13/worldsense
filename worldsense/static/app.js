@@ -1948,6 +1948,9 @@ async function openDetail(taskId) {
   try {
     const data = await apiFetch(`/api/tasks/${taskId}`);
     container.innerHTML = renderDetail(data);
+    // Bind rerun button via addEventListener (not inline onclick — XSS safe)
+    const rerunBtn = container.querySelector('.btn-rerun');
+    if (rerunBtn) rerunBtn.addEventListener('click', () => rerunTask(rerunBtn.dataset.rerunTask));
     const task = data.task || data;
     if (task.status === 'running' || task.status === 'pending') {
       startPolling(taskId);
@@ -2094,8 +2097,8 @@ function renderDetail(data) {
           ${task.status}
         </span>
       </div>
-      <button onclick="rerunTask('${task.task_id}')"
-        class="flex items-center gap-1.5 px-3 py-1.5 bg-brand-700 hover:bg-brand-600 text-white text-xs font-medium rounded-lg transition-colors">
+      <button data-rerun-task="${escHtml(task.task_id)}"
+        class="flex items-center gap-1.5 px-3 py-1.5 bg-brand-700 hover:bg-brand-600 text-white text-xs font-medium rounded-lg transition-colors btn-rerun">
         ↻ Rerun
       </button>
     </div>
@@ -3104,6 +3107,18 @@ async function rerunTask(taskId) {
       // Set gender weights
       if (meta.dimensions.gender_weights) {
         advState.genderWeights = {...meta.dimensions.gender_weights};
+      }
+      // Set income weights
+      if (meta.dimensions.income_weights) {
+        advState.incomeWeights = {...meta.dimensions.income_weights};
+      }
+      // Set occupation filter
+      if (meta.dimensions.occupation_ids) {
+        advState.selectedOccupations = new Set(meta.dimensions.occupation_ids);
+      }
+      // Set personality filter
+      if (meta.dimensions.personality_traits) {
+        advState.selectedPersonalities = new Set(meta.dimensions.personality_traits);
       }
       renderAllAdvanced();
     }
