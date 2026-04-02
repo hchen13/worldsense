@@ -348,6 +348,8 @@ async def create_run(
     max_retries: Annotated[int, Form()] = -1,
     # LLM profile to use (empty = use default active profile)
     profile_name: Annotated[str, Form()] = "",
+    # Vision mode: "summary" (default, one-time system description) or "per_persona" (each persona sees images)
+    vision_mode: Annotated[str, Form()] = "summary",
     # Optional file attachments
     files: Annotated[list[UploadFile], File()] = [],
 ):
@@ -388,17 +390,29 @@ async def create_run(
     # Build effective content string
     effective_content = content.strip()
 
-    # --- Process image files: call GLM-4.6V for descriptions ---
+    # --- Process image files ---
     image_descriptions = []
+    image_data_urls = []  # for per_persona vision mode
+
     for sf in saved_files:
         if sf.get("file_type") == "image":
-            desc = await _describe_image_glm(sf["path"])
-            if desc:
-                image_descriptions.append(
-                    f"[Image Description — {sf['original_name']}] {desc}"
-                )
-            # Store description in metadata
-            sf["image_description"] = desc
+            if vision_mode == "per_persona":
+                # Store base64 data URL for per-persona vision (each LLM call gets the image)
+                img_bytes = Path(sf["path"]).read_bytes()
+                b64 = base64.b64encode(img_bytes).decode("utf-8")
+                suffix = Path(sf["path"]).suffix.lower().lstrip(".")
+                mime_map = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+                            "webp": "image/webp", "gif": "image/gif"}
+                mime = mime_map.get(suffix, "image/jpeg")
+                image_data_urls.append(f"data:{mime};base64,{b64}")
+            else:
+                # Summary mode: one-time system description via GLM-4.6V
+                desc = await _describe_image_glm(sf["path"])
+                if desc:
+                    image_descriptions.append(
+                        f"[Image Description — {sf['original_name']}] {desc}"
+                    )
+                sf["image_description"] = desc
 
     # Append extracted file text to content
     extracted_texts = []
@@ -431,6 +445,9 @@ async def create_run(
 
     # Build metadata
     metadata: dict = {}
+    if vision_mode == "per_persona" and image_data_urls:
+        metadata["vision_mode"] = "per_persona"
+        metadata["image_data_urls"] = image_data_urls
     if dimension_dict:
         metadata["dimensions"] = dimension_dict
     if saved_files:

@@ -26,6 +26,7 @@ class LLMBackend(ABC):
         max_tokens: int = 512,
         extra_body: Optional[dict] = None,
         json_mode: bool = True,
+        images: Optional[list[str]] = None,
     ) -> dict[str, Any]:
         """
         Generate a response for the given prompt.
@@ -36,6 +37,7 @@ class LLMBackend(ABC):
             system_prompt: Optional system-level instruction
             temperature: Sampling temperature
             max_tokens: Maximum tokens to generate
+            images: Optional list of base64-encoded image data URLs (data:image/...;base64,...)
 
         Returns:
             dict with at least:
@@ -132,6 +134,7 @@ class MockBackend(LLMBackend):
         max_tokens: int = 512,
         extra_body: Optional[dict] = None,
         json_mode: bool = True,
+        images: Optional[list[str]] = None,
     ) -> dict[str, Any]:
         """Generate a mock structured response based on prompt content."""
         # If not json_mode, this is a standalone epsilon preview call — return a canned backstory

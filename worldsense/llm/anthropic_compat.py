@@ -95,10 +95,28 @@ class AnthropicCompatBackend(LLMBackend):
         max_tokens: int = 4096,
         extra_body: Optional[dict] = None,
         json_mode: bool = True,
+        images: Optional[list[str]] = None,
     ) -> dict[str, Any]:
         async with self._rate_limiter:
+            # Build user content: text + optional images (Anthropic vision format)
+            if images:
+                import re as _re_img
+                content_blocks: list[dict] = []
+                for img_url in images:
+                    # Parse data URL: data:image/png;base64,...
+                    m = _re_img.match(r'data:(image/\w+);base64,(.+)', img_url)
+                    if m:
+                        content_blocks.append({
+                            "type": "image",
+                            "source": {"type": "base64", "media_type": m.group(1), "data": m.group(2)},
+                        })
+                content_blocks.append({"type": "text", "text": prompt})
+                user_content = content_blocks
+            else:
+                user_content = prompt  # type: ignore[assignment]
+
             messages = [
-                {"role": "user", "content": prompt},
+                {"role": "user", "content": user_content},
             ]
 
             payload: dict[str, Any] = {

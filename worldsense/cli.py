@@ -44,6 +44,7 @@ def cmd_run(
     scenario_context: Optional[str] = typer.Option(None, "--scenario-context", "-s", help="Scenario context describing how personas encounter the content"),
     research_type: str = typer.Option("product_purchase", "--research-type", "-r", help="Research type (product_purchase/social_follow/content_reaction/app_trial/concept_test/competitive_switch)"),
     dimensions_json: Optional[str] = typer.Option(None, "--dimensions", "-d", help="Dimension config as JSON string (e.g. '{\"location_weights\":{\"t1\":1}}')"),
+    vision_mode: str = typer.Option("summary", "--vision-mode", help="Image understanding: 'summary' (one-time system description) or 'per_persona' (each persona sees images)"),
 ):
     """Run a full research simulation."""
     from worldsense.core.task import ResearchTask
@@ -68,6 +69,8 @@ def cmd_run(
 
     # Parse dimensions
     metadata: dict = {"language": language}
+    if vision_mode == "per_persona":
+        metadata["vision_mode"] = "per_persona"
     if dimensions_json:
         try:
             metadata["dimensions"] = json.loads(dimensions_json)

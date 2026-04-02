@@ -278,6 +278,11 @@ class WorkerPool:
         except Exception:
             timeout = 120.0
 
+        # Resolve per-persona vision images (if vision_mode == "per_persona")
+        images = None
+        if self.task.metadata.get("vision_mode") == "per_persona":
+            images = self.task.metadata.get("image_data_urls", []) or None
+
         response = await backend.generate(
             prompt=prompt_with_data,
             schema=None,           # Merged call uses json_mode=True (json_object)
@@ -286,6 +291,7 @@ class WorkerPool:
             max_tokens=2000,
             extra_body={"enable_thinking": False},
             json_mode=True,
+            images=images,
         )
 
         parsed = response.get("parsed") or {}

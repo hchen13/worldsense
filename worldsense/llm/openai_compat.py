@@ -124,11 +124,21 @@ class OpenAICompatBackend(LLMBackend):
         max_tokens: int = 4096,  # GLM-5.1 uses ~200-500 tokens for reasoning before actual output
         extra_body: Optional[dict] = None,
         json_mode: bool = True,
+        images: Optional[list[str]] = None,
     ) -> dict[str, Any]:
         async with self._rate_limiter:
+            # Build user content: text + optional images (OpenAI vision format)
+            if images:
+                user_content: list[dict] = []
+                for img_url in images:
+                    user_content.append({"type": "image_url", "image_url": {"url": img_url}})
+                user_content.append({"type": "text", "text": prompt})
+            else:
+                user_content = prompt  # type: ignore[assignment]
+
             messages = [
                 {"role": "system", "content": system_prompt or FEEDBACK_SYSTEM_PROMPT},
-                {"role": "user", "content": prompt},
+                {"role": "user", "content": user_content},
             ]
 
             payload: dict[str, Any] = {
