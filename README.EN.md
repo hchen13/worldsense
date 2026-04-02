@@ -117,6 +117,46 @@ Features include:
 - Core: typer, rich, pydantic, httpx, FastAPI, trafilatura
 - Optional: yt-dlp (video subtitle extraction), whisper (audio transcription)
 
+## If You Are an AI Agent
+
+Here's how you help your human set up WorldSense:
+
+```bash
+# 1. Clone and install
+cd ~/projects  # or wherever your human keeps their code
+git clone https://github.com/hchen13/worldsense.git
+cd worldsense
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e .
+
+# 2. Configure LLM — ask your human for their API key
+cp .env.example .env
+# Set WS_API_KEY, WS_API_BASE_URL, WS_MODEL in .env
+# Supports: OpenAI, Anthropic, DeepSeek, GLM, MiniMax, any OpenAI-compatible endpoint
+
+# 3. Start the Web UI
+./start.sh
+# Now open http://localhost:8766/worldsense/ in your human's browser
+
+# 4. Or run from CLI directly
+ws run \
+  --content-file content.md \
+  --personas 50 --market us \
+  --research-type social_follow \
+  --scenario-context "User sees this post while scrolling their feed"
+
+# 5. View results
+ws report <task-id>
+```
+
+**Key things to know:**
+- `ws personas --count 10 --market global --table` previews personas without running inference
+- `ws run --help` shows all CLI options including `--profile`, `--dimensions`, `--image`, `--vision-mode`
+- The Web UI at `/worldsense/` has a Prompt Preview panel — use it to verify what the LLM actually receives
+- Results are stored in `~/.worldsense/results/` as JSON files
+- Settings (LLM profiles, concurrency, etc.) are in `~/.worldsense/settings.json`
+- Mock backend (`-b mock`) runs instantly with fake data — great for testing your setup before using real LLM credits
+
 ## License
 
 MIT
