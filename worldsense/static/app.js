@@ -1941,9 +1941,15 @@ async function openDetail(taskId) {
       startPolling(taskId);
       startDotPolling(taskId);
     } else {
-      // Load completed persona states for dot matrix at bottom
-      startDotPolling(taskId);
-      setTimeout(() => stopDotPolling(taskId), 3000);  // one-shot load
+      // Load completed persona states — one-shot, no polling needed
+      try {
+        const states = await apiFetch(`/api/tasks/${taskId}/persona-states`);
+        if (states && states.length > 0) {
+          renderDotMatrix(`dot-matrix-${taskId}`, states, [], true);
+        }
+      } catch (e) {
+        console.warn('Failed to load persona states:', e);
+      }
     }
   } catch (err) {
     container.innerHTML = `<p class="text-red-400 text-sm">Failed to load task: ${err.message}</p>`;
